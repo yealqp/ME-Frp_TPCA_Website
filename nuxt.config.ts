@@ -66,7 +66,7 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: 'ME-Frp 第三方客户端联盟' },
         { property: 'og:locale', content: 'zh_CN' },
-        { property: 'og:image', content: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/og-image.png' },
+        { property: 'og:image', content: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         // Twitter Card
@@ -77,8 +77,8 @@ export default defineNuxtConfig({
         { name: 'msapplication-TileColor', content: '#14b8a6' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/favicon.ico' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/apple-touch-icon.png' },
+        { rel: 'icon', type: 'image/x-icon', href: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/apple-touch-icon.png' },
         { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn' },
         // DNS 预解析
         { rel: 'dns-prefetch', href: 'https://image.mefrp-tpca.yealqp.cn' },
@@ -89,7 +89,7 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://image.mefrp-tpca.yealqp.cn', crossorigin: 'anonymous' },
         { rel: 'preconnect', href: 'https://check.yealqp.cn', crossorigin: 'anonymous' },
         // 预加载关键字体
-        { rel: 'preload', href: 'https://image.mefrp-tpca.yealqp.cn/image/font/hywenhei-85w.woff', as: 'font', type: 'font/woff', crossorigin: 'anonymous' }
+        { rel: 'preload', href: 'https://image.mefrp-tpca.yealqp.cn/images/font/hywenhei-85w.woff', as: 'font', type: 'font/woff', crossorigin: 'anonymous' }
       ],
       script: [
         {

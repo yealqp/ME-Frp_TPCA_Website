@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo '🔄 正在克隆仓库...'
                 git branch: 'main',
-                    url: 'https://fastgit.cc/https://github.com/yealqp/ME-Frp_third_party_Client_website.git',
+                    url: 'https://fastgit.cc/https://github.com/yealqp/ME-Frp_TPCA_Website.git',
                     credentialsId: 'github-credentials' // 如果是私有仓库需要配置凭据
             }
         }

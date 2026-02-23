@@ -107,7 +107,6 @@
                   <h4 class="text-lg font-semibold" :class="sponsor.special ? 'text-teal-300' : 'text-white'">{{ sponsor.name }}</h4>
                   <p class="text-sm text-gray-400">{{ sponsor.role }}</p>
                 </div>
-                <span v-if="sponsor.special" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-teal-500/30 to-blue-500/30 text-teal-300 border border-teal-500/50 animate-pulse-slow">⭐ 特别赞助</span>
                 <UButton variant="ghost" color="primary" size="sm" :to="sponsor.link" target="_blank" class="btn-glow cursor-pointer">
                   <UIcon name="i-lucide-external-link" class="size-4 mr-2" />
                   访问
@@ -169,9 +168,9 @@ const { versions, fetchAllVersions } = useProductVersions()
 
 // 产品列表（使用计算属性动态获取版本号）
 const products = computed(() => [
-  { id: 'xl', name: 'XL-ME-Frp-Launcher', author: 'yealqp', version: versions.value.xl, description: '由yealqp使用Tauri框架开发，界面高仿官网样式，可能是目前收录的三个客户端中最美观的一个，也可能也是包体最小的一个，亦或是bug最少的一个。', icon: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/xl_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/xl', tags: ['Tauri', '跨平台', '轻量级'] },
-  { id: 'lx', name: 'LX-ME-Frp-Launcher', author: '灵弦MuaMua', version: versions.value.lx, description: '由灵弦MuaMua使用易语言&Exui开发，界面高仿官方图形化V4.0。', icon: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/lx_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/lx', tags: ['易语言', 'Windows', '官方风格'] },
-  { id: 'pml', name: 'Plain ME Frp Launcher', author: 'RYCB工作室', version: versions.value.pml, description: 'PML 2使用.NET提供了简单便捷的操作, 也是目前三个产品中唯一一个跨平台的软件。支持常见主流平台(Windows, Linux, MacOS, Android)。', icon: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/pml_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/pml', tags: ['.NET', '跨平台', '多系统'] }
+  { id: 'xl', name: 'XL-ME-Frp-Launcher', author: 'yealqp', version: versions.value.xl, description: '由yealqp使用Tauri框架开发，界面高仿官网样式，可能是目前收录的三个客户端中最美观的一个，也可能也是包体最小的一个，亦或是bug最少的一个。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/xl', tags: ['Tauri', '跨平台', '轻量级'] },
+  { id: 'lx', name: 'LX-ME-Frp-Launcher', author: '灵弦MuaMua', version: versions.value.lx, description: '由灵弦MuaMua使用易语言&Exui开发，界面高仿官方图形化V4.0。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/lx_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/lx', tags: ['易语言', 'Windows', '官方风格'] },
+  { id: 'pml', name: 'Plain ME Frp Launcher', author: 'RYCB工作室', version: versions.value.pml, description: 'PML 2使用.NET提供了简单便捷的操作, 也是目前三个产品中唯一一个跨平台的软件。支持常见主流平台(Windows, Linux, MacOS, Android)。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/pml', tags: ['.NET', '跨平台', '多系统'] }
 ])
 
 // 组件挂载时获取版本号
@@ -189,7 +188,7 @@ const members = ref([
 const sponsors = ref([
   { name: '落雪无痕LxHTT', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3395314362&spec=4', role: '特别鸣谢', link: 'https://github.com/LxHTT', special: false },
   { name: 'MCSLTeam-Website-Next', avatar: 'https://avatars.githubusercontent.com/u/138136619?s=48&v=4', role: '特别鸣谢', link: 'https://github.com/MCSLTeam/MCSLTeam-Website-Next', special: false },
-  { name: '仙林云计算', avatar: 'https://image.mefrp-tpca.yealqp.cn/image/xianlin.ico', role: '服务提供商', link: 'https://www.xianlin.cloud/', special: true }
+  { name: '仙林云计算', avatar: 'https://image.mefrp-tpca.yealqp.cn/images/xianlin.ico', role: '服务提供商', link: 'https://www.idcxl.cn/', special: true }
 ])
 
 const stats = ref([

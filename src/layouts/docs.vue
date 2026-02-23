@@ -77,7 +77,7 @@
 
               <div class="space-y-1">
                 <a
-                  href="https://github.com/yealqp/ME-Frp_third_party_Client_website"
+                  href="https://github.com/yealqp/ME-Frp_TPCA_Website"
                   target="_blank"
                   class="flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-primary-400 hover:bg-white/5 transition-all duration-200"
                 >
@@ -100,7 +100,7 @@
                   class="group flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 transition-all duration-200 relative overflow-hidden special-link"
                 >
                   <img
-                    src="https://image.mefrp-tpca.yealqp.cn/image/xianlin.ico"
+                    src="https://image.mefrp-tpca.yealqp.cn/images/xianlin.ico"
                     alt="仙林云计算"
                     class="w-4 h-4 rounded group-hover:scale-110 transition-transform duration-200"
                   />
@@ -113,7 +113,7 @@
             <!-- 广告位 -->
             <div class="mt-6 pt-4 border-t border-white/10">
               <a
-                href="mailto:yealqp@163.com?subject=广告位购买咨询"
+                href="mailto:im@yealqp.cn?subject=广告位购买咨询"
                 class="flex items-center justify-center space-x-2 px-3 py-2.5 rounded-lg text-amber-400 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 hover:border-amber-500/50 transition-all duration-200"
               >
                 <UIcon name="i-lucide-megaphone" class="size-4" />
@@ -162,19 +162,19 @@ const clients = [
     id: "xl",
     name: "XL-ME-Frp-Launcher",
     path: "/docs/xl",
-    icon: "https://image.mefrp-tpca.yealqp.cn/image/views/icon/xl_icon.webp",
+    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp",
   },
   {
     id: "lx",
     name: "LX-ME-Frp-Launcher",
     path: "/docs/lx",
-    icon: "https://image.mefrp-tpca.yealqp.cn/image/views/icon/lx_icon.webp",
+    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/lx_icon.webp",
   },
   {
     id: "pml",
     name: "Plain ME Frp Launcher",
     path: "/docs/pml",
-    icon: "https://image.mefrp-tpca.yealqp.cn/image/views/icon/pml_icon.webp",
+    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp",
   },
 ];
 

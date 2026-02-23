@@ -4,7 +4,7 @@
     <div class="mb-8">
       <div class="flex items-center space-x-4 mb-4">
         <img 
-          src="https://image.mefrp-tpca.yealqp.cn/image/views/icon/lx_icon.webp" 
+          src="https://image.mefrp-tpca.yealqp.cn/images/views/icon/lx_icon.webp" 
           alt="LX-ME-Frp-Launcher"
           class="w-12 h-12 rounded-lg"
         />
@@ -111,7 +111,7 @@
         <div class="relative h-96 flex items-center justify-center">
           <img 
             :src="previewImages[currentImageIndex].src" 
-            :alt="`${previewImages[currentImageIndex].alt} - LX-ME-Frp-Launcher 界面截图`" 
+            :alt="previewImages[currentImageIndex].alt + ' - LX-ME-Frp-Launcher 界面截图'" 
             class="max-w-full max-h-full object-contain cursor-pointer"
             loading="lazy"
             @click="openImageModal(previewImages[currentImageIndex])"
@@ -295,7 +295,7 @@ useSeoMeta({
   ogTitle: 'LX-ME-Frp-Launcher 文档 - ME-Frp 第三方客户端联盟',
   description: 'LX-ME-Frp-Launcher 详细使用文档，使用易语言 & Exui 开发的 ME-Frp 第三方客户端，包含安装、配置和使用指南，支持自动登录和托盘菜单功能。',
   ogDescription: 'LX-ME-Frp-Launcher 详细使用文档，包含安装、配置和使用指南',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/image/views/Lx_MuaMua/home.png',
+  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/home.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/lx',
   ogType: 'article',
   twitterCard: 'summary_large_image'
@@ -303,15 +303,15 @@ useSeoMeta({
 
 // 预览图数据
 const previewImages = [
-  { src: 'https://image.mefrp-tpca.yealqp.cn/image/views/Lx_MuaMua/login.png', alt: '登录界面' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/image/views/Lx_MuaMua/home.png', alt: '主页面' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/image/views/Lx_MuaMua/create.png', alt: '创建隧道' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/image/views/Lx_MuaMua/tunnel.png', alt: '隧道管理' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/image/views/Lx_MuaMua/tunnellog.png', alt: '隧道日志' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/image/views/Lx_MuaMua/monitor.png', alt: '节点监控' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/image/views/Lx_MuaMua/person.png', alt: '个人信息' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/image/views/Lx_MuaMua/config.png', alt: '配置设置' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/image/views/Lx_MuaMua/about.png', alt: '关于页面' }
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/login.png', alt: '登录界面' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/home.png', alt: '主页面' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/create.png', alt: '创建隧道' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/tunnel.png', alt: '隧道管理' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/tunnellog.png', alt: '隧道日志' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/monitor.png', alt: '节点监控' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/person.png', alt: '个人信息' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/config.png', alt: '配置设置' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/about.png', alt: '关于页面' }
 ]
 
 // 更新历史（完整版本）

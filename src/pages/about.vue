@@ -150,7 +150,7 @@
               <UButton 
                 size="lg" 
                 color="primary"
-                to="https://github.com/yealqp/ME-Frp_third_party_Client_website"
+                to="https://github.com/yealqp/ME-Frp_TPCA_Website"
                 target="_blank"
                 class="btn-glow cursor-pointer"
               >
@@ -198,7 +198,7 @@ useSeoMeta({
   ogTitle: '关于我们 - ME-Frp 第三方客户端联盟',
   description: '了解 ME-Frp 第三方客户端联盟的发展历程、核心价值和团队成员，我们是一群热爱技术、勇于创新的开发者。',
   ogDescription: '了解 ME-Frp 第三方客户端联盟的发展历程、核心价值和团队成员',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/og-image.png',
+  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/about',
   ogType: 'website',
   twitterCard: 'summary_large_image'

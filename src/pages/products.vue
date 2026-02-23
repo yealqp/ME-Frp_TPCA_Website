@@ -203,7 +203,7 @@ useSeoMeta({
   ogTitle: '产品 - ME-Frp 第三方客户端联盟',
   description: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 XL-ME-Frp-Launcher、LX-ME-Frp-Launcher 和 Plain ME Frp Launcher，为不同需求的用户提供多样化的内网穿透解决方案。',
   ogDescription: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 XL-ME-Frp-Launcher、LX-ME-Frp-Launcher 和 Plain ME Frp Launcher',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/og-image.png',
+  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/products',
   ogType: 'website',
   twitterCard: 'summary_large_image'
@@ -250,8 +250,8 @@ const products = computed(() => [
     author: 'yealqp',
     version: versions.value.xl,
     description: '由yealqp使用Tauri框架开发，界面高仿官网样式，可能是目前收录的三个客户端中最美观的一个，也可能也是包体最小的一个，亦或是bug最少的一个。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/xl_icon.webp',
-    screenshot: 'https://image.mefrp-tpca.yealqp.cn/image/views/yealqp/home.png',
+    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp',
+    screenshot: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
     link: 'https://mefrp-tpca.yealqp.cn/docs/xl',
     tags: ['Tauri', '轻量级', 'Rust'],
     features: [
@@ -267,8 +267,8 @@ const products = computed(() => [
     author: '灵弦MuaMua',
     version: versions.value.lx,
     description: '由灵弦MuaMua使用易语言&Exui开发，界面高仿官方图形化V4.0。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/lx_icon.webp',
-    screenshot: 'https://image.mefrp-tpca.yealqp.cn/image/views/Lx_MuaMua/home.png',
+    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/lx_icon.webp',
+    screenshot: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/home.png',
     link: 'https://mefrp-tpca.yealqp.cn/docs/lx',
     tags: ['易语言', 'Windows', '官方风格', 'Exui'],
     features: [
@@ -284,8 +284,8 @@ const products = computed(() => [
     author: 'RYCB工作室',
     version: versions.value.pml,
     description: 'PML 2使用.NET提供了简单便捷的操作, 也是目前三个产品中唯一一个跨平台的软件。支持常见主流平台(Windows, Linux, MacOS, Android)。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/pml_icon.webp',
-    screenshot: 'https://image.mefrp-tpca.yealqp.cn/image/views/rycb/homex.png',
+    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp',
+    screenshot: 'https://image.mefrp-tpca.yealqp.cn/images/views/rycb/homex.png',
     link: 'https://mefrp-tpca.yealqp.cn/docs/pml',
     tags: ['.NET', '跨平台', '多系统'],
     features: [

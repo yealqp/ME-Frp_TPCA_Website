@@ -262,10 +262,10 @@ useHead({
         name: 'ME-Frp 第三方客户端联盟',
         alternateName: 'ME-Frp TPCA',
         url: 'https://mefrp-tpca.yealqp.cn',
-        logo: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/favicon.ico',
+        logo: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/favicon.ico',
         description: 'ME-Frp 第三方客户端联盟官方网站，专注于 ME-Frp 第三方客户端开发，提供多款优质内网穿透客户端',
         sameAs: [
-          'https://github.com/yealqp/ME-Frp_third_party_Client_website'
+          'https://github.com/yealqp/ME-Frp_TPCA_Website'
         ]
       })
     }
@@ -278,12 +278,12 @@ useSeoMeta({
   ogTitle: 'ME-Frp 第三方客户端联盟 - 专业内网穿透客户端',
   description: 'ME-Frp 第三方客户端联盟官方网站，专注于 ME-Frp 第三方客户端开发，提供 XL-ME-Frp-Launcher、LX-ME-Frp-Launcher、Plain ME Frp Launcher 等多款优质内网穿透客户端。',
   ogDescription: 'ME-Frp 第三方客户端联盟官方网站，专注于 ME-Frp 第三方客户端开发，提供多款优质内网穿透客户端，支持 Windows、Linux、macOS 等多平台。',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/og-image.png',
+  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/',
   ogType: 'website',
   twitterCard: 'summary_large_image',
   twitterTitle: 'ME-Frp 第三方客户端联盟',
   twitterDescription: '专注于 ME-Frp 第三方客户端开发，提供多款优质内网穿透客户端',
-  twitterImage: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/og-image.png'
+  twitterImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png'
 })
 </script>

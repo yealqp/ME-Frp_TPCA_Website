@@ -38,7 +38,7 @@
               variant="ghost"
               size="sm"
               color="neutral"
-              to="https://github.com/yealqp/ME-Frp_third_party_Client_website"
+              to="https://github.com/yealqp/ME-Frp_TPCA_Website"
               target="_blank"
               class="text-gray-400 hover:text-teal-400 btn-glow cursor-pointer"
             >
