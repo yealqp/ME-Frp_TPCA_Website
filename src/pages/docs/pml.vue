@@ -261,47 +261,49 @@
                 <h4 class="font-semibold text-blue-400">
                   教程：如何在 Linux 上顺利运行本软件？
                 </h4>
-                <ol class="space-y-2 text-sm text-gray-300 mt-2">
-                  <li>1. 打开终端</li>
-                  <li>
-                    2. 输入
-                    <code
-                      class="bg-gray-700 px-2 py-1 rounded text-xs break-all"
-                      >bash &lt;(curl -sSL
-                      https://content.rycb.mxj.pub/files/mefl/install.sh)</code
+                <ol class="space-y-2 text-gray-300 text-sm">
+                  <li class="flex items-start space-x-2">
+                    <span
+                      class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold"
+                      >1</span
+                    >
+                    <span>下载 macOS 应用包 (.dmg)</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <span
+                      class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold"
+                      >2</span
+                    >
+                    <span>拖拽到应用程序文件夹</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <span
+                      class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold"
+                      >3</span
+                    >
+                    <span>在启动台中打开终端</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <span
+                      class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold"
+                      >4</span
+                    >
+                    <span
+                      >执行命令移除门禁标签：<code
+                        class="bg-gray-700 px-1 py-0.5 rounded text-xs break-all"
+                        >xattr -d com.apple.quarantine
+                        /Applications/PML2.app</code
+                      ></span
                     >
                   </li>
-                  <li>3. 等待安装完成</li>
-                  <li>
-                    4. 之后可直接输入 (2.1.0.0 以下)
-                    <code class="bg-gray-700 px-2 py-1 rounded text-xs"
-                      >mefrplauncherx</code
+                  <li class="flex items-start space-x-2">
+                    <span
+                      class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold"
+                      >5</span
                     >
-                    或 (2.1.0.0 及以上)
-                    <code class="bg-gray-700 px-2 py-1 rounded text-xs"
-                      >pml-2</code
-                    >
-                    启动
+                    <span>启动应用程序</span>
                   </li>
                 </ol>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-            <div class="flex items-start space-x-3">
-              <UIcon
-                name="i-lucide-help-circle"
-                class="size-5 text-cyan-400 mt-0.5 flex-shrink-0"
-              />
-              <div>
-                <h4 class="font-semibold text-cyan-400">
-                  为什么建议在 Linux 中使用终端运行？
-                </h4>
-                <p class="text-gray-300 text-sm mt-1">
-                  Linux
-                  软件安装目录通常不在用户主目录下，无法双击运行。使用终端可追踪程序运行情况，便于错误排查。
-                </p>
               </div>
             </div>
           </div>
@@ -647,10 +649,10 @@ void fixRef;
 void updateRef;
 
 // 使用版本管理 composable
-const { getVersion, fetchAllVersions } = useProductVersions()
+const { getVersion, fetchAllVersions } = useProductVersions();
 
 // 获取当前产品版本
-const currentVersion = computed(() => getVersion('pml'))
+const currentVersion = computed(() => getVersion("pml"));
 
 // 页面元数据
 useHead({
@@ -659,18 +661,19 @@ useHead({
   script: [
     {
       type: "application/ld+json",
-      innerHTML: () => JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        name: "PML 2",
-        applicationCategory: "NetworkApplication",
-        operatingSystem: "Windows, Linux, macOS, Android",
-        softwareVersion: currentVersion.value,
-        description:
-          "基于 .NET 10.0 开发的跨平台 ME-Frp 第三方客户端，支持 Windows、Linux、macOS 和 Android",
-        author: { "@type": "Organization", name: "RYCB Studio" },
-        offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" },
-      }),
+      innerHTML: () =>
+        JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "PML 2",
+          applicationCategory: "NetworkApplication",
+          operatingSystem: "Windows, Linux, macOS, Android",
+          softwareVersion: currentVersion.value,
+          description:
+            "基于 .NET 10.0 开发的跨平台 ME-Frp 第三方客户端，支持 Windows、Linux、macOS 和 Android",
+          author: { "@type": "Organization", name: "RYCB Studio" },
+          offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" },
+        }),
     },
   ],
 });
@@ -681,8 +684,7 @@ useSeoMeta({
   ogTitle: "PML 2 文档 - ME-Frp 第三方客户端联盟",
   description:
     "PML 2 详细使用文档，基于 .NET 10.0 开发的跨平台 ME-Frp 第三方客户端，支持 Windows、Linux、macOS 和 Android，包含多平台安装、配置和使用指南。",
-  ogDescription:
-    "PML 2 详细使用文档，包含多平台安装、配置和使用指南",
+  ogDescription: "PML 2 详细使用文档，包含多平台安装、配置和使用指南",
   ogImage: "https://image.mefrp-tpca.yealqp.cn/images/views/rycb/homex.png",
   ogUrl: "https://mefrp-tpca.yealqp.cn/docs/pml",
   ogType: "article",
@@ -847,7 +849,7 @@ const transformApiData = (apiData) => {
 
   const transformedData = [];
   const versions = Object.keys(apiData.data).sort((a, b) =>
-    compareVersions(b, a)
+    compareVersions(b, a),
   );
 
   versions.forEach((version, index) => {
