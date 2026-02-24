@@ -131,6 +131,11 @@ export default defineNuxtConfig({
 
   // 自定义目录结构
   srcDir: 'src/',
+  
+  // 指定 public 目录
+  dir: {
+    public: 'src/public'
+  },
 
   // Nuxt 4 future 配置
   future: {
