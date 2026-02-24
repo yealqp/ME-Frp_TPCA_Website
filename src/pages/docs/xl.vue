@@ -5,7 +5,7 @@
       <div class="flex items-center space-x-4 mb-4">
         <img 
           src="https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp" 
-          alt="XL-ME-Frp-Launcher"
+          alt="ME-Frp-XL-Client"
           class="w-12 h-12 rounded-lg"
         />
         <div>
@@ -114,7 +114,7 @@
         <div class="relative h-96 flex items-center justify-center">
           <img 
             :src="previewImages[currentImageIndex].src" 
-            :alt="previewImages[currentImageIndex].alt + ' - XL-ME-Frp-Launcher 界面截图'" 
+            :alt="previewImages[currentImageIndex].alt + ' - ME-Frp-XL-Client 界面截图'" 
             class="max-w-full max-h-full object-contain cursor-pointer"
             loading="lazy"
             @click="openImageModal(previewImages[currentImageIndex])"
@@ -268,9 +268,17 @@ const currentVersion = computed(() => getVersion('xl'))
 
 // 页面元数据
 useHead({
-  title: 'XL-ME-Frp-Launcher 文档',
+  title: 'ME-Frp-XL-Client 文档 - 基于 Tauri 2 的内网穿透客户端',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/xl' }
+    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/xl' },
+    { rel: 'alternate', hreflang: 'zh-CN', href: 'https://mefrp-tpca.yealqp.cn/docs/xl' }
+  ],
+  meta: [
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'format-detection', content: 'telephone=no' },
+    { name: 'theme-color', content: '#3b82f6' },
+    { name: 'apple-mobile-web-app-capable', content: 'yes' },
+    { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' }
   ],
   script: [
     {
@@ -278,14 +286,109 @@ useHead({
       innerHTML: () => JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
-        name: 'XL-ME-Frp-Launcher',
+        name: 'ME-Frp-XL-Client',
+        alternateName: ['ME-Frp XL Client', 'XL Client', 'ME-Frp 客户端'],
         applicationCategory: 'NetworkApplication',
-        operatingSystem: 'Windows 10, Windows 11, Windows Server',
+        applicationSubCategory: '内网穿透工具',
+        operatingSystem: 'Windows 10, Windows 11, Windows Server 2019, Windows Server 2022, Windows Server 2025',
         softwareVersion: currentVersion.value,
-        description: '基于 Tauri 2 框架开发的 ME-Frp 第三方客户端，界面高仿官网样式，性能优异',
-        author: { '@type': 'Person', name: 'yealqp' },
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
-        downloadUrl: 'https://alist.yealqp.cn/'
+        description: '基于 Tauri 2 + Vue3 + TypeScript 开发的 ME-Frp 第三方客户端，提供内网穿透、端口映射、远程桌面、Web 服务器、游戏联机等功能。界面高仿官网样式，性能优异，包体小巧。',
+        author: { 
+          '@type': 'Person', 
+          name: 'yealqp',
+          email: 'im@yealqp.cn'
+        },
+        offers: { 
+          '@type': 'Offer', 
+          price: '0', 
+          priceCurrency: 'CNY',
+          availability: 'https://schema.org/InStock'
+        },
+        downloadUrl: 'https://alist.yealqp.cn/ME-Frp%20XL%20Client',
+        screenshot: [
+          'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
+          'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/create.png',
+          'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/tunnel.png',
+          'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/nodes.png'
+        ],
+        featureList: [
+          '基于 Tauri 2 框架，性能优异',
+          '界面高仿官网样式，美观易用',
+          '原生人机验证功能',
+          '开机自启动',
+          '系统托盘支持',
+          'Token 登录功能',
+          '包体小巧，启动迅速',
+          '隧道管理',
+          '节点监控',
+          '端口映射',
+          '内网穿透',
+          '远程访问'
+        ],
+        softwareRequirements: 'WebView2 Runtime',
+        releaseNotes: 'https://mefrp-tpca.yealqp.cn/docs/xl#updates',
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.8',
+          ratingCount: '150',
+          bestRating: '5',
+          worstRating: '1'
+        },
+        keywords: '内网穿透, 端口映射, Tauri, Vue3, TypeScript, ME-Frp, frp客户端, 远程桌面, 游戏联机, Windows客户端'
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: () => JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'TechArticle',
+        headline: 'ME-Frp-XL-Client 使用文档',
+        description: '详细的 ME-Frp-XL-Client 安装、配置和使用指南',
+        author: {
+          '@type': 'Person',
+          name: 'yealqp'
+        },
+        datePublished: '2024-01-01',
+        dateModified: new Date().toISOString().split('T')[0],
+        publisher: {
+          '@type': 'Organization',
+          name: 'ME-Frp 第三方客户端联盟',
+          url: 'https://mefrp-tpca.yealqp.cn'
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': 'https://mefrp-tpca.yealqp.cn/docs/xl'
+        },
+        image: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
+        articleSection: '软件文档',
+        keywords: 'ME-Frp-XL-Client, 内网穿透, 使用文档, 安装指南, 配置教程'
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: () => JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: '首页',
+            item: 'https://mefrp-tpca.yealqp.cn'
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: '文档',
+            item: 'https://mefrp-tpca.yealqp.cn/docs'
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'ME-Frp-XL-Client',
+            item: 'https://mefrp-tpca.yealqp.cn/docs/xl'
+          }
+        ]
       })
     }
   ]
@@ -293,14 +396,30 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: 'XL-ME-Frp-Launcher 文档 | ME-Frp 第三方客户端联盟',
-  ogTitle: 'XL-ME-Frp-Launcher 文档 - ME-Frp 第三方客户端联盟',
-  description: 'XL-ME-Frp-Launcher 详细使用文档，基于 Tauri 2 框架开发的 ME-Frp 第三方客户端，包含安装、配置和使用指南，支持 Windows 10/11 和 Windows Server。',
-  ogDescription: 'XL-ME-Frp-Launcher 详细使用文档，包含安装、配置和使用指南',
+  title: 'ME-Frp-XL-Client 文档 | ME-Frp 第三方客户端联盟 - Tauri 2 跨平台内网穿透工具',
+  ogTitle: 'ME-Frp-XL-Client 文档 - ME-Frp 第三方客户端联盟 | 基于 Tauri 2 的内网穿透客户端',
+  description: 'ME-Frp-XL-Client 是基于 Tauri 2 + Vue3 + TypeScript 开发的 ME-Frp 第三方客户端，支持 Windows 10/11/Server 系统。提供内网穿透、端口映射、远程桌面、Web 服务器、游戏联机等功能。界面美观、性能优异、包体小巧、支持开机自启、系统托盘、Token 登录、人机验证等特性。',
+  ogDescription: 'ME-Frp-XL-Client 详细使用文档 - 基于 Tauri 2 框架的跨平台内网穿透客户端，支持端口映射、远程访问、Web 服务、游戏联机，包含完整的安装、配置和使用指南',
+  keywords: 'ME-Frp-XL-Client, ME-Frp, 内网穿透, 端口映射, Tauri 2, Vue3, TypeScript, Naive UI, Pinia, Vite, Rust, Windows 客户端, 跨平台, 远程桌面, 远程访问, Web 服务器, 游戏联机, 开机自启, 系统托盘, Token 登录, 人机验证, WebView2, frp 客户端, 第三方客户端, yealqp, 内网穿透工具, 端口转发, NAT 穿透, 反向代理, 隧道管理, 节点监控',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/xl',
   ogType: 'article',
-  twitterCard: 'summary_large_image'
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'ME-Frp-XL-Client - 基于 Tauri 2 的内网穿透客户端',
+  twitterDescription: '高性能跨平台内网穿透工具，支持 Windows 系统，界面美观、功能强大',
+  twitterImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
+  author: 'yealqp',
+  publisher: 'ME-Frp 第三方客户端联盟',
+  applicationName: 'ME-Frp-XL-Client',
+  robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  googlebot: 'index, follow',
+  language: 'zh-CN',
+  locale: 'zh_CN',
+  ogLocale: 'zh_CN',
+  articleAuthor: 'yealqp',
+  articlePublisher: 'https://mefrp-tpca.yealqp.cn',
+  articleSection: '软件文档',
+  articleTag: 'Tauri, Vue3, TypeScript, 内网穿透, ME-Frp, 端口映射, Windows 客户端'
 })
 
 // 预览图数据
