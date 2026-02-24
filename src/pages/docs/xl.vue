@@ -9,7 +9,7 @@
           class="w-12 h-12 rounded-lg"
         />
         <div>
-          <h1 class="text-3xl font-bold text-white">XL-ME-Frp-Launcher</h1>
+          <h1 class="text-3xl font-bold text-white">ME-Frp-XL-Client</h1>
           <p class="text-gray-400">基于 Tauri 2 框架开发的跨平台客户端</p>
         </div>
       </div>
@@ -37,7 +37,7 @@
       
       <div class="p-6 space-y-4 text-gray-300">
         <p>
-          XL-ME-Frp-Launcher 是由 <strong class="text-primary-400">yealqp</strong> 使用 Tauri 2 框架开发的 ME-Frp 第三方客户端。
+          ME-Frp-XL-Client 是由 <strong class="text-primary-400">yealqp</strong> 使用 Tauri 2 框架开发的 ME-Frp 第三方客户端。
           界面高仿官网样式，可能是目前收录的三个客户端中最美观的一个，也可能也是包体最小的一个，亦或是bug最少的一个。
         </p>
         
@@ -171,7 +171,7 @@
           <UButton 
             size="lg" 
             color="primary"
-            to="https://alist.yealqp.cn/ME-Frp%20XL%20%E5%AE%A2%E6%88%B7%E7%AB%AF"
+            to="https://alist.yealqp.cn/ME-Frp%20XL%20Client"
             target="_blank"
             class="btn-glow cursor-pointer"
           >
@@ -322,7 +322,7 @@ const updates = ref([])
 // 从 API 获取更新日志
 const fetchChangelog = async () => {
   try {
-    const response = await fetch('https://check.yealqp.cn/changelog.json')
+    const response = await fetch('https://check.yealqp.cn/tpca.json')
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }

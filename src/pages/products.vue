@@ -167,7 +167,7 @@ useHead({
           {
             '@type': 'SoftwareApplication',
             position: 1,
-            name: 'XL-ME-Frp-Launcher',
+            name: 'ME-Frp-XL-Client',
             applicationCategory: 'NetworkApplication',
             operatingSystem: 'Windows',
             description: '基于 Tauri 框架开发的跨平台客户端，界面美观，性能优异',
@@ -201,8 +201,8 @@ useHead({
 useSeoMeta({
   title: '产品 | ME-Frp 第三方客户端联盟',
   ogTitle: '产品 - ME-Frp 第三方客户端联盟',
-  description: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 XL-ME-Frp-Launcher、LX-ME-Frp-Launcher 和 Plain ME Frp Launcher，为不同需求的用户提供多样化的内网穿透解决方案。',
-  ogDescription: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 XL-ME-Frp-Launcher、LX-ME-Frp-Launcher 和 Plain ME Frp Launcher',
+  description: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher 和 Plain ME Frp Launcher，为不同需求的用户提供多样化的内网穿透解决方案。',
+  ogDescription: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher 和 Plain ME Frp Launcher',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/products',
   ogType: 'website',
@@ -246,7 +246,7 @@ const { versions, fetchAllVersions } = useProductVersions()
 const products = computed(() => [
   {
     id: 'xl',
-    name: 'XL-ME-Frp-Launcher',
+    name: 'ME-Frp-XL-Client',
     author: 'yealqp',
     version: versions.value.xl,
     description: '由yealqp使用Tauri框架开发，界面高仿官网样式，可能是目前收录的三个客户端中最美观的一个，也可能也是包体最小的一个，亦或是bug最少的一个。',
