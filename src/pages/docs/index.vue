@@ -66,7 +66,7 @@
               <ul class="space-y-2 text-sm">
                 <li class="flex items-start space-x-2">
                   <UIcon name="i-lucide-box" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                  <span>XL-ME-Frp-Launcher (Tauri)</span>
+                  <span>ME-Frp-XL-Client (Tauri)</span>
                 </li>
                 <li class="flex items-start space-x-2">
                   <UIcon name="i-lucide-box" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
@@ -228,7 +228,7 @@ useHead({
 useSeoMeta({
   title: '文档中心 | ME-Frp 第三方客户端联盟',
   ogTitle: '文档中心 - ME-Frp 第三方客户端联盟',
-  description: 'ME-Frp 第三方客户端联盟文档中心，包含 XL-ME-Frp-Launcher、LX-ME-Frp-Launcher、Plain ME Frp Launcher 等所有产品的详细使用指南和安装教程。',
+  description: 'ME-Frp 第三方客户端联盟文档中心，包含 ME-Frp-XL-Client、LX-ME-Frp-Launcher、Plain ME Frp Launcher 等所有产品的详细使用指南和安装教程。',
   ogDescription: 'ME-Frp 第三方客户端联盟文档中心，包含所有产品的详细使用指南',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/docs',
@@ -239,7 +239,7 @@ useSeoMeta({
 const clients = [
   {
     id: 'xl',
-    name: 'XL-ME-Frp-Launcher',
+    name: 'ME-Frp-XL-Client',
     path: '/docs/xl',
     description: '基于 Tauri 框架开发的跨平台客户端，界面美观，性能优异',
     icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp'

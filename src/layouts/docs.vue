@@ -160,7 +160,7 @@ const sidebarOpen = ref(false);
 const clients = [
   {
     id: "xl",
-    name: "XL-ME-Frp-Launcher",
+    name: "ME-Frp-XL-Client",
     path: "/docs/xl",
     icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp",
   },
