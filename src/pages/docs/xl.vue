@@ -298,12 +298,6 @@ useHead({
           name: 'yealqp',
           email: 'im@yealqp.cn'
         },
-        offers: { 
-          '@type': 'Offer', 
-          price: '0', 
-          priceCurrency: 'CNY',
-          availability: 'https://schema.org/InStock'
-        },
         downloadUrl: 'https://alist.yealqp.cn/ME-Frp%20XL%20Client',
         screenshot: [
           'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
@@ -348,7 +342,7 @@ useHead({
           '@type': 'Person',
           name: 'yealqp'
         },
-        datePublished: '2024-01-01',
+        datePublished: '2026-02-24',
         dateModified: new Date().toISOString().split('T')[0],
         publisher: {
           '@type': 'Organization',
