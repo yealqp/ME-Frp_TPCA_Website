@@ -74,7 +74,7 @@
                 </li>
                 <li class="flex items-start space-x-2">
                   <UIcon name="i-lucide-box" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                  <span>Plain ME Frp Launcher (.NET)</span>
+                  <span>PML 2 (.NET)</span>
                 </li>
               </ul>
             </div>
@@ -228,7 +228,7 @@ useHead({
 useSeoMeta({
   title: '文档中心 | ME-Frp 第三方客户端联盟',
   ogTitle: '文档中心 - ME-Frp 第三方客户端联盟',
-  description: 'ME-Frp 第三方客户端联盟文档中心，包含 ME-Frp-XL-Client、LX-ME-Frp-Launcher、Plain ME Frp Launcher 等所有产品的详细使用指南和安装教程。',
+  description: 'ME-Frp 第三方客户端联盟文档中心，包含 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2 等所有产品的详细使用指南和安装教程。',
   ogDescription: 'ME-Frp 第三方客户端联盟文档中心，包含所有产品的详细使用指南',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/docs',
@@ -253,7 +253,7 @@ const clients = [
   },
   {
     id: 'pml',
-    name: 'Plain ME Frp Launcher',
+    name: 'PML 2',
     path: '/docs/pml',
     description: '基于 .NET 的跨平台客户端，支持多个操作系统',
     icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp'
