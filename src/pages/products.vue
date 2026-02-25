@@ -185,7 +185,7 @@ useHead({
           {
             '@type': 'SoftwareApplication',
             position: 3,
-            name: 'Plain ME Frp Launcher',
+            name: 'PML 2',
             applicationCategory: 'NetworkApplication',
             operatingSystem: 'Windows, Linux, macOS, Android',
             description: '基于 .NET 的跨平台客户端，支持多个操作系统',
@@ -201,8 +201,8 @@ useHead({
 useSeoMeta({
   title: '产品 | ME-Frp 第三方客户端联盟',
   ogTitle: '产品 - ME-Frp 第三方客户端联盟',
-  description: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher 和 Plain ME Frp Launcher，为不同需求的用户提供多样化的内网穿透解决方案。',
-  ogDescription: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher 和 Plain ME Frp Launcher',
+  description: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher 和 PML 2，为不同需求的用户提供多样化的内网穿透解决方案。',
+  ogDescription: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher 和 PML 2',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/products',
   ogType: 'website',
@@ -280,12 +280,12 @@ const products = computed(() => [
   },
   {
     id: 'pml',
-    name: 'Plain ME Frp Launcher',
+    name: 'PML 2',
     author: 'RYCB工作室',
     version: versions.value.pml,
     description: 'PML 2使用.NET提供了简单便捷的操作, 也是目前三个产品中唯一一个跨平台的软件。支持常见主流平台(Windows, Linux, MacOS, Android)。',
     icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp',
-    screenshot: 'https://image.mefrp-tpca.yealqp.cn/images/views/rycb/homex.png',
+    screenshot: 'https://image.mefrp-tpca.yealqp.cn/images/views/rycb/home2.png',
     link: 'https://mefrp-tpca.yealqp.cn/docs/pml',
     tags: ['.NET', '跨平台', '多系统'],
     features: [
