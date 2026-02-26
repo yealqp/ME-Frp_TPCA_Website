@@ -184,12 +184,12 @@ useHead({
           },
           {
             '@type': 'SoftwareApplication',
-            position: 3,
-            name: 'Plain ME Frp Launcher',
+            position: 4,
+            name: 'ZNext Launcher',
             applicationCategory: 'NetworkApplication',
-            operatingSystem: 'Windows, Linux, macOS, Android',
-            description: '基于 .NET 的跨平台客户端，支持多个操作系统',
-            author: { '@type': 'Organization', name: 'RYCB工作室' }
+            operatingSystem: 'Windows',
+            description: '基于Winui3框架开发的全新原生客户端',
+            author: { '@type': 'Person', name: 'ZNext' }
           }
         ]
       })
@@ -280,17 +280,17 @@ const products = computed(() => [
   },
   {
     id: 'pml',
-    name: 'Plain ME Frp Launcher',
-    author: 'RYCB工作室',
+    name: 'ZNext Launcher',
+    author: 'ZeroNetwork',
     version: versions.value.pml,
     description: 'PML 2使用.NET提供了简单便捷的操作, 也是目前三个产品中唯一一个跨平台的软件。支持常见主流平台(Windows, Linux, MacOS, Android)。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/pml_icon.webp',
-    screenshot: 'https://image.mefrp-tpca.yealqp.cn/image/views/rycb/homex.png',
+    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext(1).png',
+    screenshot: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext-photo.png?sign=CtdLZDKo1J5N0Qc80axV6oZ0d7tsvFraDz96lWWtz1s=:0',
     link: 'https://mefrp-tpca.yealqp.cn/docs/pml',
-    tags: ['.NET', '跨平台', '多系统'],
+    tags: ['.NET', '原生', 'WinUI3'],
     features: [
-      '基于 .NET 框架，跨平台支持',
-      '支持 Windows、Linux、MacOS、Android',
+      '基于WinUI3框架开发，界面现代美观，为Windows原生体验打造',
+      '仅支持 Windows',
       '操作简单便捷，功能丰富',
       '持续更新，社区活跃'
     ]

@@ -170,11 +170,18 @@ const clients = [
     path: "/docs/lx",
     icon: "https://image.mefrp-tpca.yealqp.cn/image/views/icon/lx_icon.webp",
   },
+  
   {
     id: "pml",
     name: "Plain ME Frp Launcher",
     path: "/docs/pml",
     icon: "https://image.mefrp-tpca.yealqp.cn/image/views/icon/pml_icon.webp",
+  },
+  {
+    id: "zl",
+    name: "ZNextLauncher",
+    path: "/docs/zl",
+    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext(1).png",
   },
 ];
 

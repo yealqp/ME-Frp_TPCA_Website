@@ -171,7 +171,8 @@ const { versions, fetchAllVersions } = useProductVersions()
 const products = computed(() => [
   { id: 'xl', name: 'XL-ME-Frp-Launcher', author: 'yealqp', version: versions.value.xl, description: '由yealqp使用Tauri框架开发，界面高仿官网样式，可能是目前收录的三个客户端中最美观的一个，也可能也是包体最小的一个，亦或是bug最少的一个。', icon: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/xl_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/xl', tags: ['Tauri', '跨平台', '轻量级'] },
   { id: 'lx', name: 'LX-ME-Frp-Launcher', author: '灵弦MuaMua', version: versions.value.lx, description: '由灵弦MuaMua使用易语言&Exui开发，界面高仿官方图形化V4.0。', icon: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/lx_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/lx', tags: ['易语言', 'Windows', '官方风格'] },
-  { id: 'pml', name: 'Plain ME Frp Launcher', author: 'RYCB工作室', version: versions.value.pml, description: 'PML 2使用.NET提供了简单便捷的操作, 也是目前三个产品中唯一一个跨平台的软件。支持常见主流平台(Windows, Linux, MacOS, Android)。', icon: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/pml_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/pml', tags: ['.NET', '跨平台', '多系统'] }
+  { id: 'pml', name: 'Plain ME Frp Launcher', author: 'RYCB工作室', version: versions.value.pml, description: 'PML 2使用.NET提供了简单便捷的操作, 也是目前三个产品中唯一一个跨平台的软件。支持常见主流平台(Windows, Linux, MacOS, Android)。', icon: 'https://image.mefrp-tpca.yealqp.cn/image/views/icon/pml_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/pml', tags: ['.NET', '跨平台', '多系统'] },
+  { id: 'znext', name: 'ZNext Launcher', author: 'ZeroSnow', version: versions.value.znext, description: '由ZeroSnow使用WinUI3框架开发，界面现代美观，为Windows原生体验打造。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext(1).png', link: 'https://mefrp-tpca.yealqp.cn/docs/zl', tags: ['.NET', '原生', 'WinUI3'] }
 ])
 
 // 组件挂载时获取版本号
@@ -183,7 +184,7 @@ const members = ref([
   { name: 'Yealqp', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=1592239257&spec=4', role: 'DevOps / 创始人 / 成员', link: 'https://github.com/Yealqp' },
   { name: '灵弦MuaMua', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=407176772&spec=4', role: '创始人 / 成员', link: 'https://github.com/lngxian' },
   { name: 'QYF', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3561786358&spec=4', role: '创始人 / 成员', link: 'https://github.com/QYF-RYCBStudio' },
-  { name: 'ZeroSnow', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3976141098&spec=4', role: '联盟网盘维护者', link: 'https://github.com/chencomcdyun' }
+  { name: 'ZeroSnow', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3976141098&spec=4', role: 'ZeroCloud负责人/成员', link: 'https://github.com/chencomcdyun' }
 ])
 
 const sponsors = ref([
@@ -193,7 +194,7 @@ const sponsors = ref([
 ])
 
 const stats = ref([
-  { icon: 'i-lucide-box', value: '3+', label: '客户端产品' },
+  { icon: 'i-lucide-box', value: '4+', label: '客户端产品' },
   { icon: 'i-lucide-users', value: '4+', label: '团队成员' },
   { icon: 'i-lucide-code', value: '100%', label: '社区驱动' },
   { icon: 'i-lucide-heart', value: '∞', label: '用户支持' }
