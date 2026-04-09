@@ -283,7 +283,7 @@ useHead({
         description: '使用易语言 & Exui 开发的 ME-Frp 第三方客户端，界面高仿官方图形化 V4.0',
         author: { '@type': 'Person', name: '灵弦MuaMua' },
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
-        downloadUrl: 'https://wwms.lanzouo.com/iGZtL37rk67g'
+        downloadUrl: 'https://wwaze.lanzouv.com/iu4aH3j5hq3e'
       })
     }
   ]
@@ -316,6 +316,16 @@ const previewImages = [
 
 // 更新历史（完整版本）
 const updateHistory = [
+    {
+    version: 'v2.5',
+    date: '2026-2-25',
+    isLatest: true,
+    changes: [
+      '修复<code class="bg-gray-700 px-1 py-0.5 rounded text-xs">隧道列表</code>显示问题',
+      '修复隧道无法启动问题',
+      '修复已知问题(具体是什么问题忘记了,但记得是修复了一些问题)'
+    ]
+  },
   {
     version: 'v2.4',
     date: '2025-11-2',
