@@ -176,6 +176,12 @@ const clients = [
     path: "/docs/pml",
     icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp",
   },
+  {
+    id: "zl",
+    name: "ZNext Launcher",
+    path: "/docs/zl",
+    icon: "https://alist.yealqp.cn/d/images/views/zerosnow/znext-icon.png?sign=XKtsQoWy3qtBqEgV6yVu09IXyzwWoVbUJ9SIywwPHrk=:0",
+  },
 ];
 
 // 监听路由变化，关闭移动端侧边栏

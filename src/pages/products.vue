@@ -162,7 +162,7 @@ useHead({
         '@type': 'ItemList',
         name: 'ME-Frp 第三方客户端产品列表',
         description: 'ME-Frp 第三方客户端联盟的所有产品',
-        numberOfItems: 3,
+        numberOfItems: 4,
         itemListElement: [
           {
             '@type': 'SoftwareApplication',
@@ -190,6 +190,15 @@ useHead({
             operatingSystem: 'Windows, Linux, macOS, Android',
             description: '基于 .NET 的跨平台客户端，支持多个操作系统',
             author: { '@type': 'Organization', name: 'RYCB工作室' }
+          },
+          {
+            '@type': 'SoftwareApplication',
+            position: 4,
+            name: 'ZNext Launcher',
+            applicationCategory: 'NetworkApplication',
+            operatingSystem: 'Windows',
+            description: '基于 WinUI3 框架开发的 Windows 原生客户端，采用 Fluent Design 设计语言',
+            author: { '@type': 'Person', name: 'ZeroSnow' }
           }
         ]
       })
@@ -201,8 +210,8 @@ useHead({
 useSeoMeta({
   title: '产品 | ME-Frp 第三方客户端联盟',
   ogTitle: '产品 - ME-Frp 第三方客户端联盟',
-  description: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher 和 PML 2，为不同需求的用户提供多样化的内网穿透解决方案。',
-  ogDescription: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher 和 PML 2',
+  description: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2 和 ZNext Launcher，为不同需求的用户提供多样化的内网穿透解决方案。',
+  ogDescription: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2 和 ZNext Launcher',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/products',
   ogType: 'website',
@@ -214,11 +223,11 @@ const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation()
 
 // 产品列表滚动动画
 const productRefs = ref([])
-const productVisibility = ref([false, false, false])
+const productVisibility = ref([false, false, false, false])
 
 onMounted(() => {
   if (typeof IntersectionObserver === 'undefined') {
-    productVisibility.value = [true, true, true]
+    productVisibility.value = [true, true, true, true]
     return
   }
   
@@ -293,6 +302,24 @@ const products = computed(() => [
       '支持 Windows、Linux、MacOS、Android',
       '操作简单便捷，功能丰富',
       '持续更新，社区活跃'
+    ]
+  },
+  {
+    id: 'zl',
+    name: 'ZNext Launcher',
+    author: 'ZeroSnow',
+    version: versions.value.zl,
+    description: '由ZeroSnow使用WinUI3框架开发的Windows原生客户端，采用Fluent Design设计语言，功能强大，性能优异。',
+    icon: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext-icon.png?sign=XKtsQoWy3qtBqEgV6yVu09IXyzwWoVbUJ9SIywwPHrk=:0',
+    screenshot: 'https://alist.yealqp.cn/images/views/zerosnow/znext/znext-photo.png',
+    link: 'https://mefrp-tpca.yealqp.cn/docs/zl',
+    tags: ['WinUI3', 'Windows', 'Fluent Design'],
+    features: [
+      '基于 WinUI3 框架，性能优异',
+      'Fluent Design 设计语言',
+      '支持各种复杂场景',
+      '拥有开机自启动、系统托盘等功能',
+      'MSIX 包体小巧，启动迅速'
     ]
   }
 ])

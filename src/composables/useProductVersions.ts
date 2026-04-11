@@ -10,6 +10,7 @@ interface VersionData {
   xl: string
   lx: string
   pml: string
+  zl: string
 }
 
 interface ChangelogData {
@@ -29,7 +30,8 @@ export const useProductVersions = () => {
   const versions = ref<VersionData>({
     xl: 'v1.5.5',  // 默认值
     lx: 'v2.3.0',  // 默认值
-    pml: 'v2.1.0'  // 默认值
+    pml: 'v2.1.0',  // 默认值
+    zl: 'v1.8'  // 默认值
   })
 
   const loading = ref(false)
@@ -120,6 +122,12 @@ export const useProductVersions = () => {
     return 'v2.3.0'
   }
 
+  // ZL (ZNext Launcher) 暂时没有 API，使用硬编码
+  const fetchZLVersion = async (): Promise<string> => {
+    // TODO: 如果 ZL 有 API，在这里实现
+    return 'v1.8'
+  }
+
   // 获取所有产品的版本号（带缓存和防抖）
   const fetchAllVersions = async () => {
     // 先尝试从缓存加载
@@ -139,16 +147,18 @@ export const useProductVersions = () => {
 
     fetchPromise = (async () => {
       try {
-        const [xlVersion, lxVersion, pmlVersion] = await Promise.all([
+        const [xlVersion, lxVersion, pmlVersion, zlVersion] = await Promise.all([
           fetchXLVersion(),
           fetchLXVersion(),
-          fetchPMLVersion()
+          fetchPMLVersion(),
+          fetchZLVersion()
         ])
 
         const newVersions = {
           xl: xlVersion,
           lx: lxVersion,
-          pml: pmlVersion
+          pml: pmlVersion,
+          zl: zlVersion
         }
 
         versions.value = newVersions
@@ -166,7 +176,7 @@ export const useProductVersions = () => {
   }
 
   // 获取单个产品的版本号
-  const getVersion = (productId: 'xl' | 'lx' | 'pml'): string => {
+  const getVersion = (productId: 'xl' | 'lx' | 'pml' | 'zl'): string => {
     return versions.value[productId]
   }
 

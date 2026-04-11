@@ -76,6 +76,10 @@
                   <UIcon name="i-lucide-box" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                   <span>PML 2 (.NET)</span>
                 </li>
+                <li class="flex items-start space-x-2">
+                  <UIcon name="i-lucide-box" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                  <span>ZNext Launcher (WinUI3)</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -257,6 +261,13 @@ const clients = [
     path: '/docs/pml',
     description: '基于 .NET 的跨平台客户端，支持多个操作系统',
     icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp'
+  },
+  {
+    id: 'zl',
+    name: 'ZNext Launcher',
+    path: '/docs/zl',
+    description: '基于 WinUI3 框架开发的 Windows 原生客户端，采用 Fluent Design 设计语言',
+    icon: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext-icon.png?sign=XKtsQoWy3qtBqEgV6yVu09IXyzwWoVbUJ9SIywwPHrk=:0'
   }
 ]
 
