@@ -22,7 +22,7 @@
 
         <a
           v-if="update.codename"
-          :href="`https://api.rycb.mxj.pub/codename/${update.codename}`"
+          :href="`https://api.rycb.tech/codename/${update.codename}`"
           target="_blank"
           class="px-2.5 py-1 text-xs font-semibold rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 hover:bg-blue-500/30 transition-colors cursor-pointer inline-flex items-center"
         >

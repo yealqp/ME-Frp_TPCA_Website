@@ -88,7 +88,7 @@ export const useProductVersions = () => {
   // 从 PML 的 changelog API 获取最新版本
   const fetchPMLVersion = async (): Promise<string> => {
     try {
-      const response = await fetch('https://api.rycb.mxj.pub/api/changelog')
+      const response = await fetch('https://api.rycb.tech/api/changelog')
       if (!response.ok) throw new Error('Failed to fetch PML changelog')
       
       const data: { success: boolean; data: ChangelogData } = await response.json()
