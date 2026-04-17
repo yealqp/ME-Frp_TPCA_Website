@@ -168,7 +168,7 @@
           <UButton 
             size="lg" 
             color="primary"
-            to="https://wwms.lanzouo.com/iGZtL37rk67g"
+            to="https://wwaze.lanzouv.com/i71sI3n2npbi"
             target="_blank"
             class="btn-glow cursor-pointer"
           >
@@ -283,7 +283,7 @@ useHead({
         description: '使用易语言 & Exui 开发的 ME-Frp 第三方客户端，界面高仿官方图形化 V4.0',
         author: { '@type': 'Person', name: '灵弦MuaMua' },
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
-        downloadUrl: 'https://wwaze.lanzouv.com/iu4aH3j5hq3e'
+        downloadUrl: 'https://wwaze.lanzouv.com/i71sI3n2npbi'
       })
     }
   ]
@@ -316,6 +316,19 @@ const previewImages = [
 
 // 更新历史（完整版本）
 const updateHistory = [
+      {
+    version: 'v2.6',
+    date: '2026-4-12',
+    isLatest: true,
+    changes: [
+      '优化部分区域UI',
+      '修复部分功能窗口显示问题',
+      '新增<code class="bg-gray-700 px-1 py-0.5 rounded text-xs">下线全隧道</code>功能，一键下线已启动的全部隧道',
+      '优化隧道日志输出显示，能够更好辨析出错误曰志',
+      '修复流量监控显示问题',
+      '启动页面增加<code class="bg-gray-700 px-1 py-0.5 rounded text-xs">一言诗句</code>'
+    ]
+  },
     {
     version: 'v2.5',
     date: '2026-2-25',
