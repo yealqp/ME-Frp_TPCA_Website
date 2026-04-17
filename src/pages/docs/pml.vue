@@ -36,35 +36,39 @@
           <em class="text-primary-300">也是目前三个产品中唯一一个支持跨平台的软件。</em>
         </p>
 
-        <div class="space-y-4">
+        <div  class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
               <UIcon name="i-lucide-sparkles" class="size-5 text-primary-400" />
               主要特性
             </h3>
             <ul class="space-y-2">
-              <li class="flex items-start space-x-2">
+              <!-- <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>作者：<strong class="text-primary-400">RYCB Studio</strong></span>
-              </li>
-              <li class="flex items-start space-x-2">
+                <span>作者：<a href="https://rycb.tech" target="_blank"><strong class="text-primary-400">RYCB Studio</strong></a></span>
+              </li> -->
+              <!-- <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                 <span>命名灵感：<strong class="text-blue-400">PCL Ⅱ</strong></span>
+              </li> -->
+              <li class="flex items-start space-x-2">
+                <UIcon name="i-lucide-monitor-check" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <span>基于 .NET 10.0 框架，跨平台支持，支持 Windows、Linux、MacOS 三端</span>
               </li>
               <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>基于 .NET 10.0 框架，跨平台支持</span>
+                <UIcon name="i-lucide-user-check" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <span>无感人机验证，操作更便捷</span>
               </li>
-              <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>支持 Windows、Linux、MacOS 三端</span>
-              </li>
-              <li class="flex items-start space-x-2">
+              <!-- <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                 <span>操作简单便捷，功能丰富</span>
+              </li> -->
+              <li class="flex items-start space-x-2">
+                <UIcon name="i-lucide-trending-up" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <span>行业领先, 功能齐全</span>
               </li>
               <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <UIcon name="i-lucide-radar" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                 <span>持续更新，社区活跃</span>
               </li>
             </ul>
@@ -81,34 +85,33 @@
                 <span>Windows 10/11/Server 2019+</span>
               </li>
               <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-monitor" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>常见 Linux x64 发行版</span>
+                <UIcon name="i-simple-icons-linux" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <span>常见 Linux x64/ARM 64 发行版</span>
               </li>
               <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-monitor" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <UIcon name="i-simple-icons-apple" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                 <span>macOS（Intel/Apple Silicon）</span>
               </li>
             </ul>
           </div>
-
-          <div class="p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
-            <div class="flex items-start space-x-3">
-              <UIcon name="i-lucide-info" class="size-5 text-blue-400 mt-0.5 flex-shrink-0" />
-              <div>
-                <h4 class="font-semibold text-blue-400">
-                  查看官网以获得最新消息
-                </h4>
-                <UButton size="sm" color="info" variant="soft" to="https://rycb.mxj.pub/mefl/" target="_blank"
-                  class="cursor-pointer">
-                  <UIcon name="i-lucide-external-link" class="size-4 mr-1" />
-                  访问官网
-                </UButton>
-                <UButton size="sm" color="info" variant="soft" to="https://docs.rycb.mxj.pub/pml-2/intro"
-                  target="_blank" class="cursor-pointer" style="margin: 0 0 0 0.5rem;">
-                  <UIcon name="i-lucide-external-link" class="size-4 mr-1" />
-                  查看文档
-                </UButton>
-              </div>
+        </div>
+        <div class="p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
+          <div class="flex items-start space-x-3">
+            <UIcon name="i-lucide-info" class="size-5 text-blue-400 mt-0.5 flex-shrink-0" />
+            <div>
+              <h4 class="font-semibold text-blue-400">
+                查看官网以获得最新消息
+              </h4>
+              <UButton size="sm" color="info" variant="soft" to="https://rycb.tech/pml-2" target="_blank"
+                class="cursor-pointer">
+                <UIcon name="i-lucide-external-link" class="size-4 mr-1" />
+                访问官网
+              </UButton>
+              <UButton size="sm" color="info" variant="soft" to="https://docs.rycb.tech/pml-2/intro"
+                target="_blank" class="cursor-pointer" style="margin: 0 0 0 0.5rem;">
+                <UIcon name="i-lucide-external-link" class="size-4 mr-1" />
+                查看文档
+              </UButton>
             </div>
           </div>
         </div>
@@ -172,7 +175,12 @@
             <UIcon name="i-lucide-download" class="size-5 mr-2" />
             OpenList 下载
           </UButton>
-          <UButton size="lg" color="primary" to="https://rycb.mxj.pub/mefl/preview" target="_blank"
+          <UButton size="lg" color="primary" to="https://rycb.tech/pml-2" target="_blank"
+            class="btn-glow cursor-pointer">
+            <UIcon name="i-lucide-download" class="size-5 mr-2" />
+            官网下载
+          </UButton>
+          <UButton size="lg" color="primary" to="https://rycb.tech/pml-2/preview" target="_blank"
             class="btn-glow cursor-pointer">
             <UIcon name="i-lucide-download" class="size-5 mr-2" />
             预览版下载
@@ -185,7 +193,7 @@
             <div>
               <h4 class="font-semibold text-red-400">重要提醒</h4>
               <p class="text-gray-300 text-sm mt-1">
-                安装或使用本软件表明您同意本软件的用户协议和隐私政策。Windows下安装时请不要将软件安装至C:\Program
+                安装或使用本软件表明您同意本软件的用户协议和隐私政策。Windows 下安装时请不要将软件安装至C:\Program
                 Files等需要管理员权限的目录。请使用 ME Frp 官网账号登录。若在
                 Linux 下使用 root 账户运行，软件可能将无法正常运行。
               </p>
@@ -204,7 +212,7 @@
               </p>
               <h4 class="font-semibold text-yellow-400 mt-4">注意事项</h4>
               <p class="text-gray-300 text-sm mt-1">
-                macOS 安装请查看我们的文档: <UButton size="sm" color="warn" variant="soft" to="https://docs.rycb.mxj.pub/pml-2/install#macos-%E5%AE%89%E8%A3%85"
+                macOS 安装请查看我们的文档: <UButton size="sm" color="warn" variant="soft" to="https://docs.rycb.tech/pml-2/install#macos-%E5%AE%89%E8%A3%85"
                   target="_blank" class="cursor-pointer">
                   <UIcon name="i-lucide-external-link" class="size-4 mr-1" />
                   查看文档
@@ -225,7 +233,7 @@
               <li class="flex items-start space-x-2">
                 <span
                   class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">1</span>
-                <span>下载 Windows 安装包 (.msi 或 .exe)</span>
+                <span>下载 Windows 联网安装包 (.exe) 或 离线安装包</span>
               </li>
               <li class="flex items-start space-x-2">
                 <span
@@ -243,7 +251,7 @@
           <!-- Linux 安装 -->
           <div class="bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-smooth">
             <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
-              <UIcon name="i-lucide-terminal" class="size-5 mr-2 text-yellow-400" />
+              <UIcon name="i-simple-icons-linux" class="size-5 mr-2 text-yellow-400" />
               Linux 安装
             </h3>
             <ol class="space-y-2 text-gray-300 text-sm">
@@ -268,7 +276,7 @@
           <!-- macOS 安装 -->
           <div class="bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-smooth">
             <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
-              <UIcon name="i-lucide-laptop" class="size-5 mr-2 text-gray-300" />
+              <UIcon name="i-simple-icons-apple" class="size-5 mr-2 text-gray-300" />
               macOS 安装
             </h3>
             <ol class="space-y-2 text-gray-300 text-sm">
@@ -293,7 +301,7 @@
           <!-- Android 安装 -->
           <div class="bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-smooth">
             <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
-              <UIcon name="i-lucide-smartphone" class="size-5 mr-2 text-green-400" />
+              <UIcon name="i-simple-icons-android" class="size-5 mr-2 text-green-400" />
               Android 安装
             </h3>
             <ol class="space-y-2 text-gray-300 text-sm">
@@ -587,7 +595,7 @@ const updates = ref([]);
 // 从 API 获取更新日志
 const fetchChangelog = async () => {
   try {
-    const response = await fetch("https://api.rycb.mxj.pub/api/changelog");
+    const response = await fetch("https://api.rycb.tech/api/changelog");
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
