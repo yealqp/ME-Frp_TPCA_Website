@@ -310,8 +310,8 @@ const products = computed(() => [
     author: 'ZeroSnow',
     version: versions.value.zl,
     description: '由ZeroSnow使用WinUI3框架开发的Windows原生客户端，采用Fluent Design设计语言，功能强大，性能优异。',
-    icon: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext-icon.png?sign=XKtsQoWy3qtBqEgV6yVu09IXyzwWoVbUJ9SIywwPHrk=:0',
-    screenshot: 'https://alist.yealqp.cn/images/views/zerosnow/znext/znext-photo.png',
+    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext-icon.png',
+    screenshot: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/home.png',
     link: 'https://mefrp-tpca.yealqp.cn/docs/zl',
     tags: ['WinUI3', 'Windows', 'Fluent Design'],
     features: [

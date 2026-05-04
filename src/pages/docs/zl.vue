@@ -4,7 +4,7 @@
     <div class="mb-8">
       <div class="flex items-center space-x-4 mb-4">
         <img 
-          src="https://alist.yealqp.cn/d/images/views/zerosnow/znext-icon.png?sign=XKtsQoWy3qtBqEgV6yVu09IXyzwWoVbUJ9SIywwPHrk=:0" 
+          src="https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext-icon.png" 
           alt="XL-ME-Frp-Launcher"
           class="w-12 h-12 rounded-lg"
         />
@@ -166,12 +166,12 @@
           <UButton 
             size="lg" 
             color="primary"
-            to="https://alist.yealqp.cn/mefrp-desktop/ZNext%20Launcher"
+            to="znext.ccwu.cc"
             target="_blank"
             class="btn-glow cursor-pointer"
           >
             <UIcon name="i-lucide-download" class="size-5 mr-2" />
-            OpenList 下载
+            官网了解详情
           </UButton>
         </div>
         
@@ -542,15 +542,15 @@ useSeoMeta({
 
 // 预览图数据
 const previewImages = [
-  { src: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-26%20093349.png?sign=lnZaaiqawaToC0B8bAdYQyEf5QG-goBOB6wYKhVrm88=:0', alt: '登录界面' },
-  { src: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-04-11%20112942.png?sign=jI8i4592mJMRzFoJxDAX9PQX-f8GuYjCMqPY_QAYvcI=:0', alt: '主页面' },
-  { src: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext/tunnel.png?sign=521oN5786ZmUM6SRcCScLLYU4VEUT6rsTYYeoyaujt0=:0', alt: '隧道管理' },
-  { src: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext/create.png?sign=-GnCS-xAtK0Iayje_98qpL3cGF-ioGH912O9M01CC00=:0', alt: '节点选择' },
-  { src: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext/create.png?sign=-GnCS-xAtK0Iayje_98qpL3cGF-ioGH912O9M01CC00=:0', alt: '创建隧道' },
-  { src: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext/password.png?sign=KuqUtyOjWWQla0ewyW2mjXTgmjHpxISADvTv67xof-Y=:0', alt: '安全访问' },
-  { src: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext/help.png?sign=Z3Y_6sc4bXoZOP0VJ_J3H3apo5XFXS3ZxcExizonaw4=:0', alt: '帮助页面' },
-  { src: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext/about.png?sign=ERyoSLG-HXiVpSQLk44bj3y5gbjuNtzxb_m1z4vHnFM=:0', alt: '配置设置' },
-  { src: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext/about.png?sign=ERyoSLG-HXiVpSQLk44bj3y5gbjuNtzxb_m1z4vHnFM=:0', alt: '关于页面' }
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-26%20093349.png', alt: '登录界面' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-04-11%20112942.png', alt: '主页面' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/tunnel.png', alt: '隧道管理' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/create.png', alt: '节点选择' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/create.png', alt: '创建隧道' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/password.png', alt: '安全访问' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/help.png', alt: '帮助页面' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/about.png', alt: '配置设置' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/about.png', alt: '关于页面' }
 ]
 
 // 更新日志状态

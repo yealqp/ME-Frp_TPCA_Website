@@ -267,7 +267,7 @@ const clients = [
     name: 'ZNext Launcher',
     path: '/docs/zl',
     description: '基于 WinUI3 框架开发的 Windows 原生客户端，采用 Fluent Design 设计语言',
-    icon: 'https://alist.yealqp.cn/d/images/views/zerosnow/znext-icon.png?sign=XKtsQoWy3qtBqEgV6yVu09IXyzwWoVbUJ9SIywwPHrk=:0'
+    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext-icon.png'
   }
 ]
 

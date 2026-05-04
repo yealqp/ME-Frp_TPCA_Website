@@ -180,7 +180,7 @@ const clients = [
     id: "zl",
     name: "ZNext Launcher",
     path: "/docs/zl",
-    icon: "https://alist.yealqp.cn/d/images/views/zerosnow/znext-icon.png?sign=XKtsQoWy3qtBqEgV6yVu09IXyzwWoVbUJ9SIywwPHrk=:0",
+    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext-icon.png",
   },
 ];
 
