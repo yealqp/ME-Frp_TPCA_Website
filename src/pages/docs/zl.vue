@@ -166,7 +166,7 @@
           <UButton 
             size="lg" 
             color="primary"
-            to="znext.ccwu.cc"
+            to="https://znext.ccwu.cc"
             target="_blank"
             class="btn-glow cursor-pointer"
           >
