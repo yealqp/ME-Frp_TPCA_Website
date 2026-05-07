@@ -132,7 +132,7 @@ const products = computed(() => [
   },
   {
     id: 'pml',
-    name: 'Plain ME Frp Launcher',
+    name: 'PML 2',
     author: 'RYCB工作室',
     version: versions.value.pml,
     description: 'PML 2使用.NET提供了简单便捷的操作，支持常见主流平台。',

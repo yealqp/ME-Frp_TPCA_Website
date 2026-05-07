@@ -83,7 +83,7 @@ export default defineNuxtConfig({
         // DNS 预解析
         { rel: 'dns-prefetch', href: 'https://image.mefrp-tpca.yealqp.cn' },
         { rel: 'dns-prefetch', href: 'https://check.yealqp.cn' },
-        { rel: 'dns-prefetch', href: 'https://api.rycb.mxj.pub' },
+        { rel: 'dns-prefetch', href: 'https://api.rycb.tech' },
         { rel: 'dns-prefetch', href: 'https://umami.yealqp.cn' },
         // 预连接关键域名
         { rel: 'preconnect', href: 'https://image.mefrp-tpca.yealqp.cn', crossorigin: 'anonymous' },
