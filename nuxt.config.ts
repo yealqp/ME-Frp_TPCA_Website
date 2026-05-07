@@ -8,10 +8,13 @@ export default defineNuxtConfig({
     }
   },
   
-  // Nuxt UI 4 模块
+  // Nuxt UI 4 模块（禁用 @nuxt/fonts，项目使用自托管字体）
   modules: [
     '@nuxt/ui'
   ],
+  ui: {
+    fonts: false
+  },
 
   // CSS 配置 - Nuxt UI 4 会自动处理 Tailwind
   css: [

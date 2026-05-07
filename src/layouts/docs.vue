@@ -127,7 +127,7 @@ const sidebarOpen = ref(false);
 const clients = [
   {
     id: "xl",
-    name: "XL-Client",
+    name: "XL Client",
     path: "/docs/xl",
     icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp",
   },

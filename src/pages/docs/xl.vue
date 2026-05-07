@@ -3,10 +3,10 @@
     <!-- 页面标题 -->
     <div class="mb-8">
       <div class="flex items-center space-x-4 mb-4">
-        <img src="https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp" alt="XL-Client"
+        <img src="https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp" alt="XL Client"
           class="w-12 h-12 rounded-lg" />
         <div>
-          <h1 class="text-3xl font-bold text-white">XL-Client</h1>
+          <h1 class="text-3xl font-bold text-white">XL Client</h1>
           <p class="text-gray-400">基于 Tauri 2 框架开发的跨平台客户端</p>
         </div>
       </div>
@@ -31,7 +31,7 @@
 
       <div class="p-6 space-y-4 text-gray-300">
         <p>
-          XL-Client 是由 <strong class="text-primary-400">yealqp</strong> 使用 Tauri 2 框架开发的 ME-Frp 第三方客户端。
+          XL Client 是由 <strong class="text-primary-400">yealqp</strong> 使用 Tauri 2 框架开发的 ME-Frp 第三方客户端。
           界面高仿官网样式，可能是目前收录的三个客户端中最美观的一个，也可能也是包体最小的一个，亦或是bug最少的一个。
         </p>
 
@@ -60,10 +60,6 @@
               </li>
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>包体小巧，启动迅速</span>
-              </li>
-              <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                 <span>支持 Token 登录功能</span>
               </li>
             </ul>
@@ -77,11 +73,15 @@
             <ul class="space-y-2">
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-monitor" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>Windows 10/11 / 主流Linux发行版</span>
+                <span>Windows 10/11</span>
               </li>
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-monitor" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                 <span>Windows Server 2019/2022/2025</span>
+              </li>
+                            <li class="flex items-start space-x-2">
+                <UIcon name="i-simple-icons-linux" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <span>主流 Linux x64 发行版</span>
               </li>
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-globe" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
@@ -156,9 +156,8 @@
           <div class="flex items-start space-x-3">
             <UIcon name="i-lucide-alert-triangle" class="size-5 text-yellow-400 mt-0.5 flex-shrink-0" />
             <div>
-              <h4 class="font-semibold text-yellow-400">系统要求</h4>
-              <p class="text-gray-300 text-sm mt-1">本软件仅适用于 Windows 10, Windows 11, Windows Server 2019, 2022,
-                2025。在使用前请确认您的电脑上安装了 WebView2（WebView2 已经在 Windows 10 1803 以上和更高版本的 Windows 上默认安装）。</p>
+              <h4 class="font-semibold text-yellow-400">系统要求(Windows)</h4>
+              <p class="text-gray-300 text-sm mt-1">在使用前请确认您的电脑上安装了 WebView2（WebView2 已经在 Windows 10 1803 以上和更高版本的 Windows 上默认安装）。</p>
             </div>
           </div>
         </div>

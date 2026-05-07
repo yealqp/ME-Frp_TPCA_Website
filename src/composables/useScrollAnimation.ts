@@ -209,8 +209,8 @@ export function useScrollAnimationGroup(
   });
 
   // 计算每个元素的延迟
+  // 注意: SSR 和客户端必须一致以避免 hydration 时 style 不匹配
   const getItemDelay = (index: number) => {
-    if (import.meta.server) return 0;
     return prefersReducedMotion() ? 0 : index * staggerDelay;
   };
 
