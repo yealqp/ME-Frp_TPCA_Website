@@ -18,11 +18,6 @@ export default defineNuxtConfig({
     '@/assets/css/main.css'
   ],
 
-  // Nuxt UI 4 字体配置 - 禁用 Google Fonts
-  fonts: {
-    provider: 'none'
-  },
-
   // 实验性功能 - 性能优化
   experimental: {
     payloadExtraction: true,

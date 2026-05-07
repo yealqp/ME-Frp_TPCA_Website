@@ -1,16 +1,20 @@
 <template>
   <div class="pt-16">
     <!-- Hero Section -->
-    <section class="py-8 lg:py-12 relative overflow-hidden" style="background: linear-gradient(135deg, #0F172A 0%, #111827 50%, #0A0E27 100%);">
+    <section class="py-8 lg:py-12 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0F172A 0%, #111827 50%, #0A0E27 100%);">
       <!-- 动态光斑背景 -->
       <div class="absolute inset-0">
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-1000"></div>
+        <div
+          class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-1000">
+        </div>
       </div>
-      
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div class="animate-fade-in-up">
-          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6" style="text-shadow: 0 0 30px rgba(20, 184, 166, 0.3);">
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6"
+            style="text-shadow: 0 0 30px rgba(20, 184, 166, 0.3);">
             关于我们
           </h1>
           <p class="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -23,11 +27,8 @@
     <!-- 我们是谁 -->
     <section class="py-8 lg:py-12 relative" style="background: linear-gradient(180deg, #111827 0%, #0F172A 100%);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div 
-          ref="whoWeAreRef"
-          class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
-          :class="{ 'visible': whoWeAreVisible }"
-        >
+        <div ref="whoWeAreRef" class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
+          :class="{ 'visible': whoWeAreVisible }">
           <div class="p-6 border-b border-white/10">
             <div class="flex items-center space-x-3">
               <UIcon name="i-lucide-info" class="size-6 text-teal-400" />
@@ -37,7 +38,7 @@
 
           <div class="p-6 space-y-6 text-gray-300 leading-relaxed">
             <p class="text-lg">
-              <strong class="text-teal-400">ME-Frp TPCA</strong> 
+              <strong class="text-teal-400">ME-Frp TPCA</strong>
               是自发性的、开发者群体为主的社区组织。
             </p>
             <p>
@@ -57,11 +58,8 @@
     <!-- 发展历程 -->
     <section class="py-8 lg:py-12 relative" style="background: #0F172A;">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div 
-          ref="timelineRef"
-          class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
-          :class="{ 'visible': timelineVisible }"
-        >
+        <div ref="timelineRef" class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
+          :class="{ 'visible': timelineVisible }">
           <div class="p-6 border-b border-white/10">
             <div class="flex items-center space-x-3">
               <UIcon name="i-lucide-clock" class="size-6 text-teal-400" />
@@ -70,13 +68,11 @@
           </div>
 
           <div class="p-6 space-y-6">
-            <div 
-              v-for="milestone in timeline" 
-              :key="milestone.date"
-              class="glass-card flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 p-6 rounded-lg hover-lift overflow-hidden"
-            >
+            <div v-for="milestone in timeline" :key="milestone.date"
+              class="glass-card flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6 p-6 rounded-lg hover-lift overflow-hidden">
               <div class="flex-shrink-0">
-                <div class="flex items-center justify-center w-12 h-12 rounded-full" style="background: rgba(20, 184, 166, 0.2);">
+                <div class="flex items-center justify-center w-12 h-12 rounded-full"
+                  style="background: rgba(20, 184, 166, 0.2);">
                   <UIcon :name="milestone.icon" class="size-6 text-teal-400" />
                 </div>
               </div>
@@ -96,11 +92,8 @@
     <!-- 核心价值 -->
     <section class="py-8 lg:py-12 relative" style="background: linear-gradient(180deg, #0F172A 0%, #111827 100%);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div 
-          ref="valuesRef"
-          class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
-          :class="{ 'visible': valuesVisible }"
-        >
+        <div ref="valuesRef" class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
+          :class="{ 'visible': valuesVisible }">
           <div class="p-6 border-b border-white/10">
             <div class="flex items-center space-x-3">
               <UIcon name="i-lucide-heart" class="size-6 text-teal-400" />
@@ -109,11 +102,8 @@
           </div>
 
           <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div 
-              v-for="value in values" 
-              :key="value.title"
-              class="glass-card text-center space-y-4 p-6 rounded-lg hover-lift overflow-hidden"
-            >
+            <div v-for="value in values" :key="value.title"
+              class="glass-card text-center space-y-4 p-6 rounded-lg hover-lift overflow-hidden">
               <div class="flex justify-center">
                 <div class="p-4 rounded-full" style="background: rgba(20, 184, 166, 0.2);">
                   <UIcon :name="value.icon" class="size-8 text-teal-400" />
@@ -130,11 +120,8 @@
     <!-- 联系我们 -->
     <section class="py-8 lg:py-12 relative" style="background: #0F172A;">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div 
-          ref="contactRef"
-          class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
-          :class="{ 'visible': contactVisible }"
-        >
+        <div ref="contactRef" class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
+          :class="{ 'visible': contactVisible }">
           <div class="p-6 border-b border-white/10">
             <div class="flex items-center space-x-3">
               <UIcon name="i-lucide-phone" class="size-6 text-teal-400" />
@@ -147,13 +134,8 @@
               如果您有任何问题或建议，欢迎通过以下方式联系我们
             </p>
             <div class="flex justify-center">
-              <UButton 
-                size="lg" 
-                color="primary"
-                to="https://github.com/yealqp/ME-Frp_TPCA_Website"
-                target="_blank"
-                class="btn-glow cursor-pointer"
-              >
+              <UButton size="lg" color="primary" to="https://github.com/yealqp/ME-Frp_TPCA_Website" target="_blank"
+                class="btn-glow cursor-pointer">
                 <UIcon name="i-lucide-github" class="size-5 mr-2" />
                 GitHub
               </UButton>

@@ -22,27 +22,21 @@
     <!-- 更新日志内容 -->
     <div v-else class="p-6 space-y-6">
       <!-- 显示的更新日志 - 使用 lx.vue 优化样式 -->
-      <div 
-        v-for="update in displayedUpdates" 
-        :key="update.version" 
-        class="border-l-2 border-primary-500/30 pl-4"
-      >
+      <div v-for="update in displayedUpdates" :key="update.version" class="border-l-2 border-primary-500/30 pl-4">
         <div class="flex items-center space-x-2 mb-2">
           <h3 class="text-lg font-semibold text-white">{{ update.version }}</h3>
-          <span v-if="update.isLatest" class="px-2 py-0.5 text-xs font-medium rounded-full bg-green-500/20 text-green-400">最新</span>
-          <a
-            v-if="update.codename"
-            :href="`https://api.rycb.tech/codename/${update.codename}`"
-            target="_blank"
-            class="px-2 py-0.5 text-xs font-medium rounded-full bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-colors cursor-pointer"
-          >
+          <span v-if="update.isLatest"
+            class="px-2 py-0.5 text-xs font-medium rounded-full bg-green-500/20 text-green-400">最新</span>
+          <a v-if="update.codename" :href="`https://api.rycb.tech/codename/${update.codename}`" target="_blank"
+            class="px-2 py-0.5 text-xs font-medium rounded-full bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-colors cursor-pointer">
             {{ update.codename }}
           </a>
         </div>
         <p v-if="update.date" class="text-sm text-gray-400 mb-2">更新日期：{{ update.date }}</p>
         <p v-if="update.description" class="text-sm text-gray-300 mb-3 italic" v-html="update.description"></p>
         <ul class="space-y-1 text-gray-300 text-sm mb-3">
-          <li v-for="(change, index) in (update.changes || update.notes || [])" :key="index" class="flex items-start space-x-2">
+          <li v-for="(change, index) in (update.changes || update.notes || [])" :key="index"
+            class="flex items-start space-x-2">
             <span class="text-primary-400 mt-1">•</span>
             <span v-html="change"></span>
           </li>
@@ -55,12 +49,7 @@
 
       <!-- 加载更多按钮 -->
       <div v-if="hasMore" class="text-center pt-4">
-        <UButton
-          v-if="!loadingMore"
-          variant="outline"
-          color="primary"
-          @click="loadMore"
-        >
+        <UButton v-if="!loadingMore" variant="outline" color="primary" @click="loadMore">
           <UIcon name="i-lucide-chevrons-down" class="size-4 mr-2" />
           加载更多 ({{ remainingCount }} 个版本)
         </UButton>
@@ -122,7 +111,7 @@ const remainingCount = computed(() => {
 // 加载更多 - 使用 requestAnimationFrame 优化
 const loadMore = () => {
   loadingMore.value = true
-  
+
   // 使用 requestAnimationFrame 确保流畅的动画
   requestAnimationFrame(() => {
     setTimeout(() => {

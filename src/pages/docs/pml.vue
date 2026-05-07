@@ -36,7 +36,7 @@
           <em class="text-primary-300">也是目前三个产品中唯一一个支持跨平台的软件。</em>
         </p>
 
-        <div  class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
               <UIcon name="i-lucide-sparkles" class="size-5 text-primary-400" />
@@ -107,8 +107,8 @@
                 <UIcon name="i-lucide-external-link" class="size-4 mr-1" />
                 访问官网
               </UButton>
-              <UButton size="sm" color="info" variant="soft" to="https://docs.rycb.tech/pml-2/intro"
-                target="_blank" class="cursor-pointer" style="margin: 0 0 0 0.5rem;">
+              <UButton size="sm" color="info" variant="soft" to="https://docs.rycb.tech/pml-2/intro" target="_blank"
+                class="cursor-pointer" style="margin: 0 0 0 0.5rem;">
                 <UIcon name="i-lucide-external-link" class="size-4 mr-1" />
                 查看文档
               </UButton>
@@ -212,8 +212,9 @@
               </p>
               <h4 class="font-semibold text-yellow-400 mt-4">注意事项</h4>
               <p class="text-gray-300 text-sm mt-1">
-                macOS 安装请查看我们的文档: <UButton size="sm" color="warn" variant="soft" to="https://docs.rycb.tech/pml-2/install#macos-%E5%AE%89%E8%A3%85"
-                  target="_blank" class="cursor-pointer">
+                macOS 安装请查看我们的文档: <UButton size="sm" color="warn" variant="soft"
+                  to="https://docs.rycb.tech/pml-2/install#macos-%E5%AE%89%E8%A3%85" target="_blank"
+                  class="cursor-pointer">
                   <UIcon name="i-lucide-external-link" class="size-4 mr-1" />
                   查看文档
                 </UButton>

@@ -6,18 +6,15 @@
       <div class="absolute inset-0">
         <div class="absolute inset-0 bg-gradient-to-br from-teal-900/20 via-gray-950 to-blue-900/20"></div>
         <!-- 动态光斑 - 添加浮动效果 -->
-        <div 
+        <div
           class="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse-slow animate-float"
-          :style="{ transform: `translateY(${parallaxOffset * 0.3}px)` }"
-        ></div>
-        <div 
+          :style="{ transform: `translateY(${parallaxOffset * 0.3}px)` }"></div>
+        <div
           class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-1000"
-          :style="{ transform: `translateY(${parallaxOffset * 0.2}px)` }"
-        ></div>
-        <div 
+          :style="{ transform: `translateY(${parallaxOffset * 0.2}px)` }"></div>
+        <div
           class="absolute top-1/2 right-1/3 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-500"
-          :style="{ transform: `translateY(${parallaxOffset * 0.4}px)` }"
-        ></div>
+          :style="{ transform: `translateY(${parallaxOffset * 0.4}px)` }"></div>
       </div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -27,12 +24,13 @@
             <!-- 发光标题 -->
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-glow">
               <span class="block">
-                <span class="text-gradient bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <span
+                  class="text-gradient bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                   ME-Frp 第三方客户端联盟
                 </span>
               </span>
             </h1>
-            
+
             <div class="flex items-center justify-center space-x-6 text-gray-400 text-sm">
               <div class="flex items-center space-x-2">
                 <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -54,23 +52,14 @@
 
           <!-- 按钮组 -->
           <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-            <UButton 
-              size="xl" 
-              color="primary"
-              to="/products"
-              class="px-8 py-4 text-lg font-semibold btn-glow hover-lift cursor-pointer"
-            >
+            <UButton size="xl" color="primary" to="/products"
+              class="px-8 py-4 text-lg font-semibold btn-glow hover-lift cursor-pointer">
               <UIcon name="i-lucide-box" class="size-5 mr-2" />
               探索产品
             </UButton>
-            
-            <UButton 
-              size="xl" 
-              color="neutral"
-              variant="outline"
-              to="/about"
-              class="px-8 py-4 text-lg btn-glow hover-lift cursor-pointer"
-            >
+
+            <UButton size="xl" color="neutral" variant="outline" to="/about"
+              class="px-8 py-4 text-lg btn-glow hover-lift cursor-pointer">
               <UIcon name="i-lucide-users" class="size-5 mr-2" />
               了解更多
             </UButton>
@@ -102,7 +91,7 @@ const isMobile = ref(false)
 // 平滑滚动到指定位置
 const smoothScrollTo = (targetPosition) => {
   if (isScrolling.value) return
-  
+
   isScrolling.value = true
   const startPosition = window.pageYOffset
   const distance = targetPosition - startPosition
@@ -133,10 +122,10 @@ const smoothScrollTo = (targetPosition) => {
 const handleWheel = (event) => {
   // 移动设备上禁用滚动效果
   if (isMobile.value) return
-  
+
   const heroHeight = window.innerHeight
   const scrollY = window.scrollY
-  
+
   // 正在滚动动画中，阻止所有滚动
   if (isScrolling.value) {
     event.preventDefault()
@@ -146,7 +135,7 @@ const handleWheel = (event) => {
   // 在 hero 区域内（scrollY < heroHeight）
   if (scrollY < heroHeight) {
     event.preventDefault()
-    
+
     const delta = event.deltaY
 
     if (delta > 0) {
@@ -158,7 +147,7 @@ const handleWheel = (event) => {
     }
     return
   }
-  
+
   // 刚离开 hero 区域不远时（heroHeight <= scrollY < heroHeight + 100），向上滚动吸附回 hero
   if (scrollY < heroHeight + 100 && event.deltaY < 0) {
     event.preventDefault()
@@ -172,17 +161,17 @@ let touchStartY = 0
 const handleTouchStart = (event) => {
   // 移动设备上禁用滚动效果
   if (isMobile.value) return
-  
+
   touchStartY = event.touches[0].clientY
 }
 
 const handleTouchMove = (event) => {
   // 移动设备上禁用滚动效果
   if (isMobile.value) return
-  
+
   const heroHeight = window.innerHeight
   const scrollY = window.scrollY
-  
+
   // 在 hero 区域内或刚离开 hero 区域时阻止默认触摸滚动
   if ((scrollY < heroHeight || scrollY < heroHeight + 100) && !isScrolling.value) {
     event.preventDefault()
@@ -192,10 +181,10 @@ const handleTouchMove = (event) => {
 const handleTouchEnd = (event) => {
   // 移动设备上禁用滚动效果
   if (isMobile.value) return
-  
+
   const heroHeight = window.innerHeight
   const scrollY = window.scrollY
-  
+
   if (isScrolling.value) return
 
   const touchEndY = event.changedTouches[0].clientY
@@ -213,7 +202,7 @@ const handleTouchEnd = (event) => {
     }
     return
   }
-  
+
   // 刚离开 hero 区域不远时，向上滑动吸附回 hero
   if (scrollY < heroHeight + 100 && deltaY < -threshold) {
     smoothScrollTo(0)
@@ -227,10 +216,10 @@ const updateParallax = () => {
 
 onMounted(() => {
   if (import.meta.server) return
-  
+
   // 检测是否为移动设备
   isMobile.value = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768
-  
+
   window.addEventListener('scroll', updateParallax, { passive: true })
   window.addEventListener('wheel', handleWheel, { passive: false })
   window.addEventListener('touchstart', handleTouchStart, { passive: true })
