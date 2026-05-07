@@ -4,69 +4,69 @@
  */
 
 export default defineNuxtPlugin(() => {
-  if (import.meta.server) return
+  if (import.meta.server) return;
 
   // 监控 Core Web Vitals
   const reportWebVitals = () => {
     // 检查 PerformanceObserver 是否可用
-    if (!('PerformanceObserver' in window)) return
+    if (!("PerformanceObserver" in window)) return;
 
     try {
       // Largest Contentful Paint (LCP)
       const lcpObserver = new PerformanceObserver((list) => {
-        const entries = list.getEntries()
-        const lastEntry = entries[entries.length - 1]
-        console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime)
-      })
-      lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] })
+        const entries = list.getEntries();
+        const lastEntry = entries[entries.length - 1];
+        console.log("LCP:", lastEntry.renderTime || lastEntry.loadTime);
+      });
+      lcpObserver.observe({ entryTypes: ["largest-contentful-paint"] });
 
       // First Input Delay (FID)
       const fidObserver = new PerformanceObserver((list) => {
-        const entries = list.getEntries()
+        const entries = list.getEntries();
         entries.forEach((entry: any) => {
-          console.log('FID:', entry.processingStart - entry.startTime)
-        })
-      })
-      fidObserver.observe({ entryTypes: ['first-input'] })
+          console.log("FID:", entry.processingStart - entry.startTime);
+        });
+      });
+      fidObserver.observe({ entryTypes: ["first-input"] });
 
       // Cumulative Layout Shift (CLS)
-      let clsScore = 0
+      let clsScore = 0;
       const clsObserver = new PerformanceObserver((list) => {
-        const entries = list.getEntries()
+        const entries = list.getEntries();
         entries.forEach((entry: any) => {
           if (!entry.hadRecentInput) {
-            clsScore += entry.value
+            clsScore += entry.value;
           }
-        })
-        console.log('CLS:', clsScore)
-      })
-      clsObserver.observe({ entryTypes: ['layout-shift'] })
+        });
+        console.log("CLS:", clsScore);
+      });
+      clsObserver.observe({ entryTypes: ["layout-shift"] });
     } catch (error) {
-      console.error('Performance monitoring error:', error)
+      console.error("Performance monitoring error:", error);
     }
-  }
+  };
 
   // 页面加载完成后开始监控
-  if (document.readyState === 'complete') {
-    reportWebVitals()
+  if (document.readyState === "complete") {
+    reportWebVitals();
   } else {
-    window.addEventListener('load', reportWebVitals)
+    window.addEventListener("load", reportWebVitals);
   }
 
   // 监控长任务
-  if ('PerformanceObserver' in window) {
+  if ("PerformanceObserver" in window) {
     try {
       const longTaskObserver = new PerformanceObserver((list) => {
-        const entries = list.getEntries()
+        const entries = list.getEntries();
         entries.forEach((entry) => {
           if (entry.duration > 50) {
-            console.warn('Long task detected:', entry.duration, 'ms')
+            console.warn("Long task detected:", entry.duration, "ms");
           }
-        })
-      })
-      longTaskObserver.observe({ entryTypes: ['longtask'] })
+        });
+      });
+      longTaskObserver.observe({ entryTypes: ["longtask"] });
     } catch (error) {
       // longtask 可能不被支持
     }
   }
-})
+});

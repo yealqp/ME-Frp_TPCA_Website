@@ -3,11 +3,7 @@
     <!-- 文档首页内容 -->
     <div class="space-y-8">
       <!-- 欢迎标题 -->
-      <div 
-        ref="titleRef"
-        class="text-center scroll-animate"
-        :class="{ 'visible': titleVisible }"
-      >
+      <div ref="titleRef" class="text-center scroll-animate" :class="{ 'visible': titleVisible }">
         <h1 class="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center justify-center gap-3">
           <UIcon name="i-lucide-book-open" class="size-8 text-primary-400" />
           文档中心
@@ -18,11 +14,8 @@
       </div>
 
       <!-- 项目介绍 -->
-      <div 
-        ref="introRef"
-        class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
-        :class="{ 'visible': introVisible }"
-      >
+      <div ref="introRef" class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+        :class="{ 'visible': introVisible }">
         <div class="p-6 border-b border-white/10">
           <div class="flex items-center space-x-3">
             <UIcon name="i-lucide-info" class="size-6 text-primary-400" />
@@ -32,7 +25,7 @@
 
         <div class="p-6 space-y-6 text-gray-300 leading-relaxed">
           <p class="text-lg">
-            <strong class="text-primary-400">ME-Frp TPCA</strong> 
+            <strong class="text-primary-400">ME-Frp TPCA</strong>
             (ME-Frp Third-Party Client Alliance) 是一个专注于 ME-Frp 第三方客户端开发的社区组织。
           </p>
 
@@ -87,11 +80,8 @@
       </div>
 
       <!-- 快速开始 -->
-      <div 
-        ref="quickStartRef"
-        class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
-        :class="{ 'visible': quickStartVisible }"
-      >
+      <div ref="quickStartRef" class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+        :class="{ 'visible': quickStartVisible }">
         <div class="p-6 border-b border-white/10">
           <div class="flex items-center space-x-3">
             <UIcon name="i-lucide-rocket" class="size-6 text-primary-400" />
@@ -100,13 +90,11 @@
         </div>
 
         <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div 
-            v-for="(step, index) in quickStartSteps" 
-            :key="step.title"
-            class="glass-card text-center space-y-4 p-4 rounded-lg hover-lift overflow-hidden cursor-pointer"
-          >
+          <div v-for="(step, index) in quickStartSteps" :key="step.title"
+            class="glass-card text-center space-y-4 p-4 rounded-lg hover-lift overflow-hidden cursor-pointer">
             <div class="flex justify-center">
-              <div class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-500/20 text-primary-400 text-lg font-bold">
+              <div
+                class="flex items-center justify-center w-12 h-12 rounded-full bg-primary-500/20 text-primary-400 text-lg font-bold">
                 {{ index + 1 }}
               </div>
             </div>
@@ -117,11 +105,8 @@
       </div>
 
       <!-- 客户端文档链接 -->
-      <div 
-        ref="clientsRef"
-        class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
-        :class="{ 'visible': clientsVisible }"
-      >
+      <div ref="clientsRef" class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+        :class="{ 'visible': clientsVisible }">
         <div class="p-6 border-b border-white/10">
           <div class="flex items-center space-x-3">
             <UIcon name="i-lucide-file-text" class="size-6 text-primary-400" />
@@ -130,12 +115,8 @@
         </div>
 
         <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <NuxtLink 
-            v-for="client in clients" 
-            :key="client.id"
-            :to="client.path"
-            class="glass-card block p-4 rounded-lg hover-lift overflow-hidden cursor-pointer"
-          >
+          <NuxtLink v-for="client in clients" :key="client.id" :to="client.path"
+            class="glass-card block p-4 rounded-lg hover-lift overflow-hidden cursor-pointer">
             <div class="flex items-center space-x-3 mb-3">
               <img :src="client.icon" :alt="client.name" class="w-8 h-8 rounded" />
               <h3 class="font-semibold text-white">{{ client.name }}</h3>
@@ -150,11 +131,8 @@
       </div>
 
       <!-- 联系我们 -->
-      <div 
-        ref="contactRef"
-        class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
-        :class="{ 'visible': contactVisible }"
-      >
+      <div ref="contactRef" class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+        :class="{ 'visible': contactVisible }">
         <div class="p-6 border-b border-white/10">
           <div class="flex items-center space-x-3">
             <UIcon name="i-lucide-message-circle" class="size-6 text-primary-400" />
@@ -166,25 +144,15 @@
           <p class="text-gray-300">
             如果您在使用过程中遇到问题，或者有任何建议，欢迎通过以下方式联系我们
           </p>
-          
+
           <div class="flex justify-center space-x-4">
-            <UButton 
-              variant="outline" 
-              color="primary"
-              to="https://github.com/yealqp/ME-Frp_TPCA_Website"
-              target="_blank"
-              class="btn-glow cursor-pointer"
-            >
+            <UButton variant="outline" color="primary" to="https://github.com/yealqp/ME-Frp_TPCA_Website"
+              target="_blank" class="btn-glow cursor-pointer">
               <UIcon name="i-lucide-github" class="size-4 mr-2" />
               GitHub
             </UButton>
-            
-            <UButton 
-              variant="outline" 
-              color="primary"
-              to="/about"
-              class="btn-glow cursor-pointer"
-            >
+
+            <UButton variant="outline" color="primary" to="/about" class="btn-glow cursor-pointer">
               <UIcon name="i-lucide-info" class="size-4 mr-2" />
               关于我们
             </UButton>

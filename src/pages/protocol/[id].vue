@@ -8,7 +8,7 @@
             <h1 class="text-2xl md:text-3xl font-bold text-white">
               请稍候，正在重定向...
             </h1>
-            
+
             <div class="loading-dots mx-auto">
               <div></div>
               <div></div>
@@ -32,18 +32,11 @@
 
           <!-- 产品下载 -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div 
-              v-for="product in products" 
-              :key="product.id"
-              class="glass-card rounded-xl overflow-hidden hover-lift transition-colors"
-            >
+            <div v-for="product in products" :key="product.id"
+              class="glass-card rounded-xl overflow-hidden hover-lift transition-colors">
               <div class="p-4 border-b border-white/10">
                 <div class="flex items-center space-x-3">
-                  <img 
-                    :src="product.icon" 
-                    :alt="product.name"
-                    class="w-10 h-10 rounded-lg"
-                  >
+                  <img :src="product.icon" :alt="product.name" class="w-10 h-10 rounded-lg">
                   <div>
                     <h3 class="font-semibold text-white">{{ product.name }}</h3>
                     <p class="text-sm text-gray-400">{{ product.author }} · {{ product.version }}</p>
@@ -56,12 +49,7 @@
                   {{ product.description }}
                 </p>
 
-                <UButton 
-                  block 
-                  color="primary"
-                  :to="product.downloadUrl"
-                  target="_blank"
-                >
+                <UButton block color="primary" :to="product.downloadUrl" target="_blank">
                   <UIcon name="i-lucide-download" class="size-4 mr-2" />
                   下载
                 </UButton>
@@ -72,11 +60,7 @@
           <!-- 手动跳转 -->
           <div v-if="showRedirectBtn && protocolAvailable" class="space-y-4">
             <p class="text-gray-400">自动重定向失败，请手动点击按钮</p>
-            <UButton 
-              size="lg" 
-              color="primary"
-              @click="startRedirect"
-            >
+            <UButton size="lg" color="primary" @click="startRedirect">
               <UIcon name="i-lucide-external-link" class="size-5 mr-2" />
               跳转链接 ({{ countdown }}s)
             </UButton>

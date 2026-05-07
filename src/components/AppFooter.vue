@@ -12,11 +12,8 @@
           </p>
           <p class="text-gray-400 text-sm">
             本站借鉴自
-            <NuxtLink 
-              to="https://github.com/MCSLTeam/MCSLTeam-Website-Next" 
-              target="_blank"
-              class="text-teal-400 hover:text-teal-300 transition-smooth cursor-pointer"
-            >
+            <NuxtLink to="https://github.com/MCSLTeam/MCSLTeam-Website-Next" target="_blank"
+              class="text-teal-400 hover:text-teal-300 transition-smooth cursor-pointer">
               MCSLTeam官网
             </NuxtLink>
             。
@@ -25,23 +22,14 @@
 
         <!-- 右侧链接 -->
         <div class="flex flex-col items-start md:items-end space-y-3">
-          <NuxtLink 
-            to="https://beian.miit.gov.cn/" 
-            target="_blank"
-            class="text-gray-400 hover:text-teal-400 text-sm transition-smooth cursor-pointer"
-          >
+          <NuxtLink to="https://beian.miit.gov.cn/" target="_blank"
+            class="text-gray-400 hover:text-teal-400 text-sm transition-smooth cursor-pointer">
             冀ICP备2025123259号-2
           </NuxtLink>
-          
+
           <div class="flex items-center space-x-4">
-            <UButton
-              variant="ghost"
-              size="sm"
-              color="neutral"
-              to="https://github.com/yealqp/ME-Frp_TPCA_Website"
-              target="_blank"
-              class="text-gray-400 hover:text-teal-400 btn-glow cursor-pointer"
-            >
+            <UButton variant="ghost" size="sm" color="neutral" to="https://github.com/yealqp/ME-Frp_TPCA_Website"
+              target="_blank" class="text-gray-400 hover:text-teal-400 btn-glow cursor-pointer">
               <UIcon name="i-lucide-github" class="size-5" />
               Github
             </UButton>

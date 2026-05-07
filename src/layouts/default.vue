@@ -2,12 +2,12 @@
   <div class="min-h-screen bg-gray-950">
     <!-- 导航栏 -->
     <AppHeader />
-    
+
     <!-- 主要内容 -->
     <main>
       <slot />
     </main>
-    
+
     <!-- 页脚 -->
     <AppFooter v-if="!isProtocolPage" />
   </div>
