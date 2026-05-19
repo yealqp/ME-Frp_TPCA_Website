@@ -11,6 +11,7 @@ interface VersionData {
   lx: string;
   pml: string;
   zl: string;
+  fm: string;
 }
 
 interface ChangelogData {
@@ -32,6 +33,7 @@ export const useProductVersions = () => {
     lx: "v2.3.0", // 默认值
     pml: "v2.1.0", // 默认值
     zl: "v1.8", // 默认值
+    fm: "v1.0.0", // 默认值
   });
 
   const loading = ref(false);
@@ -132,6 +134,20 @@ export const useProductVersions = () => {
     return "v1.8";
   };
 
+  // FM (Fan-ME-FRP-Launcher) 从 GitHub Releases API 获取最新版本
+  const fetchFMVersion = async (): Promise<string> => {
+    try {
+      const response = await fetch("https://api.github.com/repos/xiaofanforfabric/Fan-ME-FRP-Launcher/releases/latest");
+      if (!response.ok) throw new Error("Failed to fetch FM release");
+      const data: { tag_name: string } = await response.json();
+      if (!data.tag_name) throw new Error("Invalid FM release data");
+      return `v${data.tag_name.replace(/^v/, "").replace(/^first_dev_version$/, "1.0.0")}`;
+    } catch (err) {
+      console.error("获取 FM 版本失败:", err);
+      return "v1.0.0";
+    }
+  };
+
   // 获取所有产品的版本号（带缓存和防抖）
   const fetchAllVersions = async () => {
     // 先尝试从缓存加载
@@ -151,12 +167,13 @@ export const useProductVersions = () => {
 
     fetchPromise = (async () => {
       try {
-        const [xlVersion, lxVersion, pmlVersion, zlVersion] = await Promise.all(
+        const [xlVersion, lxVersion, pmlVersion, zlVersion, fmVersion] = await Promise.all(
           [
             fetchXLVersion(),
             fetchLXVersion(),
             fetchPMLVersion(),
             fetchZLVersion(),
+            fetchFMVersion(),
           ],
         );
 
@@ -165,6 +182,7 @@ export const useProductVersions = () => {
           lx: lxVersion,
           pml: pmlVersion,
           zl: zlVersion,
+          fm: fmVersion,
         };
 
         versions.value = newVersions;
@@ -182,7 +200,7 @@ export const useProductVersions = () => {
   };
 
   // 获取单个产品的版本号
-  const getVersion = (productId: "xl" | "lx" | "pml" | "zl"): string => {
+  const getVersion = (productId: "xl" | "lx" | "pml" | "zl" | "fm"): string => {
     return versions.value[productId];
   };
 
