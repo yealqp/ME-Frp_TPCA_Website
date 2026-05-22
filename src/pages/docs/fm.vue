@@ -374,7 +374,7 @@ const updates = ref([])
 // 从 API 获取更新日志
 const fetchChangelog = async () => {
   try {
-    const response = await fetch('http://api.frpc.xiaofanshop.cn/tpca.json')
+    const response = await fetch('https://frpc.xiaofanshop.cn/tpca.json')
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
