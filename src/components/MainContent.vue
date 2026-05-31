@@ -177,7 +177,7 @@ const members = ref([
   { name: 'ZeroSnow', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3976141098&spec=4', role: '成员', link: 'https://github.com/chencomcdyun' },
   { name: 'xiaofan', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2183576276&spec=4', role: '成员', link: 'https://github.com/xiaofanforfabric/' },
   // 【新增】zhai：FrpDash（ME-Frp 第三方安卓客户端）开发者
-  { name: 'zhai', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2088264797&spec=4', role: '成员 / FrpDash 开发者', link: 'https://fd.0n.pub/' }
+  { name: 'zhai', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2088264797&spec=4', role: '成员 / FrpDash 开发者', link: 'https://github.com/zcj-ui' }
 ])
 
 const sponsors = ref([
