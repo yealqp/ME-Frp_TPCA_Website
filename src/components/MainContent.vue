@@ -177,7 +177,7 @@ const members = ref([
   { name: 'ZeroSnow', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3976141098&spec=4', role: '成员', link: 'https://github.com/chencomcdyun' },
   { name: 'xiaofan', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2183576276&spec=4', role: '成员', link: 'https://github.com/xiaofanforfabric/' },
   // 【新增】zhai：FrpDash（ME-Frp 第三方安卓客户端）开发者
-  { name: 'zhai', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2088264797&spec=4', role: '成员 / FrpDash 开发者', link: 'https://github.com/zcj-ui' }
+  { name: 'zhai', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2088264797&spec=4', role: '成员', link: 'https://github.com/zcj-ui' }
 ])
 
 const sponsors = ref([
@@ -187,8 +187,8 @@ const sponsors = ref([
 ])
 
 const stats = ref([
-  { icon: 'i-lucide-box', value: '5+', label: '客户端产品' },
-  { icon: 'i-lucide-users', value: '5+', label: '团队成员' },
+  { icon: 'i-lucide-box', value: '6+', label: '客户端产品' },
+  { icon: 'i-lucide-users', value: '6+', label: '团队成员' },
   { icon: 'i-lucide-code', value: '100%', label: '社区驱动' },
   { icon: 'i-lucide-heart', value: '∞', label: '用户支持' }
 ])
