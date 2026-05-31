@@ -12,11 +12,104 @@ interface VersionData {
   pml: string;
   zl: string;
   fm: string;
+  fd: string; // 【新增】FrpDash（ME-Frp 第三方安卓客户端）版本号
 }
 
 interface ChangelogData {
   [version: string]: any;
 }
+
+// 【新增】FrpDash 更新信息结构（对应 api.0n.pub/update.js 中的 UPDATE_INFO）
+export interface FDUpdateInfo {
+  versionCode?: number;
+  versionName?: string;
+  apkUrl?: string;
+  apkSize?: number;
+  apkMd5?: string;
+  forceUpdate?: boolean;
+  minSdkVersion?: number;
+  changelog?: string[];
+  publishedAt?: string;
+}
+
+// 【新增】通过动态注入 <script> 标签加载 FrpDash 的 update.js
+// 原因：该接口未提供 CORS 头，fetch 会被浏览器跨域拦截；而 <script> 标签加载不受 CORS 限制。
+// 脚本执行后会在 window 上挂载全局变量 UPDATE_INFO，加载完成即可读取。
+// 结果做模块级缓存，避免重复注入。
+let fdInfoCache: FDUpdateInfo | null = null;
+let fdInfoPromise: Promise<FDUpdateInfo> | null = null;
+
+export const loadFDUpdateInfo = (): Promise<FDUpdateInfo> => {
+  // 已有缓存直接返回
+  if (fdInfoCache) return Promise.resolve(fdInfoCache);
+  // 正在加载则复用同一个 Promise
+  if (fdInfoPromise) return fdInfoPromise;
+  // 非浏览器环境无法注入 script
+  if (typeof document === "undefined" || typeof window === "undefined") {
+    return Promise.reject(new Error("非浏览器环境，无法加载 FrpDash 更新信息"));
+  }
+
+  fdInfoPromise = new Promise<FDUpdateInfo>((resolve, reject) => {
+    const script = document.createElement("script");
+    // 加时间戳避免命中浏览器缓存，确保拿到最新版本
+    script.src = `https://api.0n.pub/update.js?_=${Date.now()}`;
+    script.async = true;
+    script.onload = () => {
+      const info = (window as any).UPDATE_INFO as FDUpdateInfo | undefined;
+      script.remove();
+      if (info && info.versionName) {
+        fdInfoCache = info;
+        resolve(info);
+      } else {
+        reject(new Error("UPDATE_INFO 未正确加载"));
+      }
+    };
+    script.onerror = () => {
+      script.remove();
+      reject(new Error("加载 FrpDash 更新接口失败"));
+    };
+    document.head.appendChild(script);
+  });
+
+  return fdInfoPromise;
+};
+
+// 【新增】通过动态注入 <script> 标签加载 FrpDash 的全量更新日志 changelog.js
+// 同样因接口无 CORS 头，改用 <script> 标签加载，脚本执行后在 window 上挂载全局变量 CHANGELOG。
+// CHANGELOG 为数组，元素形如 { version, date, sections: { 分类: [条目...] } }。
+let fdChangelogCache: any[] | null = null;
+let fdChangelogPromise: Promise<any[]> | null = null;
+
+export const loadFDChangelog = (): Promise<any[]> => {
+  if (fdChangelogCache) return Promise.resolve(fdChangelogCache);
+  if (fdChangelogPromise) return fdChangelogPromise;
+  if (typeof document === "undefined" || typeof window === "undefined") {
+    return Promise.reject(new Error("非浏览器环境，无法加载 FrpDash 更新日志"));
+  }
+
+  fdChangelogPromise = new Promise<any[]>((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = `https://api.0n.pub/changelog.js?_=${Date.now()}`;
+    script.async = true;
+    script.onload = () => {
+      const list = (window as any).CHANGELOG as any[] | undefined;
+      script.remove();
+      if (Array.isArray(list) && list.length > 0) {
+        fdChangelogCache = list;
+        resolve(list);
+      } else {
+        reject(new Error("CHANGELOG 未正确加载"));
+      }
+    };
+    script.onerror = () => {
+      script.remove();
+      reject(new Error("加载 FrpDash 更新日志失败"));
+    };
+    document.head.appendChild(script);
+  });
+
+  return fdChangelogPromise;
+};
 
 // 全局缓存
 const versionCache = {
@@ -34,6 +127,7 @@ export const useProductVersions = () => {
     pml: "v2.1.0", // 默认值
     zl: "v1.8", // 默认值
     fm: "v1.0.0", // 默认值
+    fd: "v1.4.5", // 【新增】FrpDash 默认值（实际以远程 API 为准）
   });
 
   const loading = ref(false);
@@ -148,6 +242,26 @@ export const useProductVersions = () => {
     }
   };
 
+  // 【新增】FD (FrpDash) 从开发者提供的更新接口获取最新版本
+  // 该接口是 JS 文件（var UPDATE_INFO={...};），且未提供 CORS 头，
+  // 因此不能用 fetch（会被浏览器跨域拦截），改用动态注入 <script> 标签加载，
+  // 脚本执行后会在全局挂载 UPDATE_INFO 变量，再从中读取版本号。
+  const fetchFDVersion = async (): Promise<string> => {
+    // SSR 环境无 document，直接返回默认值（客户端挂载后会再次获取）
+    if (import.meta.server || typeof document === "undefined") {
+      return "v1.4.5";
+    }
+    try {
+      const info = await loadFDUpdateInfo();
+      if (!info || !info.versionName) throw new Error("Missing FD versionName");
+      // 统一补上 v 前缀（接口里的 versionName 形如 "1.4.5"）
+      return `v${String(info.versionName).replace(/^v/, "")}`;
+    } catch (err) {
+      console.error("获取 FD 版本失败:", err);
+      return "v1.4.5";
+    }
+  };
+
   // 获取所有产品的版本号（带缓存和防抖）
   const fetchAllVersions = async () => {
     // 先尝试从缓存加载
@@ -167,13 +281,14 @@ export const useProductVersions = () => {
 
     fetchPromise = (async () => {
       try {
-        const [xlVersion, lxVersion, pmlVersion, zlVersion, fmVersion] = await Promise.all(
+        const [xlVersion, lxVersion, pmlVersion, zlVersion, fmVersion, fdVersion] = await Promise.all(
           [
             fetchXLVersion(),
             fetchLXVersion(),
             fetchPMLVersion(),
             fetchZLVersion(),
             fetchFMVersion(),
+            fetchFDVersion(), // 【新增】并行获取 FrpDash 版本
           ],
         );
 
@@ -183,6 +298,7 @@ export const useProductVersions = () => {
           pml: pmlVersion,
           zl: zlVersion,
           fm: fmVersion,
+          fd: fdVersion, // 【新增】FrpDash 版本
         };
 
         versions.value = newVersions;
@@ -200,7 +316,7 @@ export const useProductVersions = () => {
   };
 
   // 获取单个产品的版本号
-  const getVersion = (productId: "xl" | "lx" | "pml" | "zl" | "fm"): string => {
+  const getVersion = (productId: "xl" | "lx" | "pml" | "zl" | "fm" | "fd"): string => {
     return versions.value[productId];
   };
 

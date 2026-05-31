@@ -138,7 +138,7 @@ useHead({
         '@type': 'ItemList',
         name: 'ME-Frp 第三方客户端产品列表',
         description: 'ME-Frp 第三方客户端联盟的所有产品',
-        numberOfItems: 5,
+        numberOfItems: 6,
         itemListElement: [
           {
             '@type': 'SoftwareApplication',
@@ -184,6 +184,15 @@ useHead({
             operatingSystem: 'Windows, Linux, Android',
             description: '基于 Java 开发的 FRP 客户端启动器，支持 GUI 图形界面和命令行模式',
             author: { '@type': 'Person', name: 'xiaofanforfabric' }
+          },
+          {
+            '@type': 'SoftwareApplication',
+            position: 6,
+            name: 'FrpDash',
+            applicationCategory: 'NetworkApplication',
+            operatingSystem: 'Android',
+            description: 'ME-Frp 第三方安卓客户端，Java 原生开发，内置 frpc 双架构二进制，免 Root 开箱即用',
+            author: { '@type': 'Person', name: 'zhai' }
           }
         ]
       })
@@ -208,11 +217,12 @@ const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation()
 
 // 产品列表滚动动画
 const productRefs = ref([])
-const productVisibility = ref([false, false, false, false, false])
+// 【修改】产品数量由 5 增至 6（新增 FrpDash），可见性数组同步扩展
+const productVisibility = ref([false, false, false, false, false, false])
 
 onMounted(() => {
   if (typeof IntersectionObserver === 'undefined') {
-    productVisibility.value = [true, true, true, true, true]
+    productVisibility.value = [true, true, true, true, true, true]
     return
   }
 
@@ -324,6 +334,24 @@ const products = computed(() => [
       'GUI 图形界面 + 命令行双模式',
       '自动下载依赖并管理 frpc 生命周期',
       '支持官方 CF 节点、xiaoli 捐赠节点、CF R2 OSS 节点'
+    ]
+  },
+  // 【新增】FrpDash：ME-Frp 第三方安卓客户端，详情跳转站内文档页
+  {
+    id: 'fd',
+    name: 'FrpDash',
+    author: 'zhai',
+    version: versions.value.fd,
+    description: 'FrpDash 由 zhai 使用 Java 原生开发，是面向 ME-Frp 的第三方安卓客户端。应用内置 arm64 与 armv7 双架构 frpc 二进制，免 Root 开箱即用，支持隧道管理、节点监控、签到与账户操作，并对官方人机验证实现本地自动求解，是目前持续活跃更新的 ME-Frp 安卓客户端。',
+    icon: '/images/fd_icon.png',
+    screenshot: 'https://fd.0n.pub/img/home.png',
+    link: '/docs/fd',
+    tags: ['Android', 'Java 原生', '内置 frpc'],
+    features: [
+      '原生安卓开发，向下兼容至 Android 5.0',
+      '内置 arm64 / armv7 双架构 frpc，免 Root 即用',
+      '隧道创建管理、节点监控、签到与权益一应俱全',
+      '官方人机验证本地自动求解，无需手动过码'
     ]
   }
 ])

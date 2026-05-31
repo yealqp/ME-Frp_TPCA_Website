@@ -122,6 +122,16 @@ const products = computed(() => [
     description: 'PML 2使用.NET提供了简单便捷的操作，支持常见主流平台。',
     icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp',
     downloadUrl: 'https://mefrp-tpca.yealqp.cn/docs/pml'
+  },
+  // 【新增】FrpDash：ME-Frp 第三方安卓客户端，下载引导至开发者官网
+  {
+    id: 'fd',
+    name: 'FrpDash',
+    author: 'zhai',
+    version: versions.value.fd,
+    description: 'ME-Frp 第三方安卓客户端，Java 原生开发，内置 frpc 双架构二进制，免 Root 开箱即用。',
+    icon: '/images/fd_icon.png',
+    downloadUrl: 'https://fd.0n.pub/'
   }
 ])
 
