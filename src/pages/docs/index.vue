@@ -77,7 +77,7 @@
                   <UIcon name="i-lucide-box" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                   <span>Fan-ME-FRP Launcher (Java)</span>
                 </li>
-                <!-- 【新增】FrpDash 安卓客户端 -->
+                <!-- 【新增】FrpDash 安卓端 -->
                 <li class="flex items-start space-x-2">
                   <UIcon name="i-lucide-box" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                   <span>FrpDash (Android)</span>
@@ -255,13 +255,13 @@ const clients = [
     icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/fm_icon.webp',
     fallbackIcon: 'https://oss.cf.xiaofanshop.cn/tpcaw/images/views/icon/fm_icon.webp'
   },
-  // 【新增】FrpDash：ME-Frp 第三方安卓客户端
+  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端
   {
     id: 'fd',
     name: 'FrpDash',
     path: '/docs/fd',
-    description: 'ME-Frp 第三方安卓客户端，Java 原生开发，内置 frpc 双架构二进制，免 Root 开箱即用',
-    icon: '/images/fd_icon.png'
+    description: '面向安卓端的 ME-Frp 第三方客户端，Java 原生开发，内置 frpc 四架构二进制，免 Root 开箱即用',
+    icon: 'https://fd.0n.pub/img/logo-192.png'
   }
 ]
 

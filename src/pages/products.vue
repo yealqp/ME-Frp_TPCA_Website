@@ -191,7 +191,7 @@ useHead({
             name: 'FrpDash',
             applicationCategory: 'NetworkApplication',
             operatingSystem: 'Android',
-            description: 'ME-Frp 第三方安卓客户端，Java 原生开发，内置 frpc 双架构二进制，免 Root 开箱即用',
+            description: '面向安卓端的 ME-Frp 第三方客户端，Java 原生开发，内置 frpc 四架构二进制，免 Root 开箱即用',
             author: { '@type': 'Person', name: 'zhai' }
           }
         ]
@@ -336,20 +336,20 @@ const products = computed(() => [
       '支持官方 CF 节点、xiaoli 捐赠节点、CF R2 OSS 节点'
     ]
   },
-  // 【新增】FrpDash：ME-Frp 第三方安卓客户端，详情跳转站内文档页
+  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端，详情跳转站内文档页
   {
     id: 'fd',
     name: 'FrpDash',
     author: 'zhai',
     version: versions.value.fd,
-    description: 'FrpDash 由 zhai 使用 Java 原生开发，是面向 ME-Frp 的第三方安卓客户端。应用内置 arm64 与 armv7 双架构 frpc 二进制，免 Root 开箱即用，支持隧道管理、节点监控、签到与账户操作，并对官方人机验证实现本地自动求解，是目前持续活跃更新的 ME-Frp 安卓客户端。',
-    icon: '/images/fd_icon.png',
+    description: 'FrpDash 由 zhai 使用 Java 原生开发，是面向安卓端的 ME-Frp 第三方客户端。应用内置 arm64、armv7、x86_64 与 x86 四架构 frpc 二进制，免 Root 开箱即用，支持隧道管理、节点监控、签到与账户操作，并对官方人机验证实现本地自动求解，是目前持续活跃更新的 ME-Frp 安卓端。',
+    icon: 'https://fd.0n.pub/img/logo-192.png',
     screenshot: 'https://fd.0n.pub/img/home.png',
     link: '/docs/fd',
     tags: ['Android', 'Java 原生', '内置 frpc'],
     features: [
       '原生安卓开发，向下兼容至 Android 5.0',
-      '内置 arm64 / armv7 双架构 frpc，免 Root 即用',
+      '内置 arm64 / armv7 / x86_64 / x86 四架构 frpc，免 Root 即用',
       '隧道创建管理、节点监控、签到与权益一应俱全',
       '官方人机验证本地自动求解，无需手动过码'
     ]

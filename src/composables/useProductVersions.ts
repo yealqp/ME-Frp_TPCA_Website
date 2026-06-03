@@ -12,7 +12,7 @@ interface VersionData {
   pml: string;
   zl: string;
   fm: string;
-  fd: string; // 【新增】FrpDash（ME-Frp 第三方安卓客户端）版本号
+  fd: string; // 【新增】FrpDash（面向安卓端的 ME-Frp 第三方客户端）版本号
 }
 
 interface ChangelogData {
@@ -39,6 +39,11 @@ export interface FDUpdateInfo {
 let fdInfoCache: FDUpdateInfo | null = null;
 let fdInfoPromise: Promise<FDUpdateInfo> | null = null;
 
+const createFdApiUrl = (fileName: "update.js" | "changelog.js"): string => {
+  const bust = `${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`;
+  return `https://api.0n.pub/${fileName}?nocache=${bust}`;
+};
+
 export const loadFDUpdateInfo = (): Promise<FDUpdateInfo> => {
   // 已有缓存直接返回
   if (fdInfoCache) return Promise.resolve(fdInfoCache);
@@ -51,23 +56,36 @@ export const loadFDUpdateInfo = (): Promise<FDUpdateInfo> => {
 
   fdInfoPromise = new Promise<FDUpdateInfo>((resolve, reject) => {
     const script = document.createElement("script");
-    // 加时间戳避免命中浏览器缓存，确保拿到最新版本
-    script.src = `https://api.0n.pub/update.js?_=${Date.now()}`;
+    let timeoutId: number | undefined;
+    const cleanup = () => {
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      script.remove();
+    };
+    const fail = (message: string) => {
+      cleanup();
+      fdInfoPromise = null;
+      reject(new Error(message));
+    };
+
+    delete (window as any).UPDATE_INFO;
+    // 与 FrpDash 官网保持一致，使用 nocache=时间戳_随机数，避免浏览器或 CDN 复用旧脚本。
+    script.src = createFdApiUrl("update.js");
     script.async = true;
     script.onload = () => {
       const info = (window as any).UPDATE_INFO as FDUpdateInfo | undefined;
-      script.remove();
+      cleanup();
       if (info && info.versionName) {
         fdInfoCache = info;
         resolve(info);
       } else {
+        fdInfoPromise = null;
         reject(new Error("UPDATE_INFO 未正确加载"));
       }
     };
     script.onerror = () => {
-      script.remove();
-      reject(new Error("加载 FrpDash 更新接口失败"));
+      fail("加载 FrpDash 更新接口失败");
     };
+    timeoutId = window.setTimeout(() => fail("加载 FrpDash 更新接口超时"), 15000);
     document.head.appendChild(script);
   });
 
@@ -89,22 +107,35 @@ export const loadFDChangelog = (): Promise<any[]> => {
 
   fdChangelogPromise = new Promise<any[]>((resolve, reject) => {
     const script = document.createElement("script");
-    script.src = `https://api.0n.pub/changelog.js?_=${Date.now()}`;
+    let timeoutId: number | undefined;
+    const cleanup = () => {
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      script.remove();
+    };
+    const fail = (message: string) => {
+      cleanup();
+      fdChangelogPromise = null;
+      reject(new Error(message));
+    };
+
+    delete (window as any).CHANGELOG;
+    script.src = createFdApiUrl("changelog.js");
     script.async = true;
     script.onload = () => {
       const list = (window as any).CHANGELOG as any[] | undefined;
-      script.remove();
+      cleanup();
       if (Array.isArray(list) && list.length > 0) {
         fdChangelogCache = list;
         resolve(list);
       } else {
+        fdChangelogPromise = null;
         reject(new Error("CHANGELOG 未正确加载"));
       }
     };
     script.onerror = () => {
-      script.remove();
-      reject(new Error("加载 FrpDash 更新日志失败"));
+      fail("加载 FrpDash 更新日志失败");
     };
+    timeoutId = window.setTimeout(() => fail("加载 FrpDash 更新日志超时"), 15000);
     document.head.appendChild(script);
   });
 

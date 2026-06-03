@@ -161,8 +161,8 @@ const products = computed(() => [
   { id: 'pml', name: 'PML 2', author: 'RYCB工作室', version: versions.value.pml, description: 'PML 2使用.NET提供了简单便捷的操作, 也是目前三个产品中唯一一个跨平台的软件。支持常见主流平台(Windows, Linux, MacOS, Android)。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/pml', tags: ['.NET', '跨平台', '多系统'] },
   { id: 'zl', name: 'ZNext Launcher', author: 'ZeroSnow', version: versions.value.zl, description: '由ZeroSnow使用WinUI3框架开发的Windows原生客户端，采用Fluent Design设计语言，功能强大，性能优异。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext-icon.png', link: 'https://mefrp-tpca.yealqp.cn/docs/zl', tags: ['WinUI3', 'Windows', 'Fluent Design'] },
   { id: 'fm', name: 'Fan-ME-FRP Launcher', author: 'xiaofanforfabric', version: versions.value.fm, description: '由xiaofanforfabric使用Java开发，支持GUI图形界面和命令行双模式运行，自动下载依赖并管理frpc生命周期。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/fm_icon.webp', fallbackIcon: 'https://oss.cf.xiaofanshop.cn/tpcaw/images/views/icon/fm_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/fm', tags: ['Java', '跨平台', 'GUI'] },
-  // 【新增】FrpDash：ME-Frp 第三方安卓客户端，详情跳转站内文档页，下载在文档页内引导至官网
-  { id: 'fd', name: 'FrpDash', author: 'zhai', version: versions.value.fd, description: '由zhai使用Java原生开发的ME-Frp第三方安卓客户端，内置arm64/armv7双架构frpc，免Root开箱即用，是目前持续活跃更新的ME-Frp安卓客户端。', icon: '/images/fd_icon.png', link: '/docs/fd', tags: ['Android', 'Java 原生', '内置 frpc'] }
+  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端，详情跳转站内文档页，下载在文档页内引导至官网
+  { id: 'fd', name: 'FrpDash', author: 'zhai', version: versions.value.fd, description: '由 zhai 使用 Java 原生开发，面向安卓端的 ME-Frp 第三方客户端，内置 arm64/armv7/x86_64/x86 四架构 frpc，免 Root 开箱即用，是目前持续活跃更新的 ME-Frp 安卓端。', icon: 'https://fd.0n.pub/img/logo-192.png', link: '/docs/fd', tags: ['Android', 'Java 原生', '内置 frpc'] }
 ])
 
 // 组件挂载时获取版本号
@@ -176,7 +176,7 @@ const members = ref([
   { name: 'QYF', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3561786358&spec=4', role: '创始人 / 成员', link: 'https://github.com/QYF-RYCBStudio' },
   { name: 'ZeroSnow', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3976141098&spec=4', role: '成员', link: 'https://github.com/chencomcdyun' },
   { name: 'xiaofan', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2183576276&spec=4', role: '成员', link: 'https://github.com/xiaofanforfabric/' },
-  // 【新增】zhai：FrpDash（ME-Frp 第三方安卓客户端）开发者
+  // 【新增】zhai：FrpDash（面向安卓端的 ME-Frp 第三方客户端）开发者
   { name: 'zhai', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2088264797&spec=4', role: '成员', link: 'https://github.com/zcj-ui' }
 ])
 

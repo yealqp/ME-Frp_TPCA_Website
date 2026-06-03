@@ -388,7 +388,7 @@
       <div class="p-6 space-y-4">
         <div class="border-b border-white/10 pb-4 last:border-b-0">
           <div class="flex items-start gap-3">
-            <UIcon name="i-lucide-question" class="size-5 text-primary-400 mt-0.5 flex-shrink-0" />
+            <UIcon name="i-lucide-circle-help" class="size-5 text-primary-400 mt-0.5 flex-shrink-0" />
             <div class="flex-1">
               <h4 class="text-white font-semibold mb-2">Q: 如何更新应用？</h4>
               <p class="text-gray-400 text-sm">A: 应用会在后台检查更新，有新版本时会给出提示。您也可以从官方 Alist 链接手动下载最新版本重新安装。</p>
@@ -398,7 +398,7 @@
 
         <div class="border-b border-white/10 pb-4">
           <div class="flex items-start gap-3">
-            <UIcon name="i-lucide-question" class="size-5 text-primary-400 mt-0.5 flex-shrink-0" />
+            <UIcon name="i-lucide-circle-help" class="size-5 text-primary-400 mt-0.5 flex-shrink-0" />
             <div class="flex-1">
               <h4 class="text-white font-semibold mb-2">Q: 应用无法启动怎么办？</h4>
               <p class="text-gray-400 text-sm">A: 请确保已安装 .NET 8.0 框架和 WebView2 运行时。如果问题仍未解决，可以联系开发者邮箱 gvhtyj@outlook.com
@@ -409,7 +409,7 @@
 
         <div class="border-b border-white/10 pb-4">
           <div class="flex items-start gap-3">
-            <UIcon name="i-lucide-question" class="size-5 text-primary-400 mt-0.5 flex-shrink-0" />
+            <UIcon name="i-lucide-circle-help" class="size-5 text-primary-400 mt-0.5 flex-shrink-0" />
             <div class="flex-1">
               <h4 class="text-white font-semibold mb-2">Q: 隧道连接超时如何解决？</h4>
               <p class="text-gray-400 text-sm">A: 可以尝试更换节点或检查网络连接。如果问题持续，请检查本地防火墙设置，确保未对应用进行限制。</p>
@@ -419,7 +419,7 @@
 
         <div class="border-b border-white/10 pb-4">
           <div class="flex items-start gap-3">
-            <UIcon name="i-lucide-question" class="size-5 text-primary-400 mt-0.5 flex-shrink-0" />
+            <UIcon name="i-lucide-circle-help" class="size-5 text-primary-400 mt-0.5 flex-shrink-0" />
             <div class="flex-1">
               <h4 class="text-white font-semibold mb-2">Q: 支持哪些隧道类型？</h4>
               <p class="text-gray-400 text-sm">A: 支持 TCP、UDP、HTTP、HTTPS 等多种隧道类型，可根据您的需要灵活选择。详细配置请参考应用内帮助文档。</p>
@@ -429,7 +429,7 @@
 
         <div class="pb-4">
           <div class="flex items-start gap-3">
-            <UIcon name="i-lucide-question" class="size-5 text-primary-400 mt-0.5 flex-shrink-0" />
+            <UIcon name="i-lucide-circle-help" class="size-5 text-primary-400 mt-0.5 flex-shrink-0" />
             <div class="flex-1">
               <h4 class="text-white font-semibold mb-2">Q: 如何联系技术支持？</h4>
               <p class="text-gray-400 text-sm">A: 如有问题或建议，可以发送邮件至：<span

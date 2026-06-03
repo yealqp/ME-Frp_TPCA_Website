@@ -1,6 +1,6 @@
 <!--
   FrpDash 文档页
-  说明：本页为新增内容，介绍 ME-Frp 第三方安卓客户端 FrpDash。
+  说明：本页为新增内容，介绍面向安卓端的 ME-Frp 第三方客户端 FrpDash。
   版本号与更新日志均来自开发者提供的接口（api.0n.pub），下载统一引导至官网 https://fd.0n.pub/。
 -->
 <template>
@@ -8,11 +8,11 @@
     <!-- 页面标题 -->
     <div class="mb-8">
       <div class="flex items-center space-x-4 mb-4">
-        <img src="/images/fd_icon.png" alt="FrpDash"
+        <img src="https://fd.0n.pub/img/logo-192.png" alt="FrpDash"
           class="w-12 h-12 rounded-lg" />
         <div>
           <h1 class="text-3xl font-bold text-white">FrpDash</h1>
-          <p class="text-gray-400">ME-Frp 第三方安卓客户端</p>
+          <p class="text-gray-400">面向安卓端的 ME-Frp 第三方客户端</p>
         </div>
       </div>
 
@@ -34,9 +34,9 @@
       <div class="p-6 space-y-4 text-gray-300">
         <p>
           <strong class="text-primary-400">FrpDash</strong> 是由
-          <strong class="text-primary-400">zhai</strong> 使用 Java 原生开发的 ME-Frp 第三方安卓客户端。
-          应用将隧道管理、节点监控与账户操作整合于移动端，并内置 frpc 二进制，使内网穿透服务无需依赖电脑，
-          即可在安卓手机上直接运行与保活。
+          <strong class="text-primary-400">zhai</strong> 使用 Java 原生开发，面向安卓端的 ME-Frp 第三方客户端。
+          它把登录、节点选择、隧道创建、frpc 启动和日志查看这些常用操作集中到手机里，
+          让临时调试、备用机长期保活、外出远程访问都不再依赖电脑常驻。
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -48,23 +48,19 @@
             <ul class="space-y-2">
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>Java 原生开发，体积小巧，运行开销低</span>
+                <span>Java 原生安卓端</span>
               </li>
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>内置 arm64 与 armv7 双架构 frpc，免 Root 开箱即用</span>
+                <span>免 Root，内置 frpc</span>
               </li>
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>官方人机验证本地自动求解，无需手动过码</span>
+                <span>四架构 APK</span>
               </li>
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>多隧道并发运行，前台服务保活，息屏不中断</span>
-              </li>
-              <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>覆盖账户、隧道、节点全链路操作</span>
+                <span>自动处理人机验证</span>
               </li>
             </ul>
           </div>
@@ -77,19 +73,19 @@
             <ul class="space-y-2">
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-smartphone" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>Android 5.0（API 21）及以上</span>
+                <span>Android 5.0 及以上</span>
               </li>
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-cpu" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>arm64-v8a 或 armeabi-v7a 架构设备</span>
+                <span>推荐 Android 8.0+</span>
               </li>
               <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-shield-check" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>无需 Root，无需单独安装 frpc</span>
+                <UIcon name="i-lucide-cpu" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <span>支持 ARM / x86</span>
               </li>
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-user-check" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>使用 ME-Frp 官网账号登录</span>
+                <span>需要 ME-Frp 账号</span>
               </li>
             </ul>
           </div>
@@ -226,7 +222,7 @@
             账户与权益
           </h3>
           <ul class="space-y-1.5 text-gray-300 text-sm">
-            <li>· 邮箱注册、密码登录、找回账户</li>
+            <li>· 邮箱注册、密码登录</li>
             <li>· 每日签到领取流量（自动过验证）</li>
             <li>· 权益抽取，支持单抽与十连抽</li>
             <li>· 修改密码、重置访问密钥</li>
@@ -331,13 +327,13 @@ const { elementRef: linksRef, isVisible: linksVisible } = useScrollAnimation()
 const { versions, fetchAllVersions } = useProductVersions()
 const fdVersion = computed(() => versions.value.fd)
 
-// 预览图：图片已内置到本项目 public 目录（/images/fd_*.png）
+// 预览图：图片统一由 FrpDash 官网 fd.0n.pub 提供
 const previewImages = [
-  { src: '/images/fd_home.png', alt: '首页' },
-  { src: '/images/fd_tunnel.png', alt: '隧道管理' },
-  { src: '/images/fd_create.png', alt: '创建隧道' },
-  { src: '/images/fd_node.png', alt: '节点监控' },
-  { src: '/images/fd_profile.png', alt: '个人中心' }
+  { src: 'https://fd.0n.pub/img/home.png', alt: '首页' },
+  { src: 'https://fd.0n.pub/img/tunnel.png', alt: '隧道管理' },
+  { src: 'https://fd.0n.pub/img/create.png', alt: '创建隧道' },
+  { src: 'https://fd.0n.pub/img/node.png', alt: '节点监控' },
+  { src: 'https://fd.0n.pub/img/profile.png', alt: '个人中心' }
 ]
 
 const currentImageIndex = ref(0)
@@ -450,7 +446,7 @@ useHead({
         name: 'FrpDash',
         applicationCategory: 'NetworkApplication',
         operatingSystem: 'Android',
-        description: 'ME-Frp 第三方安卓客户端，Java 原生开发，内置 frpc 双架构二进制，免 Root 开箱即用',
+        description: '面向安卓端的 ME-Frp 第三方客户端，Java 原生开发，内置 frpc 四架构二进制，免 Root 开箱即用',
         author: { '@type': 'Person', name: 'zhai' },
         offers: {
           '@type': 'Offer',
@@ -466,8 +462,8 @@ useHead({
 useSeoMeta({
   title: 'FrpDash 文档 | ME-Frp 第三方客户端联盟',
   ogTitle: 'FrpDash 文档 - ME-Frp 第三方客户端联盟',
-  description: 'FrpDash 是由 zhai 使用 Java 原生开发的 ME-Frp 第三方安卓客户端，内置 frpc 双架构二进制，免 Root 开箱即用，支持隧道管理、节点监控、签到与账户操作。',
-  ogDescription: 'FrpDash 是 ME-Frp 第三方安卓客户端，Java 原生开发，内置 frpc，免 Root 开箱即用',
+  description: 'FrpDash 是由 zhai 使用 Java 原生开发、面向安卓端的 ME-Frp 第三方客户端，内置 frpc 四架构二进制，免 Root 开箱即用，支持隧道管理、节点监控、签到与账户操作。',
+  ogDescription: 'FrpDash 是面向安卓端的 ME-Frp 第三方客户端，Java 原生开发，内置 frpc，免 Root 开箱即用',
   ogImage: 'https://fd.0n.pub/img/logo-512.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/fd',
   ogType: 'article',
