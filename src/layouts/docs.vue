@@ -157,6 +157,13 @@ const clients = [
     icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/fm_icon.webp",
     fallbackIcon: "https://oss.cf.xiaofanshop.cn/tpcaw/images/views/icon/fm_icon.webp",
   },
+  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端
+  {
+    id: "fd",
+    name: "FrpDash",
+    path: "/docs/fd",
+    icon: "https://fd.0n.pub/img/logo-192.png",
+  },
 ];
 
 // 监听路由变化，关闭移动端侧边栏
