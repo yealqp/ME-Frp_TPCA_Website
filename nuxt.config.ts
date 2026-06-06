@@ -37,7 +37,6 @@ export default defineNuxtConfig({
         output: {
           manualChunks: {
             'vendor': ['vue', 'vue-router'],
-            'ui': ['@nuxt/ui'],
             'icons': ['simple-icons', '@iconify-json/lucide'],
           }
         }
