@@ -49,7 +49,8 @@
                     'text-primary-400 bg-white/10':
                       $route.path === client.path,
                   }">
-                  <img :src="client.icon" :alt="client.name" class="w-4 h-4 rounded" />
+                  <img :src="client.icon" :alt="client.name" class="w-4 h-4 rounded"
+                    :onerror="client.fallbackIcon ? `if(!this.dataset.fallback){this.dataset.fallback='1';this.src='${client.fallbackIcon}'}` : undefined" />
                   <span class="text-sm">{{ client.name }}</span>
                 </NuxtLink>
               </div>
@@ -148,6 +149,20 @@ const clients = [
     name: "ZNext Launcher",
     path: "/docs/zl",
     icon: "https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext-icon.png",
+  },
+  {
+    id: "fm",
+    name: "Fan-ME-FRP Launcher",
+    path: "/docs/fm",
+    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/fm_icon.webp",
+    fallbackIcon: "https://oss.cf.xiaofanshop.cn/tpcaw/images/views/icon/fm_icon.webp",
+  },
+  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端
+  {
+    id: "fd",
+    name: "FrpDash",
+    path: "/docs/fd",
+    icon: "https://fd.0n.pub/img/logo-192.png",
   },
 ];
 

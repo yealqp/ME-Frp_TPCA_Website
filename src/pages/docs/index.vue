@@ -73,6 +73,15 @@
                   <UIcon name="i-lucide-box" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                   <span>ZNext Launcher (WinUI3)</span>
                 </li>
+                <li class="flex items-start space-x-2">
+                  <UIcon name="i-lucide-box" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                  <span>Fan-ME-FRP Launcher (Java)</span>
+                </li>
+                <!-- 【新增】FrpDash 安卓端 -->
+                <li class="flex items-start space-x-2">
+                  <UIcon name="i-lucide-box" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                  <span>FrpDash (Android)</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -118,7 +127,8 @@
           <NuxtLink v-for="client in clients" :key="client.id" :to="client.path"
             class="glass-card block p-4 rounded-lg hover-lift overflow-hidden cursor-pointer">
             <div class="flex items-center space-x-3 mb-3">
-              <img :src="client.icon" :alt="client.name" class="w-8 h-8 rounded" />
+              <img :src="client.icon" :alt="client.name" class="w-8 h-8 rounded"
+                :onerror="client.fallbackIcon ? `if(!this.dataset.fallback){this.dataset.fallback='1';this.src='${client.fallbackIcon}'}` : undefined" />
               <h3 class="font-semibold text-white">{{ client.name }}</h3>
             </div>
             <p class="text-gray-300 text-sm mb-3">{{ client.description }}</p>
@@ -200,7 +210,7 @@ useHead({
 useSeoMeta({
   title: '文档中心 | ME-Frp 第三方客户端联盟',
   ogTitle: '文档中心 - ME-Frp 第三方客户端联盟',
-  description: 'ME-Frp 第三方客户端联盟文档中心，包含 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2 等所有产品的详细使用指南和安装教程。',
+  description: 'ME-Frp 第三方客户端联盟文档中心，包含 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2、ZNext Launcher、Fan-ME-FRP Launcher 等所有产品的详细使用指南和安装教程。',
   ogDescription: 'ME-Frp 第三方客户端联盟文档中心，包含所有产品的详细使用指南',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/docs',
@@ -236,6 +246,22 @@ const clients = [
     path: '/docs/zl',
     description: '基于 WinUI3 框架开发的 Windows 原生客户端，采用 Fluent Design 设计语言',
     icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext-icon.png'
+  },
+  {
+    id: 'fm',
+    name: 'Fan-ME-FRP Launcher',
+    path: '/docs/fm',
+    description: '基于 Java 开发的 FRP 客户端启动器，支持 GUI 图形界面和命令行模式',
+    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/fm_icon.webp',
+    fallbackIcon: 'https://oss.cf.xiaofanshop.cn/tpcaw/images/views/icon/fm_icon.webp'
+  },
+  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端
+  {
+    id: 'fd',
+    name: 'FrpDash',
+    path: '/docs/fd',
+    description: '面向安卓端的 ME-Frp 第三方客户端，Java 原生开发，内置 frpc 四架构二进制，免 Root 开箱即用',
+    icon: 'https://fd.0n.pub/img/logo-192.png'
   }
 ]
 

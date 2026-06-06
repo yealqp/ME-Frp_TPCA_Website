@@ -34,7 +34,7 @@
             <div class="flex items-center justify-center space-x-6 text-gray-400 text-sm">
               <div class="flex items-center space-x-2">
                 <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span>4+ 客户端产品</span>
+                <span>6+ 客户端产品</span>
               </div>
               <div class="flex items-center space-x-2">
                 <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
