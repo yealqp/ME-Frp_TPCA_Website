@@ -79,7 +79,7 @@
                 <UIcon name="i-lucide-monitor" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                 <span>Windows Server 2019/2022/2025</span>
               </li>
-                            <li class="flex items-start space-x-2">
+              <li class="flex items-start space-x-2">
                 <UIcon name="i-simple-icons-linux" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                 <span>主流 Linux x64 发行版</span>
               </li>
@@ -136,6 +136,55 @@
       </div>
     </div>
 
+    <!-- 功能清单 -->
+    <div ref="featureRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+      :class="{ 'visible': featureVisible }">
+      <div class="p-6 border-b border-white/10">
+        <h2 class="text-xl font-semibold text-white">功能清单</h2>
+      </div>
+
+      <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white/5 rounded-lg p-4">
+          <h3 class="text-base font-semibold text-white mb-3 flex items-center gap-2">
+            <UIcon name="i-lucide-user" class="size-5 text-primary-400" />
+            账户功能
+          </h3>
+          <ul class="space-y-1.5 text-gray-300 text-sm">
+            <li>· 账密登录/Token 登录</li>
+            <li>· 图标查看流量历史</li>
+            <li>· CDK兑换以及兑换历史</li>
+            <li>· 可查看用户操作日志</li>
+          </ul>
+        </div>
+        <div class="bg-white/5 rounded-lg p-4">
+          <h3 class="text-base font-semibold text-white mb-3 flex items-center gap-2">
+            <UIcon name="i-lucide-arrow-right" class="size-5 text-primary-400" />
+            隧道管理
+          </h3>
+          <ul class="space-y-1.5 text-gray-300 text-sm">
+            <li>· 全类型隧道创建与配置</li>
+            <li>· 一键启动、停止与重启</li>
+            <li>· 隧道名称与连接地址可导出图片</li>
+            <li>· 运行状态实时监控</li>
+            <li>· AI分析日志功能</li>
+          </ul>
+        </div>
+        <div class="bg-white/5 rounded-lg p-4">
+          <h3 class="text-base font-semibold text-white mb-3 flex items-center gap-2">
+            <UIcon name="i-lucide-globe" class="size-5 text-primary-400" />
+            界面与体验
+          </h3>
+          <ul class="space-y-1.5 text-gray-300 text-sm">
+            <li>· 高仿官网界面设计</li>
+            <li>· 高可自定义主题系统</li>
+            <li>· 开机自启动支持</li>
+            <li>· 系统托盘后台驻留</li>
+            <li>· 跨平台 Windows / Linux</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <!-- 下载安装 -->
     <div ref="downloadRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
       :class="{ 'visible': downloadVisible }">
@@ -157,7 +206,8 @@
             <UIcon name="i-lucide-alert-triangle" class="size-5 text-yellow-400 mt-0.5 flex-shrink-0" />
             <div>
               <h4 class="font-semibold text-yellow-400">系统要求(Windows)</h4>
-              <p class="text-gray-300 text-sm mt-1">在使用前请确认您的电脑上安装了 WebView2（WebView2 已经在 Windows 10 1803 以上和更高版本的 Windows 上默认安装）。</p>
+              <p class="text-gray-300 text-sm mt-1">在使用前请确认您的电脑上安装了 WebView2（WebView2 已经在 Windows 10 1803 以上和更高版本的
+                Windows 上默认安装）。</p>
             </div>
           </div>
         </div>
@@ -209,7 +259,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // 使用文档布局
 definePageMeta({
   layout: 'docs'
@@ -218,12 +268,14 @@ definePageMeta({
 // 滚动动画
 const { elementRef: introRef, isVisible: introVisible } = useScrollAnimation()
 const { elementRef: previewRef, isVisible: previewVisible } = useScrollAnimation()
+const { elementRef: featureRef, isVisible: featureVisible } = useScrollAnimation()
 const { elementRef: downloadRef, isVisible: downloadVisible } = useScrollAnimation()
 const { elementRef: updateRef, isVisible: updateVisible } = useScrollAnimation()
 
 // 防止未使用警告
 void introRef
 void previewRef
+void featureRef
 void downloadRef
 void updateRef
 
@@ -385,12 +437,14 @@ useSeoMeta({
 
 // 预览图数据
 const previewImages = [
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/login.png', alt: '登录页面' },
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png', alt: '主页面' },
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/create.png', alt: '创建隧道' },
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/tunnel.png', alt: '隧道管理' },
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/nodes.png', alt: '节点监控' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/userinfo.png', alt: '用户中心' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/config.png', alt: '配置设置' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/user.png', alt: '用户中心' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/setting.png', alt: '配置设置' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/themes.png', alt: '主题设置' },
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/about.png', alt: '关于页面' }
 ]
 

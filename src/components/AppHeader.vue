@@ -51,7 +51,7 @@
   </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const route = useRoute()
 const isMenuOpen = ref(false)
 const isScrolled = ref(false)

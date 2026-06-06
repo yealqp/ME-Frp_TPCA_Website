@@ -147,7 +147,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // 页面元数据
 useHead({
   title: '关于我们',

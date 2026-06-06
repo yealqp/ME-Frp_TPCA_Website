@@ -78,7 +78,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // 视差效果
 const parallaxOffset = ref(0)
 
@@ -87,6 +87,9 @@ const isScrolling = ref(false)
 
 // 检测是否为移动设备
 const isMobile = ref(false)
+
+// 组件挂载状态（用于防止卸载后继续执行动画）
+let isMounted = true
 
 // 平滑滚动到指定位置
 const smoothScrollTo = (targetPosition) => {
@@ -97,8 +100,12 @@ const smoothScrollTo = (targetPosition) => {
   const distance = targetPosition - startPosition
   const duration = 800
   let start = null
+  let rafId = null
 
   const smoothScroll = (timestamp) => {
+    // 组件已卸载 → 停止动画
+    if (!isMounted) return
+
     if (!start) start = timestamp
     const progress = timestamp - start
     const percentage = Math.min(progress / duration, 1)
@@ -109,13 +116,13 @@ const smoothScrollTo = (targetPosition) => {
     window.scrollTo(0, startPosition + distance * easeOutQuart)
 
     if (progress < duration) {
-      requestAnimationFrame(smoothScroll)
+      rafId = requestAnimationFrame(smoothScroll)
     } else {
       isScrolling.value = false
     }
   }
 
-  requestAnimationFrame(smoothScroll)
+  rafId = requestAnimationFrame(smoothScroll)
 }
 
 // 处理滚轮事件
@@ -229,6 +236,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   if (import.meta.server) return
+  isMounted = false
   window.removeEventListener('scroll', updateParallax)
   window.removeEventListener('wheel', handleWheel)
   window.removeEventListener('touchstart', handleTouchStart)

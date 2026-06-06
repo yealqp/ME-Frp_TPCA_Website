@@ -221,7 +221,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // 使用文档布局
 definePageMeta({
   layout: 'docs'

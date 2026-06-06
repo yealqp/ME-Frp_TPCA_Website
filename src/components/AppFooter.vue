@@ -40,7 +40,7 @@
   </footer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const runtimeText = ref('')
 
 const calculateRuntime = () => {
