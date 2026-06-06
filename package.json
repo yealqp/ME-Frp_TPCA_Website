@@ -12,16 +12,16 @@
   },
   "dependencies": {
     "@microsoft/clarity": "^1.0.2",
-    "@nuxt/ui": "^4.7.1",
-    "nuxt": "^4.4.4",
-    "simple-icons": "^16.18.1",
-    "tailwindcss": "^4.2.4",
-    "vue": "^3.5.34",
-    "vue-router": "^5.0.6"
+    "@nuxt/ui": "^4.8.1",
+    "nuxt": "^4.4.7",
+    "simple-icons": "^16.22.0",
+    "tailwindcss": "^4.3.0",
+    "vue": "^3.5.35",
+    "vue-router": "^5.1.0"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.105",
-    "@nuxt/devtools": "4.0.0-alpha.4",
+    "@iconify-json/lucide": "^1.2.111",
+    "@nuxt/devtools": "4.0.0-alpha.7",
     "typescript": "^6.0.3"
   }
 }

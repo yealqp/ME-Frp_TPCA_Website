@@ -66,34 +66,11 @@ body {
   background: linear-gradient(135deg, #1f2937 0%, #111827 50%, #0f172a 100%);
 }
 
-.card-hover {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-hover:hover {
-  transform: scale(1.05);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
 .text-gradient {
   background: linear-gradient(to right, #2dd4bf, #0d9488);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-}
-
-.btn-primary {
-  background-color: #14b8a6;
-  color: white;
-  font-weight: 500;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s;
-}
-
-.btn-primary:hover {
-  background-color: #0d9488;
 }
 
 /* Glassmorphism 卡片 */
@@ -167,15 +144,6 @@ body {
 }
 
 /* 工具类 */
-.text-shadow {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.backdrop-blur-custom {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
 /* 发光文字 */
 .text-glow {
   text-shadow: 0 0 20px rgba(59, 130, 246, 0.5),
@@ -433,12 +401,6 @@ body {
   }
 }
 
-/* 视差滚动效果 */
-.parallax-slow {
-  will-change: transform;
-  transition: transform 0.1s linear;
-}
-
 /* 性能优化 - 使用 contain 和 will-change */
 .glass-card,
 .hover-lift,
@@ -455,8 +417,7 @@ body {
 
 /* 动画元素优化 */
 .animate-pulse-slow,
-.animate-float,
-.animate-shimmer {
+.animate-float {
   will-change: transform, opacity;
   contain: layout style paint;
 }
@@ -464,12 +425,6 @@ body {
 /* 图片容器优化 */
 img {
   content-visibility: auto;
-}
-
-/* 卡片容器优化 */
-.card-container {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 500px;
 }
 
 /* 滚动进度指示器 */
@@ -498,63 +453,6 @@ img {
   }
 }
 
-/* 闪烁光效 */
-.animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-/* 渐变边框动画 */
-.animate-border-gradient {
-  position: relative;
-  background: transparent;
-}
-
-.animate-border-gradient::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    90deg,
-    #14b8a6,
-    #3b82f6,
-    #8b5cf6,
-    #14b8a6
-  );
-  background-size: 300% 100%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: borderGradient 4s linear infinite;
-}
-
-@keyframes borderGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 300% 50%;
-  }
-}
-
 /* 悬浮卡片效果 */
 .hover-lift {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
@@ -565,40 +463,6 @@ img {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
               0 0 30px rgba(20, 184, 166, 0.2);
-}
-
-/* 倾斜悬浮效果 */
-.hover-tilt {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
-}
-
-.hover-tilt:hover {
-  transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateZ(10px);
-}
-
-/* 光标跟随高亮 */
-.spotlight {
-  position: relative;
-  overflow: hidden;
-}
-
-.spotlight::before {
-  content: '';
-  position: absolute;
-  top: var(--mouse-y, 50%);
-  left: var(--mouse-x, 50%);
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.spotlight:hover::before {
-  opacity: 1;
 }
 
 /* 特殊链接样式 */

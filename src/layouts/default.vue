@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const route = useRoute()
 
 // 判断是否为协议页面

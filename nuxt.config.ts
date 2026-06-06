@@ -24,7 +24,9 @@ export default defineNuxtConfig({
   // 实验性功能 - 性能优化
   experimental: {
     payloadExtraction: true,
-    viewTransition: true
+    viewTransition: true,
+    inlineSSRStyles: true,
+    asyncContext: true,
   },
 
   // Vite 构建优化
@@ -34,7 +36,9 @@ export default defineNuxtConfig({
       rollupOptions: {
         output: {
           manualChunks: {
-            'vendor': ['vue', 'vue-router']
+            'vendor': ['vue', 'vue-router'],
+            'ui': ['@nuxt/ui'],
+            'icons': ['simple-icons', '@iconify-json/lucide'],
           }
         }
       }
@@ -91,10 +95,9 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          defer: true,
           src: 'https://umami.yealqp.cn/script.js',
           'data-website-id': '2c44a45e-a4bb-40ea-ab3c-75936119e6a2',
-          async: true
+          defer: true
         }
       ]
     }

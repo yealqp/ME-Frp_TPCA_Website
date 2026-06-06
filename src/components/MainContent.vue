@@ -133,10 +133,11 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { getProductSummaries } from "~/data/products";
+
 // 产品区域动画
 const { elementRef: productTitleRef, isVisible: productTitleVisible } = useScrollAnimation()
-// 【修改】产品数量由 5 增至 6（新增 FrpDash）
 const { containerRef: productGridRef, isVisible: productGridVisible, getItemDelay: getProductDelay } = useScrollAnimationGroup(6, { staggerDelay: 150 })
 
 // 团队区域动画
@@ -154,16 +155,8 @@ const { containerRef: statsGridRef, isVisible: statsGridVisible, getItemDelay: g
 // 使用版本管理 composable
 const { versions, fetchAllVersions } = useProductVersions()
 
-// 产品列表（使用计算属性动态获取版本号）
-const products = computed(() => [
-  { id: 'xl', name: 'ME-Frp-XL-Client', author: 'yealqp', version: versions.value.xl, description: '由yealqp使用Tauri框架开发，界面高仿官网样式，可能是目前收录的三个客户端中最美观的一个，也可能也是包体最小的一个，亦或是bug最少的一个。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/xl', tags: ['Tauri', '跨平台', '轻量级'] },
-  { id: 'lx', name: 'LX-ME-Frp-Launcher', author: '灵弦MuaMua', version: versions.value.lx, description: '由灵弦MuaMua使用易语言&Exui开发，界面高仿官方图形化V4.0。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/lx_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/lx', tags: ['易语言', 'Windows', '官方风格'] },
-  { id: 'pml', name: 'PML 2', author: 'RYCB工作室', version: versions.value.pml, description: 'PML 2使用.NET提供了简单便捷的操作, 也是目前三个产品中唯一一个跨平台的软件。支持常见主流平台(Windows, Linux, MacOS, Android)。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/pml', tags: ['.NET', '跨平台', '多系统'] },
-  { id: 'zl', name: 'ZNext Launcher', author: 'ZeroSnow', version: versions.value.zl, description: '由ZeroSnow使用WinUI3框架开发的Windows原生客户端，采用Fluent Design设计语言，功能强大，性能优异。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext-icon.png', link: 'https://mefrp-tpca.yealqp.cn/docs/zl', tags: ['WinUI3', 'Windows', 'Fluent Design'] },
-  { id: 'fm', name: 'Fan-ME-FRP Launcher', author: 'xiaofanforfabric', version: versions.value.fm, description: '由xiaofanforfabric使用Java开发，支持GUI图形界面和命令行双模式运行，自动下载依赖并管理frpc生命周期。', icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/fm_icon.webp', fallbackIcon: 'https://oss.cf.xiaofanshop.cn/tpcaw/images/views/icon/fm_icon.webp', link: 'https://mefrp-tpca.yealqp.cn/docs/fm', tags: ['Java', '跨平台', 'GUI'] },
-  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端，详情跳转站内文档页，下载在文档页内引导至官网
-  { id: 'fd', name: 'FrpDash', author: 'zhai', version: versions.value.fd, description: '由 zhai 使用 Java 原生开发，面向安卓端的 ME-Frp 第三方客户端，内置 arm64/armv7/x86_64/x86 四架构 frpc，免 Root 开箱即用，是目前持续活跃更新的 ME-Frp 安卓端。', icon: 'https://fd.0n.pub/img/logo-192.png', link: '/docs/fd', tags: ['Android', 'Java 原生', '内置 frpc'] }
-])
+// 产品列表（从共享数据文件获取，保持 version 字段响应式）
+const products = computed(() => getProductSummaries(versions.value))
 
 // 组件挂载时获取版本号
 onMounted(() => {

@@ -3,7 +3,7 @@
     :aria-valuenow="Math.round(progress)" aria-valuemin="0" aria-valuemax="100" aria-label="页面滚动进度" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 const progress = ref(0)
 
 const updateProgress = () => {

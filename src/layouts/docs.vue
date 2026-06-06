@@ -89,7 +89,7 @@
 
             <!-- 广告位 -->
             <div class="mt-6 pt-4 border-t border-white/10">
-              <a href="mailto:im@yealqp.cn?subject=广告位购买咨询"
+              <a href="mailto:im@yealqp.cn?subject=TPCAW广告位购买咨询"
                 class="flex items-center justify-center space-x-2 px-3 py-2.5 rounded-lg text-amber-400 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 hover:border-amber-500/50 transition-all duration-200">
                 <UIcon name="i-lucide-megaphone" class="size-4" />
                 <span class="text-sm font-medium">购买广告位</span>
@@ -122,7 +122,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const sidebarOpen = ref(false);
 
 const clients = [

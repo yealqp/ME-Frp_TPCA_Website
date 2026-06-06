@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, shallowRef } from "vue";
 
 /**
  * Changelog 缓存管理
@@ -16,7 +16,7 @@ const cache: ChangelogCache = {};
 const CACHE_TTL = 5 * 60 * 1000; // 5分钟缓存
 
 export const useChangelogCache = (apiUrl: string) => {
-  const data = ref<any>(null);
+  const data = shallowRef<any>(null);
   const loading = ref(false);
   const error = ref<string | null>(null);
 

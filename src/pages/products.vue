@@ -123,7 +123,9 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { getProducts } from "~/data/products";
+
 // 页面元数据
 useHead({
   title: '产品',
@@ -246,115 +248,8 @@ onMounted(() => {
 // 使用版本管理 composable
 const { versions, fetchAllVersions } = useProductVersions()
 
-// 产品列表（使用计算属性动态获取版本号）
-const products = computed(() => [
-  {
-    id: 'xl',
-    name: 'ME-Frp-XL-Client',
-    author: 'yealqp',
-    version: versions.value.xl,
-    description: '由yealqp使用Tauri框架开发，界面高仿官网样式，可能是目前收录的三个客户端中最美观的一个，也可能也是包体最小的一个，亦或是bug最少的一个。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp',
-    screenshot: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
-    link: 'https://mefrp-tpca.yealqp.cn/docs/xl',
-    tags: ['Tauri', '轻量级', 'Rust'],
-    features: [
-      '基于 Tauri 框架，性能优异',
-      '界面美观，高仿官网设计',
-      '包体小巧，启动迅速',
-      '跨平台支持，稳定可靠'
-    ]
-  },
-  {
-    id: 'lx',
-    name: 'LX-ME-Frp-Launcher',
-    author: '灵弦MuaMua',
-    version: versions.value.lx,
-    description: '由灵弦MuaMua使用易语言&Exui开发，界面高仿官方图形化V4.0。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/lx_icon.webp',
-    screenshot: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/home.png',
-    link: 'https://mefrp-tpca.yealqp.cn/docs/lx',
-    tags: ['易语言', 'Windows', '官方风格', 'Exui'],
-    features: [
-      '使用易语言开发，原生 Windows 体验',
-      '界面高仿官方图形化 V4.0',
-      '操作简单，易于上手',
-      '功能完整，稳定运行'
-    ]
-  },
-  {
-    id: 'pml',
-    name: 'PML 2',
-    author: 'RYCB工作室',
-    version: versions.value.pml,
-    description: 'PML 2使用.NET提供了简单便捷的操作, 也是目前三个产品中唯一一个跨平台的软件。支持常见主流平台(Windows, Linux, MacOS, Android)。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp',
-    screenshot: 'https://image.mefrp-tpca.yealqp.cn/images/views/rycb/home2.png',
-    link: 'https://mefrp-tpca.yealqp.cn/docs/pml',
-    tags: ['.NET', '跨平台', '多系统'],
-    features: [
-      '基于 .NET 框架，跨平台支持',
-      '支持 Windows、Linux、MacOS、Android',
-      '操作简单便捷，功能丰富',
-      '持续更新，社区活跃'
-    ]
-  },
-  {
-    id: 'zl',
-    name: 'ZNext Launcher',
-    author: 'ZeroSnow',
-    version: versions.value.zl,
-    description: '由ZeroSnow使用WinUI3框架开发的Windows原生客户端，采用Fluent Design设计语言，功能强大，性能优异。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext-icon.png',
-    screenshot: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/home.png',
-    link: 'https://mefrp-tpca.yealqp.cn/docs/zl',
-    tags: ['WinUI3', 'Windows', 'Fluent Design'],
-    features: [
-      '基于 WinUI3 框架，性能优异',
-      'Fluent Design 设计语言',
-      '支持各种复杂场景',
-      '拥有开机自启动、系统托盘等功能',
-      'MSIX 包体小巧，启动迅速'
-    ]
-  },
-  {
-    id: 'fm',
-    name: 'Fan-ME-FRP Launcher',
-    author: 'xiaofanforfabric',
-    version: versions.value.fm,
-    description: '由xiaofanforfabric使用Java开发，支持GUI图形界面和命令行双模式运行，自动下载依赖并管理frpc生命周期。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/fm_icon.webp',
-    fallbackIcon: 'https://oss.cf.xiaofanshop.cn/tpcaw/images/views/icon/fm_icon.webp',
-    screenshot: 'https://image.mefrp-tpca.yealqp.cn/images/views/xiaofan/home.png',
-    fallbackScreenshot: 'https://oss.cf.xiaofanshop.cn/tpcaw/images/views/xiaofan/home.png',
-    link: 'https://mefrp-tpca.yealqp.cn/docs/fm',
-    tags: ['Java', '跨平台', 'GUI'],
-    features: [
-      '基于 Java 开发，跨平台支持',
-      'GUI 图形界面 + 命令行双模式',
-      '自动下载依赖并管理 frpc 生命周期',
-      '支持官方 CF 节点、xiaoli 捐赠节点、CF R2 OSS 节点'
-    ]
-  },
-  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端，详情跳转站内文档页
-  {
-    id: 'fd',
-    name: 'FrpDash',
-    author: 'zhai',
-    version: versions.value.fd,
-    description: 'FrpDash 由 zhai 使用 Java 原生开发，是面向安卓端的 ME-Frp 第三方客户端。应用内置 arm64、armv7、x86_64 与 x86 四架构 frpc 二进制，免 Root 开箱即用，支持隧道管理、节点监控、签到与账户操作，并对官方人机验证实现本地自动求解，是目前持续活跃更新的 ME-Frp 安卓端。',
-    icon: 'https://fd.0n.pub/img/logo-192.png',
-    screenshot: 'https://fd.0n.pub/img/home.png',
-    link: '/docs/fd',
-    tags: ['Android', 'Java 原生', '内置 frpc'],
-    features: [
-      '原生安卓开发，向下兼容至 Android 5.0',
-      '内置 arm64 / armv7 / x86_64 / x86 四架构 frpc，免 Root 即用',
-      '隧道创建管理、节点监控、签到与权益一应俱全',
-      '官方人机验证本地自动求解，无需手动过码'
-    ]
-  }
-])
+// 产品列表（从共享数据文件获取，保持 version 字段响应式）
+const products = computed(() => getProducts(versions.value))
 
 // 组件挂载时获取版本号
 onMounted(() => {
