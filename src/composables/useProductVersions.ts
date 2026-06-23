@@ -13,6 +13,7 @@ export interface VersionData {
   zl: string;
   fm: string;
   fd: string; // FrpDash（面向安卓端的 ME-Frp 第三方客户端）版本号
+  mgc: string; // MeFrp-GR-Client（PySide6 + Qt WebEngine 桌面客户端）版本号
 }
 
 interface ChangelogData {
@@ -158,6 +159,7 @@ export const useProductVersions = () => {
     zl: "v1.8", // 默认值
     fm: "v1.0.0", // 默认值
     fd: "v1.4.5", // FrpDash 默认值（实际以远程 API 为准）
+    mgc: "v1.0.0", // MeFrp-GR-Client 默认值（实际以 GitHub Releases 为准）
   });
 
   const loading = ref(false);
@@ -268,6 +270,20 @@ export const useProductVersions = () => {
     }
   };
 
+  // MGC (MeFrp-GR-Client) 从 GitHub Releases API 获取最新版本
+  const fetchMGCVersion = async (): Promise<string> => {
+    try {
+      const response = await fetch("https://api.github.com/repos/Guoran-11/Guoran-11-MeFrp-GR-Client/releases/latest");
+      if (!response.ok) throw new Error("Failed to fetch MGC release");
+      const data: { tag_name: string } = await response.json();
+      if (!data.tag_name) throw new Error("Invalid MGC release data");
+      return `v${data.tag_name.replace(/^v/, "")}`;
+    } catch (err) {
+      console.error("获取 MGC 版本失败:", err);
+      return "v1.0.0";
+    }
+  };
+
   // 获取所有产品的版本号（带缓存和防抖）
   const fetchAllVersions = async () => {
     // 先尝试从缓存加载
@@ -287,7 +303,7 @@ export const useProductVersions = () => {
 
     fetchPromise = (async () => {
       try {
-        const [xlVersion, lxVersion, pmlVersion, zlVersion, fmVersion, fdVersion] = await Promise.all(
+        const [xlVersion, lxVersion, pmlVersion, zlVersion, fmVersion, fdVersion, mgcVersion] = await Promise.all(
           [
             fetchXLVersion(),
             fetchLXVersion(),
@@ -295,9 +311,9 @@ export const useProductVersions = () => {
             fetchZLVersion(),
             fetchFMVersion(),
             fetchFDVersion(),
+            fetchMGCVersion(),
           ],
         );
-
         const newVersions = {
           xl: xlVersion,
           lx: lxVersion,
@@ -305,6 +321,7 @@ export const useProductVersions = () => {
           zl: zlVersion,
           fm: fmVersion,
           fd: fdVersion,
+          mgc: mgcVersion,
         };
 
         versions.value = newVersions;
@@ -322,7 +339,7 @@ export const useProductVersions = () => {
   };
 
   // 获取单个产品的版本号
-  const getVersion = (productId: "xl" | "lx" | "pml" | "zl" | "fm" | "fd"): string => {
+  const getVersion = (productId: "xl" | "lx" | "pml" | "zl" | "fm" | "fd" | "mgc"): string => {
     return versions.value[productId];
   };
 

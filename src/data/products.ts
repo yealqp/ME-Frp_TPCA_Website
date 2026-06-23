@@ -148,6 +148,27 @@ export function getProducts(versions: VersionData): Product[] {
         "官方人机验证本地自动求解，无需手动过码",
       ],
     },
+    {
+      id: "mgc",
+      name: "MeFrp-GR-Client",
+      author: "Guoran-11",
+      version: versions.mgc,
+      description:
+        "MeFrp-GR-Client 是由 Guoran-11 使用 PySide6 + Qt WebEngine 开发的 ME-Frp 第三方桌面客户端，将 WebUI 1:1 嵌入到原生 Qt 窗口中，支持账号登录、隧道管理、用户中心、一键启动/停止 frpc、命令行输出实时查看、一键关闭程序等功能，内置完整 frpc 进程隔离与生命周期管理。",
+      icon: "https://raw.githubusercontent.com/Guoran-11/Guoran-11-MeFrp-GR-Client/main/.github/icon.png",
+      screenshot:
+        "https://raw.githubusercontent.com/Guoran-11/Guoran-11-MeFrp-GR-Client/main/docs/preview/home.png",
+      link: "/docs/mgc",
+      tags: ["PySide6", "Qt WebEngine", "桌面 GUI", "Windows"],
+      features: [
+        "基于 PySide6 + Qt WebEngine，将 WebUI 1:1 嵌入到原生桌面窗口",
+        "支持 Token 登录、用户信息、签到、获取访问密钥",
+        "隧道列表可视化，单独启动/停止 frpc 进程隔离运行",
+        "内置命令行输出面板，实时显示后端运行日志",
+        "一键关闭程序：QApplication.quit + werkzeug.shutdown + os._exit",
+        "PyInstaller 一键打包为 .exe，默认 console=False 不弹黑色控制台",
+      ],
+    },
   ];
 }
 
