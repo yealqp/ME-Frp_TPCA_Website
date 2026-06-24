@@ -2,7 +2,7 @@ import { ref, shallowRef } from "vue";
 
 /**
  * 产品版本管理 Composable
- * 从各产品的 API 获取最新版本号
+ * 从 alist 存储获取各产品最新版本号
  * 包含缓存和防抖优化
  */
 
@@ -18,112 +18,6 @@ export interface VersionData {
 interface ChangelogData {
   [version: string]: any;
 }
-
-// FrpDash 更新信息结构（对应 api.0n.pub/update.js 中的 UPDATE_INFO）
-export interface FDUpdateInfo {
-  versionCode?: number;
-  versionName?: string;
-  apkUrl?: string;
-  apkSize?: number;
-  apkMd5?: string;
-  forceUpdate?: boolean;
-  minSdkVersion?: number;
-  changelog?: string[];
-  publishedAt?: string;
-}
-
-/** FrpDash API 基础 URL */
-const FD_API_BASE = "https://api.0n.pub";
-
-/** 生成带缓存破坏的 FrpDash API URL */
-const createFdApiUrl = (fileName: "update.js" | "changelog.js"): string => {
-  const bust = `${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`;
-  return `${FD_API_BASE}/${fileName}?nocache=${bust}`;
-};
-
-/**
- * 通用 script 加载器
- * 用于加载无 CORS 头的第三方 JS 接口（JSONP 模式）
- * 内置缓存 + Promise 去重 + 超时 + 浏览器环境检查
- */
-interface CacheContainer<T> {
-  data: T | null;
-  promise: Promise<T> | null;
-}
-
-function createScriptLoader<T>(
-  getUrl: () => string,
-  globalVarName: string,
-  validate: (data: unknown) => data is T,
-  errorLabel: string,
-  timeoutMs: number = 15000,
-): () => Promise<T> {
-  const cache: CacheContainer<T> = { data: null, promise: null };
-
-  return (): Promise<T> => {
-    if (cache.data) return Promise.resolve(cache.data);
-    if (cache.promise) return cache.promise;
-    if (typeof document === "undefined" || typeof window === "undefined") {
-      return Promise.reject(new Error(`非浏览器环境，无法加载 ${errorLabel}`));
-    }
-
-    cache.promise = new Promise<T>((resolve, reject) => {
-      const script = document.createElement("script");
-      let timeoutId: number | undefined;
-
-      const cleanup = () => {
-        if (timeoutId !== undefined) window.clearTimeout(timeoutId);
-        script.remove();
-      };
-      const fail = (message: string) => {
-        cleanup();
-        cache.promise = null;
-        reject(new Error(message));
-      };
-
-      delete (window as any)[globalVarName];
-      script.src = getUrl();
-      script.async = true;
-      script.onload = () => {
-        const data = (window as any)[globalVarName];
-        cleanup();
-        if (validate(data)) {
-          cache.data = data;
-          resolve(data);
-        } else {
-          cache.promise = null;
-          reject(new Error(`${globalVarName} 未正确加载`));
-        }
-      };
-      script.onerror = () => {
-        fail(`加载 ${errorLabel} 失败`);
-      };
-      timeoutId = window.setTimeout(() => fail(`加载 ${errorLabel} 超时`), timeoutMs);
-      document.head.appendChild(script);
-    });
-
-    return cache.promise;
-  };
-}
-
-const _isFDUpdateInfo = (data: unknown): data is FDUpdateInfo =>
-  data != null && !!(data as FDUpdateInfo).versionName;
-
-/** 加载 FrpDash 更新信息（JSONP 方式绕过 CORS） */
-export const loadFDUpdateInfo = createScriptLoader<FDUpdateInfo>(
-  () => createFdApiUrl("update.js"),
-  "UPDATE_INFO",
-  _isFDUpdateInfo,
-  "FrpDash 更新接口",
-);
-
-/** 加载 FrpDash 全量更新日志（JSONP 方式绕过 CORS） */
-export const loadFDChangelog = createScriptLoader<any[]>(
-  () => createFdApiUrl("changelog.js"),
-  "CHANGELOG",
-  (data): data is any[] => Array.isArray(data) && data.length > 0,
-  "FrpDash 更新日志",
-);
 
 // 全局缓存
 const versionCache = {
@@ -153,7 +47,8 @@ const sortVersionKeys = (data: Record<string, unknown>): string[] =>
 export const useProductVersions = () => {
   const versions = shallowRef<VersionData>({
     xl: "v1.5.5", // 默认值
-    lx: "v2.3.0", // 默认值
+    // 默认值
+  lx: "v2.6", // 默认值
     pml: "v2.1.0", // 默认值
     zl: "v1.8", // 默认值
     fm: "v1.0.0", // 默认值
@@ -189,7 +84,7 @@ export const useProductVersions = () => {
   // 从 XL 的 changelog API 获取最新版本
   const fetchXLVersion = async (): Promise<string> => {
     try {
-      const response = await fetch("https://xlc.mefrp.yealqp.cn/tpca.json");
+      const response = await fetch("https://alist.yealqp.cn/download/ME-Frp%20XL%20Client/meta/changelog.json");
       if (!response.ok) throw new Error("Failed to fetch XL changelog");
 
       const data: { data: ChangelogData } = await response.json();
@@ -206,12 +101,12 @@ export const useProductVersions = () => {
   // 从 PML 的 changelog API 获取最新版本
   const fetchPMLVersion = async (): Promise<string> => {
     try {
-      const response = await fetch("https://api.rycb.tech/api/changelog");
+      const response = await fetch("https://alist.yealqp.cn/download/ME-Frp%20PML2/meta/changelog.json");
       if (!response.ok) throw new Error("Failed to fetch PML changelog");
 
-      const data: { success: boolean; data: ChangelogData } =
+      const data: { data: ChangelogData } =
         await response.json();
-      if (!data.success || !data.data)
+      if (!data.data)
         throw new Error("Invalid PML changelog data");
 
       const keys = sortVersionKeys(data.data);
@@ -222,46 +117,68 @@ export const useProductVersions = () => {
     }
   };
 
-  // LX 暂时没有 API，使用硬编码
+  // 从 LX 的 changelog API 获取最新版本
   const fetchLXVersion = async (): Promise<string> => {
-    // TODO: 如果 LX 有 API，在这里实现
-    return "v2.3.0";
+    try {
+      const response = await fetch("https://alist.yealqp.cn/download/LX-ME-Frp-Launch/meta/changelog.json");
+      if (!response.ok) throw new Error("Failed to fetch LX changelog");
+
+      const data: { data: ChangelogData } = await response.json();
+      if (!data.data) throw new Error("Invalid LX changelog data");
+
+      const keys = sortVersionKeys(data.data);
+      return keys.length > 0 ? `v${keys[0]}` : "v2.6";
+    } catch (err) {
+      console.error("获取 LX 版本失败:", err);
+      return "v2.6";
+    }
   };
 
-  // ZL (ZNext Launcher) 暂时没有 API，使用硬编码
+  // 从 ZL 的 changelog API 获取最新版本
   const fetchZLVersion = async (): Promise<string> => {
-    // TODO: 如果 ZL 有 API，在这里实现
-    return "v1.8";
+    try {
+      const response = await fetch("https://alist.yealqp.cn/download/ZNext%20Launcher/meta/changelog.json");
+      if (!response.ok) throw new Error("Failed to fetch ZL changelog");
+
+      const data: { data: ChangelogData } = await response.json();
+      if (!data.data) throw new Error("Invalid ZL changelog data");
+
+      const keys = sortVersionKeys(data.data);
+      return keys.length > 0 ? `v${keys[0]}` : "v1.8";
+    } catch (err) {
+      console.error("获取 ZL 版本失败:", err);
+      return "v1.8";
+    }
   };
 
-  // FM (Fan-ME-FRP-Launcher) 从 GitHub Releases API 获取最新版本
+  // 从 FM 的 changelog API 获取最新版本
   const fetchFMVersion = async (): Promise<string> => {
     try {
-      const response = await fetch("https://api.github.com/repos/xiaofanforfabric/Fan-ME-FRP-Launcher/releases/latest");
-      if (!response.ok) throw new Error("Failed to fetch FM release");
-      const data: { tag_name: string } = await response.json();
-      if (!data.tag_name) throw new Error("Invalid FM release data");
-      return `v${data.tag_name.replace(/^v/, "").replace(/^first_dev_version$/, "1.0.0")}`;
+      const response = await fetch("https://alist.yealqp.cn/download/Fan-ME-FRP-Launcher/meta/changelog.json");
+      if (!response.ok) throw new Error("Failed to fetch FM changelog");
+
+      const data: { data: ChangelogData } = await response.json();
+      if (!data.data) throw new Error("Invalid FM changelog data");
+
+      const keys = sortVersionKeys(data.data);
+      return keys.length > 0 ? `v${keys[0]}` : "v1.0.0";
     } catch (err) {
       console.error("获取 FM 版本失败:", err);
       return "v1.0.0";
     }
   };
 
-  // FD (FrpDash) 从开发者提供的更新接口获取最新版本
-  // 该接口是 JS 文件（var UPDATE_INFO={...};），且未提供 CORS 头，
-  // 因此不能用 fetch（会被浏览器跨域拦截），改用动态注入 <script> 标签加载，
-  // 脚本执行后会在全局挂载 UPDATE_INFO 变量，再从中读取版本号。
+  // FD (FrpDash) 从 alist 上的 changelog 获取最新版本
   const fetchFDVersion = async (): Promise<string> => {
-    // SSR 环境无 document，直接返回默认值（客户端挂载后会再次获取）
-    if (import.meta.server || typeof document === "undefined") {
-      return "v1.4.5";
-    }
     try {
-      const info = await loadFDUpdateInfo();
-      if (!info || !info.versionName) throw new Error("Missing FD versionName");
-      // 统一补上 v 前缀（接口里的 versionName 形如 "1.4.5"）
-      return `v${String(info.versionName).replace(/^v/, "")}`;
+      const response = await fetch("https://alist.yealqp.cn/download/DashFrp/meta/changelog.json");
+      if (!response.ok) throw new Error("Failed to fetch FD changelog");
+
+      const data: { data: ChangelogData } = await response.json();
+      if (!data.data) throw new Error("Invalid FD changelog data");
+
+      const keys = sortVersionKeys(data.data);
+      return keys.length > 0 ? `v${keys[0]}` : "v1.4.5";
     } catch (err) {
       console.error("获取 FD 版本失败:", err);
       return "v1.4.5";

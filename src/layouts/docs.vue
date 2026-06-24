@@ -56,21 +56,29 @@
               </div>
             </div>
 
-            <!-- 白皮书 -->
+            <!-- 联盟资料 -->
             <div class="mt-6 pt-4 border-t border-white/10">
               <div class="flex items-center space-x-2 px-3 py-2 text-gray-400 text-sm font-medium">
                 <UIcon name="i-lucide-book-open" class="size-4" />
-                <span>白皮书</span>
+                <span>联盟资料</span>
               </div>
 
               <div class="space-y-1">
-                <NuxtLink to="/whitebooks"
+                <NuxtLink to="/docs/alliance/whitebook"
                   class="flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-primary-400 hover:bg-white/5 transition-all duration-200"
                   :class="{
-                    'text-primary-400 bg-white/10': $route.path.startsWith('/whitebooks'),
+                    'text-primary-400 bg-white/10': $route.path.startsWith('/docs/alliance/whitebook'),
                   }">
                   <UIcon name="i-lucide-library" class="size-4" />
                   <span class="text-sm">联盟白皮书</span>
+                </NuxtLink>
+                <NuxtLink to="/docs/alliance/members"
+                  class="flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-primary-400 hover:bg-white/5 transition-all duration-200"
+                  :class="{
+                    'text-primary-400 bg-white/10': $route.path.startsWith('/docs/alliance/members'),
+                  }">
+                  <UIcon name="i-lucide-scale" class="size-4" />
+                  <span class="text-sm">成员行为规范</span>
                 </NuxtLink>
               </div>
             </div>

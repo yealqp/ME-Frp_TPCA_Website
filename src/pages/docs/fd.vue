@@ -323,7 +323,7 @@ const { elementRef: guideRef, isVisible: guideVisible } = useScrollAnimation()
 const { elementRef: updateRef, isVisible: updateVisible } = useScrollAnimation()
 const { elementRef: linksRef, isVisible: linksVisible } = useScrollAnimation()
 
-// 版本号：复用统一的版本管理 composable，从 api.0n.pub 获取 FrpDash 版本
+// 版本号：复用统一的版本管理 composable，从 alist 获取 FrpDash 版本
 const { versions, fetchAllVersions } = useProductVersions()
 const fdVersion = computed(() => versions.value.fd)
 
@@ -358,68 +358,59 @@ const loading = ref(false)
 const error = ref(null)
 const updates = ref([])
 
-// 将全量 CHANGELOG（含 sections 分类）转换为 ChangelogList 组件所需的结构
-// 每个版本的多个分类（修复/新增/优化等）拍平为带分类前缀的条目列表
-const transformChangelog = (list) => {
-  if (!Array.isArray(list) || list.length === 0) {
-    throw new Error('更新日志为空')
+// 从 alist API 获取更新日志
+const fetchChangelog = async () => {
+  const response = await fetch('https://alist.yealqp.cn/download/DashFrp/meta/changelog.json')
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`)
   }
-  return list.map((item, index) => {
-    const changes = []
-    const sections = item.sections || {}
-    Object.keys(sections).forEach((category) => {
-      const entries = Array.isArray(sections[category]) ? sections[category] : []
-      entries.forEach((text) => {
-        // 加上分类前缀，例如「修复：xxx」
-        changes.push(`<strong class="text-primary-400">${category}</strong>：${text}`)
-      })
-    })
-    return {
-      version: `v${String(item.version || '').replace(/^v/, '')}`,
-      changes: changes,
-      date: item.date || '',
-      note: '',
-      isLatest: index === 0
-    }
-  })
+  return await response.json()
 }
 
-// 将单条 UPDATE_INFO 转换为 ChangelogList 结构（全量日志拉取失败时的回退）
-const transformSingle = (info) => {
-  if (!info || !info.versionName) {
-    throw new Error('更新数据格式错误')
+// 版本号比较
+const compareVersions = (v1, v2) => {
+  const parts1 = v1.replace(/[^\d.]/g, '').split('.').map(n => parseInt(n) || 0)
+  const parts2 = v2.replace(/[^\d.]/g, '').split('.').map(n => parseInt(n) || 0)
+  const max = Math.max(parts1.length, parts2.length)
+  while (parts1.length < max) parts1.push(0)
+  while (parts2.length < max) parts2.push(0)
+  for (let i = 0; i < max; i++) {
+    if (parts1[i] > parts2[i]) return 1
+    if (parts1[i] < parts2[i]) return -1
   }
-  const changes = Array.isArray(info.changelog) ? info.changelog : []
-  return [
-    {
-      version: `v${String(info.versionName).replace(/^v/, '')}`,
-      changes: changes,
-      date: info.publishedAt ? String(info.publishedAt).slice(0, 10) : '',
-      note: '',
-      isLatest: true
-    }
-  ]
+  return 0
+}
+
+// 转换 API 数据为 ChangelogList 组件所需的结构
+const transformApiData = (apiData) => {
+  if (!apiData.data) {
+    throw new Error('API 数据格式错误')
+  }
+  const transformedData = []
+  const versions = Object.keys(apiData.data).sort((a, b) => compareVersions(b, a))
+  versions.forEach((version, index) => {
+    const vData = apiData.data[version]
+    transformedData.push({
+      version: `v${version}`,
+      changes: Array.isArray(vData) ? vData : (vData.changes || []),
+      date: Array.isArray(vData) ? '' : (vData.date || ''),
+      note: Array.isArray(vData) ? '' : (vData.note || ''),
+      isLatest: index === 0
+    })
+  })
+  return transformedData
 }
 
 // 初始化更新日志
-// 优先加载全量更新日志（changelog.js / CHANGELOG），失败则回退到单条最新版本（update.js / UPDATE_INFO）
-// 两者均通过 <script> 注入加载，以规避接口无 CORS 头导致的跨域问题
 const initializeUpdates = async () => {
   loading.value = true
   error.value = null
   try {
-    const list = await loadFDChangelog()
-    updates.value = transformChangelog(list)
-  } catch (errFull) {
-    console.warn('全量更新日志获取失败，尝试回退单条:', errFull)
-    try {
-      const info = await loadFDUpdateInfo()
-      updates.value = transformSingle(info)
-    } catch (errSingle) {
-      console.error('获取 FrpDash 更新日志失败:', errSingle)
-      error.value = '暂没更新日志'
-      updates.value = []
-    }
+    updates.value = transformApiData(await fetchChangelog())
+  } catch (err) {
+    console.error('获取 FrpDash 更新日志失败:', err)
+    error.value = '获取更新日志失败'
+    updates.value = []
   } finally {
     loading.value = false
   }

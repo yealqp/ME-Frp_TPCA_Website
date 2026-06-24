@@ -596,7 +596,7 @@ const updates = ref([]);
 // 从 API 获取更新日志
 const fetchChangelog = async () => {
   try {
-    const response = await fetch("https://api.rycb.tech/api/changelog");
+    const response = await fetch("https://alist.yealqp.cn/download/ME-Frp%20PML2/meta/changelog.json");
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -632,7 +632,7 @@ const compareVersions = (version1, version2) => {
 
 // 转换 API 数据
 const transformApiData = (apiData) => {
-  if (!apiData.success || !apiData.data) {
+  if (!apiData.data) {
     throw new Error("API 数据格式错误");
   }
 

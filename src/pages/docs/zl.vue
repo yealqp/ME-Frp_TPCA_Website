@@ -526,27 +526,6 @@ const loading = ref(false)
 const error = ref(null)
 const updates = ref([])
 
-// 本地更新日志数据
-const localChangelog = {
-  data: {
-    '1.8': {
-      date: '2026-04-11',
-      changes: [
-
-        '修复一些已知问题'
-      ]
-    },
-    '1.7': {
-      date: '2026-03-25',
-      note: '补充功能说明',
-      changes: [
-        '优化节点管理界面',
-        '增加系统托盘支持'
-      ]
-    }
-  }
-}
-
 // 版本号比较
 const compareVersions = (version1, version2) => {
   const v1Parts = version1.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
@@ -563,7 +542,22 @@ const compareVersions = (version1, version2) => {
   return 0
 }
 
-// 转换本地数据为组件更新列表
+// 从 API 获取更新日志
+const fetchChangelog = async () => {
+  try {
+    const response = await fetch('https://alist.yealqp.cn/download/ZNext%20Launcher/meta/changelog.json')
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    const data = await response.json()
+    return data
+  } catch (err) {
+    console.error('获取更新日志失败:', err)
+    throw err
+  }
+}
+
+// 转换 API 数据为组件更新列表
 const transformApiData = (apiData) => {
   if (!apiData || !apiData.data) {
     throw new Error('更新日志数据格式错误')
@@ -596,31 +590,21 @@ const initializeUpdates = async () => {
   error.value = null
   updates.value = []
 
-  const apiData = localChangelog
-
-  if (!apiData) {
-    error.value = '更新日志数据不存在'
+  try {
+    const apiData = await fetchChangelog()
+    const transformed = transformApiData(apiData)
+    if (!transformed || transformed.length === 0) {
+      error.value = '暂无更新日志'
+      updates.value = []
+    } else {
+      updates.value = transformed
+    }
+  } catch (err) {
+    error.value = '获取更新日志失败'
     updates.value = []
+  } finally {
     loading.value = false
-    return
   }
-
-  if (!apiData.data || Object.keys(apiData.data).length === 0) {
-    error.value = '暂无更新日志'
-    updates.value = []
-    loading.value = false
-    return
-  }
-
-  const transformed = transformApiData(apiData)
-  if (!transformed || transformed.length === 0) {
-    error.value = '暂无更新日志'
-    updates.value = []
-  } else {
-    updates.value = transformed
-  }
-
-  loading.value = false
 }
 
 // 轮播图状态

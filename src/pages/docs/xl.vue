@@ -456,7 +456,7 @@ const updates = ref([])
 // 从 API 获取更新日志
 const fetchChangelog = async () => {
   try {
-    const response = await fetch('https://xlc.mefrp.yealqp.cn/tpca.json')
+    const response = await fetch('https://alist.yealqp.cn/download/ME-Frp%20XL%20Client/meta/changelog.json')
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
