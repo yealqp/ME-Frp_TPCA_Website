@@ -12,10 +12,10 @@
         <NuxtLink to="/" class="flex items-center space-x-3 hover:opacity-80 transition-smooth cursor-pointer">
           <LogoIcon :size="32" :animated="false" class="w-8 h-8" />
           <span class="text-xl font-bold text-white hidden sm:block">
-            ME-Frp 第三方客户端联盟
+            {{ SITE_NAME }}
           </span>
           <span class="text-xl font-bold text-white sm:hidden">
-            ME-Frp TPCA
+            {{ SITE_SHORT_NAME }}
           </span>
         </NuxtLink>
 
@@ -52,16 +52,12 @@
 </template>
 
 <script setup lang="ts">
+import { navigation } from "~/data/navigation";
+import { SITE_NAME, SITE_SHORT_NAME } from "~/data/constants";
+
 const route = useRoute()
 const isMenuOpen = ref(false)
 const isScrolled = ref(false)
-
-const navigation = [
-  { name: '首页', href: '/', icon: 'i-lucide-home' },
-  { name: '产品', href: '/products', icon: 'i-lucide-box' },
-  { name: '关于', href: '/about', icon: 'i-lucide-info' },
-  { name: '文档', href: '/docs', icon: 'i-lucide-file-text' }
-]
 
 // 监听滚动
 const handleScroll = () => {

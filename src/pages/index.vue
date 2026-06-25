@@ -26,7 +26,7 @@
               <span class="block">
                 <span
                   class="text-gradient bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  ME-Frp 第三方客户端联盟
+                  {{ SITE_NAME }}
                 </span>
               </span>
             </h1>
@@ -34,7 +34,7 @@
             <div class="flex items-center justify-center space-x-6 text-gray-400 text-sm">
               <div class="flex items-center space-x-2">
                 <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span>6+ 客户端产品</span>
+                <span>{{ PRODUCT_COUNT }}+ 客户端产品</span>
               </div>
               <div class="flex items-center space-x-2">
                 <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
@@ -79,6 +79,9 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, SITE_SHORT_NAME, CDN_BASE, OG_IMAGE, GITHUB_REPO, ANIMATION } from "~/data/constants";
+import { PRODUCT_COUNT } from "~/data/products";
+
 // 视差效果
 const parallaxOffset = ref(0)
 
@@ -98,7 +101,7 @@ const smoothScrollTo = (targetPosition) => {
   isScrolling.value = true
   const startPosition = window.pageYOffset
   const distance = targetPosition - startPosition
-  const duration = 800
+  const duration = ANIMATION.SCROLL_DURATION
   let start = null
   let rafId = null
 
@@ -156,7 +159,7 @@ const handleWheel = (event) => {
   }
 
   // 刚离开 hero 区域不远时（heroHeight <= scrollY < heroHeight + 100），向上滚动吸附回 hero
-  if (scrollY < heroHeight + 100 && event.deltaY < 0) {
+  if (scrollY < heroHeight + ANIMATION.SNAP_OFFSET && event.deltaY < 0) {
     event.preventDefault()
     smoothScrollTo(0)
   }
@@ -180,7 +183,7 @@ const handleTouchMove = (event) => {
   const scrollY = window.scrollY
 
   // 在 hero 区域内或刚离开 hero 区域时阻止默认触摸滚动
-  if ((scrollY < heroHeight || scrollY < heroHeight + 100) && !isScrolling.value) {
+  if ((scrollY < heroHeight || scrollY < heroHeight + ANIMATION.SNAP_OFFSET) && !isScrolling.value) {
     event.preventDefault()
   }
 }
@@ -196,7 +199,7 @@ const handleTouchEnd = (event) => {
 
   const touchEndY = event.changedTouches[0].clientY
   const deltaY = touchStartY - touchEndY
-  const threshold = 50
+  const threshold = ANIMATION.SWIPE_THRESHOLD
 
   // 在 hero 区域内
   if (scrollY < heroHeight) {
@@ -211,7 +214,7 @@ const handleTouchEnd = (event) => {
   }
 
   // 刚离开 hero 区域不远时，向上滑动吸附回 hero
-  if (scrollY < heroHeight + 100 && deltaY < -threshold) {
+  if (scrollY < heroHeight + ANIMATION.SNAP_OFFSET && deltaY < -threshold) {
     smoothScrollTo(0)
   }
 }
@@ -248,7 +251,7 @@ onUnmounted(() => {
 useHead({
   title: '首页',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/' }
+    { rel: 'canonical', href: `${SITE_URL}/` }
   ],
   script: [
     {
@@ -256,13 +259,13 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        name: 'ME-Frp 第三方客户端联盟',
-        alternateName: 'ME-Frp TPCA',
-        url: 'https://mefrp-tpca.yealqp.cn',
+        name: SITE_NAME,
+        alternateName: SITE_SHORT_NAME,
+        url: SITE_URL,
         logo: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/favicon.ico',
         description: 'ME-Frp 第三方客户端联盟官方网站，专注于 ME-Frp 第三方客户端开发，提供多款优质内网穿透客户端',
         sameAs: [
-          'https://github.com/yealqp/ME-Frp_TPCA_Website'
+          GITHUB_REPO
         ]
       })
     }
@@ -271,16 +274,16 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: '首页 | ME-Frp 第三方客户端联盟',
-  ogTitle: 'ME-Frp 第三方客户端联盟 - 专业内网穿透客户端',
+  title: `首页 | ${SITE_NAME}`,
+  ogTitle: `${SITE_NAME} - 专业内网穿透客户端`,
   description: 'ME-Frp 第三方客户端联盟官方网站，专注于 ME-Frp 第三方客户端开发，提供 ME-Frp-XL-Client、LX-ME-Frp-Launcher、Plain ME Frp Launcher 等多款优质内网穿透客户端。',
   ogDescription: 'ME-Frp 第三方客户端联盟官方网站，专注于 ME-Frp 第三方客户端开发，提供多款优质内网穿透客户端，支持 Windows、Linux、macOS 等多平台。',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/',
+  ogImage: OG_IMAGE,
+  ogUrl: `${SITE_URL}/`,
   ogType: 'website',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'ME-Frp 第三方客户端联盟',
+  twitterTitle: SITE_NAME,
   twitterDescription: '专注于 ME-Frp 第三方客户端开发，提供多款优质内网穿透客户端',
-  twitterImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png'
+  twitterImage: OG_IMAGE
 })
 </script>

@@ -225,22 +225,24 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, OG_IMAGE, GITHUB_REPO } from "~/data/constants";
+
 // 页面元数据
 useHead({
   title: '品牌资源',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/brand' }
+    { rel: 'canonical', href: `${SITE_URL}/brand` }
   ]
 })
 
 // SEO 优化
 useSeoMeta({
-  title: '品牌资源 | ME-Frp 第三方客户端联盟',
-  ogTitle: '品牌资源 - ME-Frp 第三方客户端联盟',
-  description: 'ME-Frp 第三方客户端联盟的品牌标识、Logo 下载和使用指南，包含完整版 Logo、简化版 Logo 和颜色规范。',
-  ogDescription: 'ME-Frp 第三方客户端联盟的品牌标识、Logo 和使用指南',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/brand',
+  title: `品牌资源 | ${SITE_NAME}`,
+  ogTitle: `品牌资源 - ${SITE_NAME}`,
+  description: `${SITE_NAME}的品牌标识、Logo 下载和使用指南，包含完整版 Logo、简化版 Logo 和颜色规范。`,
+  ogDescription: `${SITE_NAME}的品牌标识、Logo 和使用指南`,
+  ogImage: OG_IMAGE,
+  ogUrl: `${SITE_URL}/brand`,
   ogType: 'website',
   twitterCard: 'summary_large_image'
 })

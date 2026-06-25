@@ -310,6 +310,8 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
+
 // 使用文档布局
 definePageMeta({
   layout: 'docs'
@@ -323,7 +325,7 @@ const { elementRef: guideRef, isVisible: guideVisible } = useScrollAnimation()
 const { elementRef: updateRef, isVisible: updateVisible } = useScrollAnimation()
 const { elementRef: linksRef, isVisible: linksVisible } = useScrollAnimation()
 
-// 版本号：复用统一的版本管理 composable，从 api.0n.pub 获取 FrpDash 版本
+// 版本号：复用统一的版本管理 composable，从 alist 获取 FrpDash 版本
 const { versions, fetchAllVersions } = useProductVersions()
 const fdVersion = computed(() => versions.value.fd)
 
@@ -353,89 +355,20 @@ const openImageModal = (image) => {
   showImageModal.value = true
 }
 
-// 更新日志状态
-const loading = ref(false)
-const error = ref(null)
-const updates = ref([])
-
-// 将全量 CHANGELOG（含 sections 分类）转换为 ChangelogList 组件所需的结构
-// 每个版本的多个分类（修复/新增/优化等）拍平为带分类前缀的条目列表
-const transformChangelog = (list) => {
-  if (!Array.isArray(list) || list.length === 0) {
-    throw new Error('更新日志为空')
-  }
-  return list.map((item, index) => {
-    const changes = []
-    const sections = item.sections || {}
-    Object.keys(sections).forEach((category) => {
-      const entries = Array.isArray(sections[category]) ? sections[category] : []
-      entries.forEach((text) => {
-        // 加上分类前缀，例如「修复：xxx」
-        changes.push(`<strong class="text-primary-400">${category}</strong>：${text}`)
-      })
-    })
-    return {
-      version: `v${String(item.version || '').replace(/^v/, '')}`,
-      changes: changes,
-      date: item.date || '',
-      note: '',
-      isLatest: index === 0
-    }
-  })
-}
-
-// 将单条 UPDATE_INFO 转换为 ChangelogList 结构（全量日志拉取失败时的回退）
-const transformSingle = (info) => {
-  if (!info || !info.versionName) {
-    throw new Error('更新数据格式错误')
-  }
-  const changes = Array.isArray(info.changelog) ? info.changelog : []
-  return [
-    {
-      version: `v${String(info.versionName).replace(/^v/, '')}`,
-      changes: changes,
-      date: info.publishedAt ? String(info.publishedAt).slice(0, 10) : '',
-      note: '',
-      isLatest: true
-    }
-  ]
-}
-
-// 初始化更新日志
-// 优先加载全量更新日志（changelog.js / CHANGELOG），失败则回退到单条最新版本（update.js / UPDATE_INFO）
-// 两者均通过 <script> 注入加载，以规避接口无 CORS 头导致的跨域问题
-const initializeUpdates = async () => {
-  loading.value = true
-  error.value = null
-  try {
-    const list = await loadFDChangelog()
-    updates.value = transformChangelog(list)
-  } catch (errFull) {
-    console.warn('全量更新日志获取失败，尝试回退单条:', errFull)
-    try {
-      const info = await loadFDUpdateInfo()
-      updates.value = transformSingle(info)
-    } catch (errSingle) {
-      console.error('获取 FrpDash 更新日志失败:', errSingle)
-      error.value = '暂没更新日志'
-      updates.value = []
-    }
-  } finally {
-    loading.value = false
-  }
-}
+// 更新日志
+const { updates, loading, error, fetchChangelog } = useProductChangelog('fd')
 
 // 组件挂载时初始化版本号与更新日志
 onMounted(() => {
   fetchAllVersions()
-  initializeUpdates()
+  fetchChangelog()
 })
 
 // 页面元数据
 useHead({
   title: 'FrpDash 文档',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/fd' }
+    { rel: 'canonical', href: `${SITE_URL}/docs/fd` }
   ],
   script: [
     {
@@ -460,12 +393,12 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: 'FrpDash 文档 | ME-Frp 第三方客户端联盟',
-  ogTitle: 'FrpDash 文档 - ME-Frp 第三方客户端联盟',
+  title: `FrpDash 文档 | ${SITE_NAME}`,
+  ogTitle: `FrpDash 文档 - ${SITE_NAME}`,
   description: 'FrpDash 是由 zhai 使用 Java 原生开发、面向安卓端的 ME-Frp 第三方客户端，内置 frpc 四架构二进制，免 Root 开箱即用，支持隧道管理、节点监控、签到与账户操作。',
   ogDescription: 'FrpDash 是面向安卓端的 ME-Frp 第三方客户端，Java 原生开发，内置 frpc，免 Root 开箱即用',
   ogImage: 'https://fd.0n.pub/img/logo-512.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/fd',
+  ogUrl: `${SITE_URL}/docs/fd`,
   ogType: 'article',
   twitterCard: 'summary_large_image'
 })

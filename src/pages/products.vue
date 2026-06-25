@@ -124,13 +124,14 @@
 </template>
 
 <script setup lang="ts">
-import { getProducts } from "~/data/products";
+import { getProducts, PRODUCT_COUNT } from "~/data/products";
+import { SITE_URL, SITE_NAME, OG_IMAGE, GITHUB_REPO } from "~/data/constants";
 
 // 页面元数据
 useHead({
   title: '产品',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/products' }
+    { rel: 'canonical', href: `${SITE_URL}/products` }
   ],
   script: [
     {
@@ -138,9 +139,9 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'ItemList',
-        name: 'ME-Frp 第三方客户端产品列表',
-        description: 'ME-Frp 第三方客户端联盟的所有产品',
-        numberOfItems: 6,
+        name: `ME-Frp 第三方客户端产品列表`,
+        description: `${SITE_NAME}的所有产品`,
+        numberOfItems: PRODUCT_COUNT,
         itemListElement: [
           {
             '@type': 'SoftwareApplication',
@@ -204,12 +205,12 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: '产品 | ME-Frp 第三方客户端联盟',
-  ogTitle: '产品 - ME-Frp 第三方客户端联盟',
-  description: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2、ZNext Launcher 和 Fan-ME-FRP-Launcher，为不同需求的用户提供多样化的内网穿透解决方案。',
-  ogDescription: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2、ZNext Launcher 和 Fan-ME-FRP-Launcher',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/products',
+  title: `产品 | ${SITE_NAME}`,
+  ogTitle: `产品 - ${SITE_NAME}`,
+  description: `了解 ${SITE_NAME}的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2、ZNext Launcher 和 Fan-ME-FRP-Launcher，为不同需求的用户提供多样化的内网穿透解决方案。`,
+  ogDescription: `了解 ${SITE_NAME}的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2、ZNext Launcher 和 Fan-ME-FRP-Launcher`,
+  ogImage: OG_IMAGE,
+  ogUrl: `${SITE_URL}/products`,
   ogType: 'website',
   twitterCard: 'summary_large_image'
 })
@@ -219,12 +220,11 @@ const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation()
 
 // 产品列表滚动动画
 const productRefs = ref([])
-// 【修改】产品数量由 5 增至 6（新增 FrpDash），可见性数组同步扩展
-const productVisibility = ref([false, false, false, false, false, false])
+const productVisibility = ref(Array<boolean>(PRODUCT_COUNT).fill(false))
 
 onMounted(() => {
   if (typeof IntersectionObserver === 'undefined') {
-    productVisibility.value = [true, true, true, true, true, true]
+    productVisibility.value = Array<boolean>(PRODUCT_COUNT).fill(true)
     return
   }
 
