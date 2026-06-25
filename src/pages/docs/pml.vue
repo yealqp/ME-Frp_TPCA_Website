@@ -413,6 +413,9 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
+import { compareVersions, sortVersionKeys } from "~/utils/version";
+
 // 使用文档布局
 definePageMeta({
   layout: "docs",
@@ -446,7 +449,7 @@ const currentVersion = computed(() => getVersion("pml"));
 // 页面元数据
 useHead({
   title: "PML 2 文档",
-  link: [{ rel: "canonical", href: "https://mefrp-tpca.yealqp.cn/docs/pml" }],
+  link: [{ rel: "canonical", href: `${SITE_URL}/docs/pml` }],
   script: [
     {
       type: "application/ld+json",
@@ -469,13 +472,13 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: "PML 2 文档 | ME-Frp 第三方客户端联盟",
-  ogTitle: "PML 2 文档 - ME-Frp 第三方客户端联盟",
+  title: `PML 2 文档 | ${SITE_NAME}`,
+  ogTitle: `PML 2 文档 - ${SITE_NAME}`,
   description:
     "PML 2 详细使用文档，基于 .NET 10.0 开发的跨平台 ME-Frp 第三方客户端，支持 Windows、Linux、macOS 和 Android，包含多平台安装、配置和使用指南。",
   ogDescription: "PML 2 详细使用文档，包含多平台安装、配置和使用指南",
   ogImage: "https://image.mefrp-tpca.yealqp.cn/images/views/rycb/homex.png",
-  ogUrl: "https://mefrp-tpca.yealqp.cn/docs/pml",
+  ogUrl: `${SITE_URL}/docs/pml`,
   ogType: "article",
   twitterCard: "summary_large_image",
 });
@@ -608,27 +611,7 @@ const fetchChangelog = async () => {
   }
 };
 
-// 版本号比较
-const compareVersions = (version1, version2) => {
-  const v1Parts = version1
-    .replace(/[^\d.]/g, "")
-    .split(".")
-    .map((num) => parseInt(num) || 0);
-  const v2Parts = version2
-    .replace(/[^\d.]/g, "")
-    .split(".")
-    .map((num) => parseInt(num) || 0);
-
-  const maxLength = Math.max(v1Parts.length, v2Parts.length);
-  while (v1Parts.length < maxLength) v1Parts.push(0);
-  while (v2Parts.length < maxLength) v2Parts.push(0);
-
-  for (let i = 0; i < maxLength; i++) {
-    if (v1Parts[i] > v2Parts[i]) return 1;
-    if (v1Parts[i] < v2Parts[i]) return -1;
-  }
-  return 0;
-};
+// 使用导入的 sortVersionKeys
 
 // 转换 API 数据
 const transformApiData = (apiData) => {
@@ -637,9 +620,7 @@ const transformApiData = (apiData) => {
   }
 
   const transformedData = [];
-  const versions = Object.keys(apiData.data).sort((a, b) =>
-    compareVersions(b, a),
-  );
+  const versions = sortVersionKeys(apiData.data);
 
   versions.forEach((version, index) => {
     const versionData = apiData.data[version];

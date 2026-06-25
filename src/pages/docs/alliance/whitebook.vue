@@ -38,7 +38,7 @@
                     </p>
                     <p>
                         自 <strong class="text-white">2025 年 8 月 13 日</strong> 正式成立以来，联盟已汇聚 <strong
-                            class="text-teal-400">7 位独立开发者</strong>，孵化 <strong class="text-teal-400">7 款</strong>覆盖
+                            class="text-teal-400">{{ MEMBER_COUNT }} 位独立开发者</strong>，孵化 <strong class="text-teal-400">{{ PRODUCT_COUNT }} 款</strong>覆盖
                         Windows、Linux、macOS、Android 全平台的第三方客户端，技术栈横跨 .NET、Rust、Java、易语言、WinUI3、Flutter
                         等多个领域。联盟以<strong
                             class="text-white">"不畏难、勇创新、敢作为、同努力"</strong>为核心价值，从闭源起步，逐步迈向开源协作，成为内网穿透领域最具活力的社区生态之一。
@@ -127,7 +127,7 @@
                                     </tr>
                                     <tr>
                                         <td class="py-3 px-4 font-medium text-white">当前规模</td>
-                                        <td class="py-3 px-4">7 位独立开发者 / 团队，7 款客户端产品</td>
+                                        <td class="py-3 px-4">{{ MEMBER_COUNT }} 位独立开发者 / 团队，{{ PRODUCT_COUNT }} 款客户端产品</td>
                                     </tr>
                                     <tr>
                                         <td class="py-3 px-4 font-medium text-white">覆盖平台</td>
@@ -179,7 +179,7 @@
                     </div>
                 </div>
                 <div class="p-6 text-gray-300 leading-relaxed space-y-6">
-                    <p>联盟目前已收录 <strong class="text-teal-400">7 款</strong>各具特色的客户端，覆盖不同平台与技术栈：</p>
+                    <p>联盟目前已收录 <strong class="text-teal-400">{{ PRODUCT_COUNT }} 款</strong>各具特色的客户端，覆盖不同平台与技术栈：</p>
 
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse text-sm">
@@ -350,7 +350,7 @@
                             辅助编程工具的成熟，显著降低了独立开发者从"想法"到"可用产品"的落地成本。或许正是这种技术普惠，让更多优秀开发者能够将创意转化为现实，并最终汇聚于联盟的生态之中。
                         </blockquote>
                         <p class="mt-3">
-                            至此，联盟从最初的三款元老客户端，发展为 <strong class="text-teal-400">7 款覆盖全平台、横跨多技术栈</strong> 的完整生态格局。
+                            至此，联盟从最初的三款元老客户端，发展为 <strong class="text-teal-400">{{ PRODUCT_COUNT }} 款覆盖全平台、横跨多技术栈</strong> 的完整生态格局。
                         </p>
                     </div>
                 </div>
@@ -556,6 +556,9 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_NAME, SITE_URL, OG_IMAGE } from "~/data/constants";
+import { PRODUCT_COUNT } from "~/data/products";
+import { MEMBER_COUNT } from "~/data/members";
 import useScrollAnimation from '../../../composables/useScrollAnimation'
 
 // Nuxt 4: 页面布局
@@ -578,7 +581,7 @@ const { elementRef: appendixRef, isVisible: appendixVisible } = useScrollAnimati
 useHead({
     title: '联盟白皮书 (2026)',
     link: [
-        { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/alliance/whitebook' }
+        { rel: 'canonical', href: `${SITE_URL}/docs/alliance/whitebook` }
     ],
     script: [
         {
@@ -590,15 +593,15 @@ useHead({
                 description: '从三人行到群英会——社区驱动的内网穿透客户端生态。ME Frp TPCA 官方白皮书，记录联盟发展历程、核心产品生态与开源理念。',
                 author: {
                     '@type': 'Organization',
-                    name: 'ME Frp 第三方客户端联盟',
-                    url: 'https://mefrp-tpca.yealqp.cn'
+                    name: SITE_NAME,
+                    url: SITE_URL
                 },
                 datePublished: '2026-06-01',
                 dateModified: '2026-06-24',
                 publisher: {
                     '@type': 'Organization',
                     name: '幻缘网络',
-                    url: 'https://mefrp-tpca.yealqp.cn'
+                    url: SITE_URL
                 },
                 inLanguage: 'zh-CN',
                 about: {
@@ -615,10 +618,10 @@ useHead({
 useSeoMeta({
     title: '联盟白皮书 (2026) | ME-Frp TPCA',
     ogTitle: 'ME Frp TPCA 联盟白皮书 2026',
-    description: 'ME Frp TPCA 联盟白皮书 2026 — 从三人行到群英会，社区驱动的内网穿透客户端生态。详述联盟 7 位成员、7 款客户端的完整产品生态、发展历程与开源理念。',
-    ogDescription: '从三人行到群英会——社区驱动的内网穿透客户端生态。7 位成员，7 款产品，覆盖 Windows / Linux / macOS / Android 全平台。',
-    ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-    ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/alliance/whitebook',
+    description: `ME Frp TPCA 联盟白皮书 2026 — 从三人行到群英会，社区驱动的内网穿透客户端生态。详述联盟 ${MEMBER_COUNT} 位成员、${PRODUCT_COUNT} 款客户端的完整产品生态、发展历程与开源理念。`,
+    ogDescription: `从三人行到群英会——社区驱动的内网穿透客户端生态。${MEMBER_COUNT} 位成员，${PRODUCT_COUNT} 款产品，覆盖 Windows / Linux / macOS / Android 全平台。`,
+    ogImage: OG_IMAGE,
+    ogUrl: `${SITE_URL}/docs/alliance/whitebook`,
     ogType: 'article',
     ogLocale: 'zh_CN',
     twitterCard: 'summary_large_image',

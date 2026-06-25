@@ -304,6 +304,7 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_NAME, SITE_URL, OG_IMAGE } from "~/data/constants";
 import useScrollAnimation from '../../../composables/useScrollAnimation'
 
 // Nuxt 4: 页面布局
@@ -323,7 +324,7 @@ const { elementRef: section6Ref, isVisible: section6Visible } = useScrollAnimati
 useHead({
     title: '成员行为规范',
     link: [
-        { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/alliance/members' }
+        { rel: 'canonical', href: `${SITE_URL}/docs/alliance/members` }
     ],
     script: [
         {
@@ -335,15 +336,15 @@ useHead({
                 description: 'ME Frp TPCA 联盟成员行为规范 — 维护联盟的技术质量、社区声誉与协作精神。规范涵盖 AI 使用原则、技术能力要求、行为守则、加入与退出机制等。',
                 author: {
                     '@type': 'Organization',
-                    name: 'ME Frp 第三方客户端联盟',
-                    url: 'https://mefrp-tpca.yealqp.cn'
+                    name: SITE_NAME,
+                    url: SITE_URL
                 },
                 datePublished: '2026-06-24',
                 dateModified: '2026-06-24',
                 publisher: {
                     '@type': 'Organization',
                     name: '幻缘网络',
-                    url: 'https://mefrp-tpca.yealqp.cn'
+                    url: SITE_URL
                 },
                 inLanguage: 'zh-CN'
             })
@@ -357,8 +358,8 @@ useSeoMeta({
     ogTitle: 'ME Frp TPCA 成员行为规范',
     description: 'ME Frp TPCA 联盟成员行为规范 — AI 使用原则、技术能力要求、行为守则、加入与退出机制。维护联盟的技术质量、社区声誉与协作精神。',
     ogDescription: '维护联盟的技术质量、社区声誉与协作精神。AI 使用原则、技术能力要求、行为守则、加入与退出机制。',
-    ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-    ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/alliance/members',
+    ogImage: OG_IMAGE,
+    ogUrl: `${SITE_URL}/docs/alliance/members`,
     ogType: 'article',
     ogLocale: 'zh_CN',
     twitterCard: 'summary_large_image',

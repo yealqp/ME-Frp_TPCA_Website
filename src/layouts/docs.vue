@@ -91,7 +91,7 @@
               </div>
 
               <div class="space-y-1">
-                <a href="https://github.com/yealqp/ME-Frp_TPCA_Website" target="_blank"
+                <a :href="GITHUB_REPO" target="_blank"
                   class="flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 hover:text-primary-400 hover:bg-white/5 transition-all duration-200">
                   <UIcon name="i-lucide-github" class="size-4" />
                   <span class="text-sm">GitHub 仓库</span>
@@ -102,21 +102,21 @@
                   <UIcon name="i-lucide-info" class="size-4" />
                   <span class="text-sm">关于我们</span>
                 </NuxtLink>
-                <NuxtLink to="https://www.idcxl.cn/"
+                <a :href="XIANLIN_URL" target="_blank"
                   class="group flex items-center space-x-3 px-3 py-2 rounded-lg text-gray-300 transition-all duration-200 relative overflow-hidden special-link">
-                  <img src="https://image.mefrp-tpca.yealqp.cn/images/xianlin.ico" alt="仙林云计算"
+                  <img :src="`${CDN_BASE}/images/xianlin.ico`" alt="仙林云计算"
                     class="w-4 h-4 rounded group-hover:scale-110 transition-transform duration-200" />
                   <span
                     class="text-sm bg-gradient-to-r from-primary-400 to-blue-400 bg-clip-text text-transparent font-medium">仙林云计算</span>
                   <UIcon name="i-lucide-external-link"
                     class="size-3 text-primary-400/60 group-hover:text-primary-400 transition-colors" />
-                </NuxtLink>
+                </a>
               </div>
             </div>
 
             <!-- 广告位 -->
             <div class="mt-6 pt-4 border-t border-white/10">
-              <a href="mailto:im@yealqp.cn?subject=TPCAW广告位购买咨询"
+              <a :href="`mailto:${CONTACT_EMAIL}?subject=${AD_EMAIL_SUBJECT}`"
                 class="flex items-center justify-center space-x-2 px-3 py-2.5 rounded-lg text-amber-400 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 hover:border-amber-500/50 transition-all duration-200">
                 <UIcon name="i-lucide-megaphone" class="size-4" />
                 <span class="text-sm font-medium">购买广告位</span>
@@ -150,48 +150,18 @@
 </template>
 
 <script setup lang="ts">
+import { getDocSidebarClients } from "~/data/products";
+import { GITHUB_REPO, SITE_NAME, OG_IMAGE, SITE_URL, CONTACT_EMAIL, AD_EMAIL_SUBJECT, XIANLIN_URL, CDN_BASE } from "~/data/constants";
+
 const sidebarOpen = ref(false);
 
-const clients = [
-  {
-    id: "xl",
-    name: "XL Client",
-    path: "/docs/xl",
-    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp",
-  },
-  {
-    id: "lx",
-    name: "LX-ME-Frp-Launcher",
-    path: "/docs/lx",
-    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/lx_icon.webp",
-  },
-  {
-    id: "pml",
-    name: "PML 2",
-    path: "/docs/pml",
-    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp",
-  },
-  {
-    id: "zl",
-    name: "ZNext Launcher",
-    path: "/docs/zl",
-    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext-icon.png",
-  },
-  {
-    id: "fm",
-    name: "Fan-ME-FRP Launcher",
-    path: "/docs/fm",
-    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/fm_icon.webp",
-    fallbackIcon: "https://oss.cf.xiaofanshop.cn/tpcaw/images/views/icon/fm_icon.webp",
-  },
-  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端
-  {
-    id: "fd",
-    name: "FrpDash",
-    path: "/docs/fd",
-    icon: "https://fd.0n.pub/img/logo-192.png",
-  },
-];
+const { versions, fetchAllVersions } = useProductVersions();
+
+const clients = computed(() => getDocSidebarClients(versions.value));
+
+onMounted(() => {
+  fetchAllVersions();
+});
 
 // 监听路由变化，关闭移动端侧边栏
 watch(

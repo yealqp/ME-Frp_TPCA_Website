@@ -310,6 +310,9 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
+import { compareVersions, sortVersionKeys } from "~/utils/version";
+
 // 使用文档布局
 definePageMeta({
   layout: 'docs'
@@ -367,19 +370,7 @@ const fetchChangelog = async () => {
   return await response.json()
 }
 
-// 版本号比较
-const compareVersions = (v1, v2) => {
-  const parts1 = v1.replace(/[^\d.]/g, '').split('.').map(n => parseInt(n) || 0)
-  const parts2 = v2.replace(/[^\d.]/g, '').split('.').map(n => parseInt(n) || 0)
-  const max = Math.max(parts1.length, parts2.length)
-  while (parts1.length < max) parts1.push(0)
-  while (parts2.length < max) parts2.push(0)
-  for (let i = 0; i < max; i++) {
-    if (parts1[i] > parts2[i]) return 1
-    if (parts1[i] < parts2[i]) return -1
-  }
-  return 0
-}
+// 使用导入的 sortVersionKeys
 
 // 转换 API 数据为 ChangelogList 组件所需的结构
 const transformApiData = (apiData) => {
@@ -387,7 +378,7 @@ const transformApiData = (apiData) => {
     throw new Error('API 数据格式错误')
   }
   const transformedData = []
-  const versions = Object.keys(apiData.data).sort((a, b) => compareVersions(b, a))
+  const versions = sortVersionKeys(apiData.data)
   versions.forEach((version, index) => {
     const vData = apiData.data[version]
     transformedData.push({
@@ -426,7 +417,7 @@ onMounted(() => {
 useHead({
   title: 'FrpDash 文档',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/fd' }
+    { rel: 'canonical', href: `${SITE_URL}/docs/fd` }
   ],
   script: [
     {
@@ -451,12 +442,12 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: 'FrpDash 文档 | ME-Frp 第三方客户端联盟',
-  ogTitle: 'FrpDash 文档 - ME-Frp 第三方客户端联盟',
+  title: `FrpDash 文档 | ${SITE_NAME}`,
+  ogTitle: `FrpDash 文档 - ${SITE_NAME}`,
   description: 'FrpDash 是由 zhai 使用 Java 原生开发、面向安卓端的 ME-Frp 第三方客户端，内置 frpc 四架构二进制，免 Root 开箱即用，支持隧道管理、节点监控、签到与账户操作。',
   ogDescription: 'FrpDash 是面向安卓端的 ME-Frp 第三方客户端，Java 原生开发，内置 frpc，免 Root 开箱即用',
   ogImage: 'https://fd.0n.pub/img/logo-512.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/fd',
+  ogUrl: `${SITE_URL}/docs/fd`,
   ogType: 'article',
   twitterCard: 'summary_large_image'
 })

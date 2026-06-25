@@ -308,6 +308,9 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
+import { compareVersions, sortVersionKeys } from "~/utils/version";
+
 // 使用文档布局
 definePageMeta({
   layout: 'docs'
@@ -386,21 +389,7 @@ const fetchChangelog = async () => {
   }
 }
 
-// 版本号比较
-const compareVersions = (version1, version2) => {
-  const v1Parts = version1.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-  const v2Parts = version2.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-
-  const maxLength = Math.max(v1Parts.length, v2Parts.length)
-  while (v1Parts.length < maxLength) v1Parts.push(0)
-  while (v2Parts.length < maxLength) v2Parts.push(0)
-
-  for (let i = 0; i < maxLength; i++) {
-    if (v1Parts[i] > v2Parts[i]) return 1
-    if (v1Parts[i] < v2Parts[i]) return -1
-  }
-  return 0
-}
+// 使用导入的 sortVersionKeys
 
 // 转换 API 数据
 const transformApiData = (apiData) => {
@@ -409,7 +398,7 @@ const transformApiData = (apiData) => {
   }
 
   const transformedData = []
-  const versions = Object.keys(apiData.data).sort((a, b) => compareVersions(b, a))
+  const versions = sortVersionKeys(apiData.data)
 
   versions.forEach((version, index) => {
     const versionData = apiData.data[version]
@@ -454,7 +443,7 @@ onMounted(() => {
 useHead({
   title: 'Fan-ME-FRP-Launcher 文档',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/fm' }
+    { rel: 'canonical', href: `${SITE_URL}/docs/fm` }
   ],
   script: [
     {
@@ -479,12 +468,12 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: 'Fan-ME-FRP-Launcher 文档 | ME-Frp 第三方客户端联盟',
-  ogTitle: 'Fan-ME-FRP-Launcher 文档 - ME-Frp 第三方客户端联盟',
+  title: `Fan-ME-FRP-Launcher 文档 | ${SITE_NAME}`,
+  ogTitle: `Fan-ME-FRP-Launcher 文档 - ${SITE_NAME}`,
   description: 'Fan-ME-FRP-Launcher 是由 xiaofanforfabric 基于 Java 开发的 FRP 客户端启动器，支持 GUI 图形界面和命令行模式，轻松使用 ME-Frp 内网穿透服务。',
   ogDescription: 'Fan-ME-FRP-Launcher 基于 Java 的 FRP 客户端启动器，支持 GUI 图形界面和命令行模式',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/fm',
+  ogImage: OG_IMAGE,
+  ogUrl: `${SITE_URL}/docs/fm`,
   ogType: 'article',
   twitterCard: 'summary_large_image'
 })

@@ -38,7 +38,7 @@
 
           <div class="p-6 space-y-6 text-gray-300 leading-relaxed">
             <p class="text-lg">
-              <strong class="text-teal-400">ME-Frp TPCA</strong>
+              <strong class="text-teal-400">{{ SITE_SHORT_NAME }}</strong>
               是自发性的、开发者群体为主的社区组织。
             </p>
             <p>
@@ -134,7 +134,7 @@
               如果您有任何问题或建议，欢迎通过以下方式联系我们
             </p>
             <div class="flex justify-center">
-              <UButton size="lg" color="primary" to="https://github.com/yealqp/ME-Frp_TPCA_Website" target="_blank"
+              <UButton size="lg" color="primary" :to="GITHUB_REPO" target="_blank"
                 class="btn-glow cursor-pointer">
                 <UIcon name="i-lucide-github" class="size-5 mr-2" />
                 GitHub
@@ -152,7 +152,7 @@
 useHead({
   title: '关于我们',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/about' }
+    { rel: 'canonical', href: `${SITE_URL}/about` }
   ],
   script: [
     {
@@ -160,12 +160,12 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'AboutPage',
-        name: '关于我们 - ME-Frp 第三方客户端联盟',
-        description: '了解 ME-Frp 第三方客户端联盟的发展历程、核心价值和团队成员',
-        url: 'https://mefrp-tpca.yealqp.cn/about',
+        name: `关于我们 - ${SITE_NAME}`,
+        description: `了解 ${SITE_NAME}的发展历程、核心价值和团队成员`,
+        url: `${SITE_URL}/about`,
         mainEntity: {
           '@type': 'Organization',
-          name: 'ME-Frp 第三方客户端联盟',
+          name: SITE_NAME,
           foundingDate: '2025-08-13',
           description: '专注于 ME-Frp 第三方客户端开发的社区组织'
         }
@@ -176,69 +176,23 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: '关于我们 | ME-Frp 第三方客户端联盟',
-  ogTitle: '关于我们 - ME-Frp 第三方客户端联盟',
-  description: '了解 ME-Frp 第三方客户端联盟的发展历程、核心价值和团队成员，我们是一群热爱技术、勇于创新的开发者。',
-  ogDescription: '了解 ME-Frp 第三方客户端联盟的发展历程、核心价值和团队成员',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/about',
+  title: `关于我们 | ${SITE_NAME}`,
+  ogTitle: `关于我们 - ${SITE_NAME}`,
+  description: `了解 ${SITE_NAME}的发展历程、核心价值和团队成员，我们是一群热爱技术、勇于创新的开发者。`,
+  ogDescription: `了解 ${SITE_NAME}的发展历程、核心价值和团队成员`,
+  ogImage: OG_IMAGE,
+  ogUrl: `${SITE_URL}/about`,
   ogType: 'website',
   twitterCard: 'summary_large_image'
 })
+
+import { timeline } from "~/data/timeline";
+import { values } from "~/data/values";
+import { GITHUB_REPO, SITE_URL, SITE_NAME, OG_IMAGE, SITE_SHORT_NAME } from "~/data/constants";
 
 // 滚动动画
 const { elementRef: whoWeAreRef, isVisible: whoWeAreVisible } = useScrollAnimation()
 const { elementRef: timelineRef, isVisible: timelineVisible } = useScrollAnimation()
 const { elementRef: valuesRef, isVisible: valuesVisible } = useScrollAnimation()
 const { elementRef: contactRef, isVisible: contactVisible } = useScrollAnimation()
-
-const timeline = ref([
-  {
-    date: '2025/07/11',
-    title: '写下第一行代码',
-    description: 'LX-ME-Frp-Launcher 的第一行代码被写下，命运的齿轮悄然转动',
-    icon: 'i-lucide-code'
-  },
-  {
-    date: '2025/08/01',
-    title: '逐渐扩大',
-    description: 'LX-ME-Frp-Launcher 的开发纷纷让其他开发者也开始开发ME-Frp第三方客户端',
-    icon: 'i-lucide-trending-up'
-  },
-  {
-    date: '2025/8/13',
-    title: 'ME-Frp TPCA成立',
-    description: 'ME-Frp第三方客户端的开发者们聚集在一起，ME-Frp TPCA正式成立',
-    icon: 'i-lucide-flag'
-  },
-  {
-    date: '未来',
-    title: '展望未来',
-    description: '我们会变得更好...',
-    icon: 'i-lucide-rocket'
-  }
-])
-
-const values = ref([
-  {
-    title: '不畏难',
-    description: '面对技术挑战，我们勇于探索，永不退缩',
-    icon: 'i-lucide-code'
-  },
-  {
-    title: '勇创新',
-    description: '持续创新，为用户提供更好的产品体验',
-    icon: 'i-lucide-rocket'
-  },
-  {
-    title: '敢作为',
-    description: '积极行动，用实际成果证明我们的价值',
-    icon: 'i-lucide-users'
-  },
-  {
-    title: '同努力',
-    description: '团结协作，共同成长，共创美好未来',
-    icon: 'i-lucide-hand'
-  }
-])
 </script>

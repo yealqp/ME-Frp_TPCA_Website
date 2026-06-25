@@ -444,6 +444,9 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
+import { compareVersions, sortVersionKeys } from "~/utils/version";
+
 // 使用文档布局
 definePageMeta({
   layout: 'docs'
@@ -475,7 +478,7 @@ const currentVersion = computed(() => getVersion('zl'))
 useHead({
   title: 'ZNext Launcher 文档',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/zl' }
+    { rel: 'canonical', href: `${SITE_URL}/docs/zl` }
   ],
   script: [
     {
@@ -498,12 +501,12 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: 'ZNext Launcher 文档 | ME-Frp 第三方客户端联盟',
-  ogTitle: 'ZNext Launcher 文档 - ME-Frp 第三方客户端联盟',
+  title: `ZNext Launcher 文档 | ${SITE_NAME}`,
+  ogTitle: `ZNext Launcher 文档 - ${SITE_NAME}`,
   description: 'ZNext Launcher 详细使用文档，基于 WinUI3 框架开发的 ME-Frp 第三方客户端，包含安装、配置和使用指南，支持 Windows 10/11 和 Windows Server。',
   ogDescription: 'ZNext Launcher 详细使用文档，包含安装、配置和使用指南',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/image/views/yealqp/home.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/zl',
+  ogUrl: `${SITE_URL}/docs/zl`,
   ogType: 'article',
   twitterCard: 'summary_large_image'
 })
@@ -526,21 +529,7 @@ const loading = ref(false)
 const error = ref(null)
 const updates = ref([])
 
-// 版本号比较
-const compareVersions = (version1, version2) => {
-  const v1Parts = version1.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-  const v2Parts = version2.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-
-  const maxLength = Math.max(v1Parts.length, v2Parts.length)
-  while (v1Parts.length < maxLength) v1Parts.push(0)
-  while (v2Parts.length < maxLength) v2Parts.push(0)
-
-  for (let i = 0; i < maxLength; i++) {
-    if (v1Parts[i] > v2Parts[i]) return 1
-    if (v1Parts[i] < v2Parts[i]) return -1
-  }
-  return 0
-}
+// 使用导入的 sortVersionKeys
 
 // 从 API 获取更新日志
 const fetchChangelog = async () => {
@@ -564,7 +553,7 @@ const transformApiData = (apiData) => {
   }
 
   const transformedData = []
-  const versions = Object.keys(apiData.data).sort((a, b) => compareVersions(b, a))
+  const versions = sortVersionKeys(apiData.data)
 
   versions.forEach((version, index) => {
     const versionData = apiData.data[version]

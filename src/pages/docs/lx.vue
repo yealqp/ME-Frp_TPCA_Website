@@ -204,6 +204,9 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
+import { compareVersions, sortVersionKeys } from "~/utils/version";
+
 // 使用文档布局
 definePageMeta({
   layout: 'docs'
@@ -225,7 +228,7 @@ const currentVersion = computed(() => getVersion('lx'))
 useHead({
   title: 'LX-ME-Frp-Launcher 文档',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/lx' }
+    { rel: 'canonical', href: `${SITE_URL}/docs/lx` }
   ],
   script: [
     {
@@ -248,12 +251,12 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: 'LX-ME-Frp-Launcher 文档 | ME-Frp 第三方客户端联盟',
-  ogTitle: 'LX-ME-Frp-Launcher 文档 - ME-Frp 第三方客户端联盟',
+  title: `LX-ME-Frp-Launcher 文档 | ${SITE_NAME}`,
+  ogTitle: `LX-ME-Frp-Launcher 文档 - ${SITE_NAME}`,
   description: 'LX-ME-Frp-Launcher 详细使用文档，使用易语言 & Exui 开发的 ME-Frp 第三方客户端，包含安装、配置和使用指南，支持自动登录和托盘菜单功能。',
   ogDescription: 'LX-ME-Frp-Launcher 详细使用文档，包含安装、配置和使用指南',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/Lx_MuaMua/home.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/lx',
+  ogUrl: `${SITE_URL}/docs/lx`,
   ogType: 'article',
   twitterCard: 'summary_large_image'
 })
@@ -293,21 +296,7 @@ const fetchChangelog = async () => {
   }
 }
 
-// 版本号比较
-const compareVersions = (version1, version2) => {
-  const v1Parts = version1.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-  const v2Parts = version2.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-
-  const maxLength = Math.max(v1Parts.length, v2Parts.length)
-  while (v1Parts.length < maxLength) v1Parts.push(0)
-  while (v2Parts.length < maxLength) v2Parts.push(0)
-
-  for (let i = 0; i < maxLength; i++) {
-    if (v1Parts[i] > v2Parts[i]) return 1
-    if (v1Parts[i] < v2Parts[i]) return -1
-  }
-  return 0
-}
+// 使用导入的 sortVersionKeys
 
 // 转换 API 数据
 const transformApiData = (apiData) => {
@@ -316,7 +305,7 @@ const transformApiData = (apiData) => {
   }
 
   const transformedData = []
-  const versions = Object.keys(apiData.data).sort((a, b) => compareVersions(b, a))
+  const versions = sortVersionKeys(apiData.data)
 
   versions.forEach((version, index) => {
     const versionData = apiData.data[version]

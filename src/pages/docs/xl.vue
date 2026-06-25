@@ -260,6 +260,9 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
+import { sortVersionKeys } from "~/utils/version";
+
 // 使用文档布局
 definePageMeta({
   layout: 'docs'
@@ -289,8 +292,8 @@ const currentVersion = computed(() => getVersion('xl'))
 useHead({
   title: 'ME-Frp-XL-Client 文档 - 基于 Tauri 2 的内网穿透客户端',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/xl' },
-    { rel: 'alternate', hreflang: 'zh-CN', href: 'https://mefrp-tpca.yealqp.cn/docs/xl' }
+    { rel: 'canonical', href: `${SITE_URL}/docs/xl` },
+    { rel: 'alternate', hreflang: 'zh-CN', href: `${SITE_URL}/docs/xl` }
   ],
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -339,7 +342,7 @@ useHead({
           '远程访问'
         ],
         softwareRequirements: 'WebView2 Runtime',
-        releaseNotes: 'https://mefrp-tpca.yealqp.cn/docs/xl#updates',
+        releaseNotes: `${SITE_URL}/docs/xl#updates`,
         aggregateRating: {
           '@type': 'AggregateRating',
           ratingValue: '4.8',
@@ -365,12 +368,12 @@ useHead({
         dateModified: new Date().toISOString().split('T')[0],
         publisher: {
           '@type': 'Organization',
-          name: 'ME-Frp 第三方客户端联盟',
-          url: 'https://mefrp-tpca.yealqp.cn'
+          name: SITE_NAME,
+          url: `${SITE_URL}`
         },
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': 'https://mefrp-tpca.yealqp.cn/docs/xl'
+          '@id': `${SITE_URL}/docs/xl`
         },
         image: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
         articleSection: '软件文档',
@@ -387,19 +390,19 @@ useHead({
             '@type': 'ListItem',
             position: 1,
             name: '首页',
-            item: 'https://mefrp-tpca.yealqp.cn'
+            item: `${SITE_URL}`
           },
           {
             '@type': 'ListItem',
             position: 2,
             name: '文档',
-            item: 'https://mefrp-tpca.yealqp.cn/docs'
+            item: `${SITE_URL}/docs`
           },
           {
             '@type': 'ListItem',
             position: 3,
             name: 'ME-Frp-XL-Client',
-            item: 'https://mefrp-tpca.yealqp.cn/docs/xl'
+            item: `${SITE_URL}/docs/xl`
           }
         ]
       })
@@ -409,20 +412,20 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: 'ME-Frp-XL-Client 文档 | ME-Frp 第三方客户端联盟 - Tauri 2 跨平台内网穿透工具',
-  ogTitle: 'ME-Frp-XL-Client 文档 - ME-Frp 第三方客户端联盟 | 基于 Tauri 2 的内网穿透客户端',
+  title: `ME-Frp-XL-Client 文档 | ${SITE_NAME} - Tauri 2 跨平台内网穿透工具`,
+  ogTitle: `ME-Frp-XL-Client 文档 - ${SITE_NAME} | 基于 Tauri 2 的内网穿透客户端`,
   description: 'ME-Frp-XL-Client 是基于 Tauri 2 + Vue3 + TypeScript 开发的 ME-Frp 第三方客户端，支持 Windows 10/11/Server 系统。提供内网穿透、端口映射、远程桌面、Web 服务器、游戏联机等功能。界面美观、性能优异、包体小巧、支持开机自启、系统托盘、Token 登录、人机验证等特性。',
   ogDescription: 'ME-Frp-XL-Client 详细使用文档 - 基于 Tauri 2 框架的跨平台内网穿透客户端，支持端口映射、远程访问、Web 服务、游戏联机，包含完整的安装、配置和使用指南',
   keywords: 'ME-Frp-XL-Client, ME-Frp, 内网穿透, 端口映射, Tauri 2, Vue3, TypeScript, Naive UI, Pinia, Vite, Rust, Windows 客户端, 跨平台, 远程桌面, 远程访问, Web 服务器, 游戏联机, 开机自启, 系统托盘, Token 登录, 人机验证, WebView2, frp 客户端, 第三方客户端, yealqp, 内网穿透工具, 端口转发, NAT 穿透, 反向代理, 隧道管理, 节点监控',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/xl',
+  ogUrl: `${SITE_URL}/docs/xl`,
   ogType: 'article',
   twitterCard: 'summary_large_image',
   twitterTitle: 'ME-Frp-XL-Client - 基于 Tauri 2 的内网穿透客户端',
   twitterDescription: '高性能跨平台内网穿透工具，支持 Windows 系统，界面美观、功能强大',
   twitterImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
   author: 'yealqp',
-  publisher: 'ME-Frp 第三方客户端联盟',
+  publisher: SITE_NAME,
   applicationName: 'ME-Frp-XL-Client',
   robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   googlebot: 'index, follow',
@@ -430,7 +433,7 @@ useSeoMeta({
   locale: 'zh_CN',
   ogLocale: 'zh_CN',
   articleAuthor: 'yealqp',
-  articlePublisher: 'https://mefrp-tpca.yealqp.cn',
+  articlePublisher: `${SITE_URL}`,
   articleSection: '软件文档',
   articleTag: 'Tauri, Vue3, TypeScript, 内网穿透, ME-Frp, 端口映射, Windows 客户端'
 })
@@ -468,21 +471,7 @@ const fetchChangelog = async () => {
   }
 }
 
-// 版本号比较
-const compareVersions = (version1, version2) => {
-  const v1Parts = version1.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-  const v2Parts = version2.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-
-  const maxLength = Math.max(v1Parts.length, v2Parts.length)
-  while (v1Parts.length < maxLength) v1Parts.push(0)
-  while (v2Parts.length < maxLength) v2Parts.push(0)
-
-  for (let i = 0; i < maxLength; i++) {
-    if (v1Parts[i] > v2Parts[i]) return 1
-    if (v1Parts[i] < v2Parts[i]) return -1
-  }
-  return 0
-}
+// 使用导入的 sortVersionKeys
 
 // 转换 API 数据
 const transformApiData = (apiData) => {
@@ -491,7 +480,7 @@ const transformApiData = (apiData) => {
   }
 
   const transformedData = []
-  const versions = Object.keys(apiData.data).sort((a, b) => compareVersions(b, a))
+  const versions = sortVersionKeys(apiData.data)
 
   versions.forEach((version, index) => {
     const versionData = apiData.data[version]
