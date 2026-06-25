@@ -185,6 +185,24 @@ export function getProductSummaries(versions: VersionData): ProductSummary[] {
   );
 }
 
+/** 文档首页客户端列表项（含描述） */
+export interface DocClient extends DocSidebarClient {
+  description: string;
+}
+
+export function getDocClients(versions: VersionData): DocClient[] {
+  return getProducts(versions).map(
+    ({ id, name, icon, fallbackIcon, description }) => ({
+      id,
+      name,
+      path: `/docs/${id}`,
+      description,
+      icon,
+      fallbackIcon,
+    }),
+  );
+}
+
 /** 文档侧边栏客户端列表项 */
 export interface DocSidebarClient {
   id: string;

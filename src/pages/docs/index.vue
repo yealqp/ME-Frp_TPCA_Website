@@ -174,7 +174,8 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_URL, SITE_NAME, SITE_SHORT_NAME, SITE_DESCRIPTION, OG_IMAGE, CDN_BASE, GITHUB_REPO } from "~/data/constants";
+import { SITE_URL, SITE_NAME, SITE_SHORT_NAME, SITE_DESCRIPTION, OG_IMAGE, GITHUB_REPO } from "~/data/constants";
+import { getDocClients } from "~/data/products";
 
 // 使用文档布局
 definePageMeta({
@@ -220,52 +221,13 @@ useSeoMeta({
   twitterCard: 'summary_large_image'
 })
 
-const clients = [
-  {
-    id: 'xl',
-    name: 'ME-Frp-XL-Client',
-    path: '/docs/xl',
-    description: '基于 Tauri 框架开发的跨平台客户端，界面美观，性能优异',
-    icon: `${CDN_BASE}/images/views/icon/xl_icon.webp`
-  },
-  {
-    id: 'lx',
-    name: 'LX-ME-Frp-Launcher',
-    path: '/docs/lx',
-    description: '使用易语言开发的 Windows 客户端，界面高仿官方V4客户端风格',
-    icon: `${CDN_BASE}/images/views/icon/lx_icon.webp`
-  },
-  {
-    id: 'pml',
-    name: 'PML 2',
-    path: '/docs/pml',
-    description: '基于 .NET 的跨平台客户端，支持多个操作系统',
-    icon: `${CDN_BASE}/images/views/icon/pml_icon.webp`
-  },
-  {
-    id: 'zl',
-    name: 'ZNext Launcher',
-    path: '/docs/zl',
-    description: '基于 WinUI3 框架开发的 Windows 原生客户端，采用 Fluent Design 设计语言',
-    icon: `${CDN_BASE}/images/views/zerosnow/znext-icon.png`
-  },
-  {
-    id: 'fm',
-    name: 'Fan-ME-FRP Launcher',
-    path: '/docs/fm',
-    description: '基于 Java 开发的 FRP 客户端启动器，支持 GUI 图形界面和命令行模式',
-    icon: `${CDN_BASE}/images/views/icon/fm_icon.webp`,
-    fallbackIcon: 'https://oss.cf.xiaofanshop.cn/tpcaw/images/views/icon/fm_icon.webp'
-  },
-  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端
-  {
-    id: 'fd',
-    name: 'FrpDash',
-    path: '/docs/fd',
-    description: '面向安卓端的 ME-Frp 第三方客户端，Java 原生开发，内置 frpc 四架构二进制，免 Root 开箱即用',
-    icon: 'https://fd.0n.pub/img/logo-192.png'
-  }
-]
+// 客户端列表（从共享数据获取，保持与产品定义同步）
+const { versions, fetchAllVersions } = useProductVersions()
+const clients = computed(() => getDocClients(versions.value))
+
+onMounted(() => {
+  fetchAllVersions()
+})
 
 const quickStartSteps = [
   {

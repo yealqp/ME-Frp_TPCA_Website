@@ -414,7 +414,6 @@
 
 <script setup lang="ts">
 import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
-import { compareVersions, sortVersionKeys } from "~/utils/version";
 
 // 使用文档布局
 definePageMeta({
@@ -591,67 +590,19 @@ const previewImages = [
   },
 ];
 
-// 更新日志状态
-const loading = ref(false);
-const error = ref(null);
-const updates = ref([]);
-
-// 从 API 获取更新日志
-const fetchChangelog = async () => {
-  try {
-    const response = await fetch("https://alist.yealqp.cn/download/ME-Frp%20PML2/meta/changelog.json");
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error("获取更新日志失败:", err);
-    throw err;
-  }
-};
-
-// 使用导入的 sortVersionKeys
-
-// 转换 API 数据
-const transformApiData = (apiData) => {
-  if (!apiData.data) {
-    throw new Error("API 数据格式错误");
-  }
-
-  const transformedData = [];
-  const versions = sortVersionKeys(apiData.data);
-
-  versions.forEach((version, index) => {
-    const versionData = apiData.data[version];
-    transformedData.push({
-      version: `v${version}`,
-      notes: versionData.changes || [],
-      date: versionData.date || "",
-      description: versionData.description || "",
-      codename: versionData.codename || "",
-      isLatest: index === 0,
-    });
-  });
-
-  return transformedData;
-};
-
-// 初始化更新日志
-const initializeUpdates = async () => {
-  loading.value = true;
-  error.value = null;
-
-  try {
-    const apiData = await fetchChangelog();
-    updates.value = transformApiData(apiData);
-  } catch (err) {
-    error.value = "获取更新日志失败";
-    updates.value = [];
-  } finally {
-    loading.value = false;
-  }
-};
+// 更新日志（PML 有额外 description/codename 字段）
+const { updates, loading, error, fetchChangelog } = useProductChangelog('pml', (apiData, sortKeys) => {
+  if (!apiData?.data) throw new Error("API 数据格式错误");
+  const versions = sortKeys(apiData.data);
+  return versions.map((version, index) => ({
+    version: `v${version}`,
+    notes: apiData.data[version].changes || [],
+    date: apiData.data[version].date || "",
+    description: apiData.data[version].description || "",
+    codename: apiData.data[version].codename || "",
+    isLatest: index === 0,
+  }));
+})
 
 // 轮播图状态
 const currentImageIndex = ref(0);
@@ -677,6 +628,6 @@ const openImageModal = (image) => {
 // 组件挂载时初始化
 onMounted(() => {
   fetchAllVersions();
-  initializeUpdates();
+  fetchChangelog();
 });
 </script>

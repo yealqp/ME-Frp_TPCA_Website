@@ -445,7 +445,6 @@
 
 <script setup lang="ts">
 import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
-import { compareVersions, sortVersionKeys } from "~/utils/version";
 
 // 使用文档布局
 definePageMeta({
@@ -524,77 +523,8 @@ const previewImages = [
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/about.png', alt: '关于页面' }
 ]
 
-// 更新日志状态
-const loading = ref(false)
-const error = ref(null)
-const updates = ref([])
-
-// 使用导入的 sortVersionKeys
-
-// 从 API 获取更新日志
-const fetchChangelog = async () => {
-  try {
-    const response = await fetch('https://alist.yealqp.cn/download/ZNext%20Launcher/meta/changelog.json')
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-    const data = await response.json()
-    return data
-  } catch (err) {
-    console.error('获取更新日志失败:', err)
-    throw err
-  }
-}
-
-// 转换 API 数据为组件更新列表
-const transformApiData = (apiData) => {
-  if (!apiData || !apiData.data) {
-    throw new Error('更新日志数据格式错误')
-  }
-
-  const transformedData = []
-  const versions = sortVersionKeys(apiData.data)
-
-  versions.forEach((version, index) => {
-    const versionData = apiData.data[version]
-    const changes = Array.isArray(versionData) ? versionData : (versionData.changes || [])
-    const date = Array.isArray(versionData) ? '' : (versionData.date || '')
-    const note = Array.isArray(versionData) ? '' : (versionData.note || '')
-
-    transformedData.push({
-      version: `v${version}`,
-      changes: changes,
-      date: date,
-      note: note,
-      isLatest: index === 0
-    })
-  })
-
-  return transformedData
-}
-
-// 初始化更新日志
-const initializeUpdates = async () => {
-  loading.value = true
-  error.value = null
-  updates.value = []
-
-  try {
-    const apiData = await fetchChangelog()
-    const transformed = transformApiData(apiData)
-    if (!transformed || transformed.length === 0) {
-      error.value = '暂无更新日志'
-      updates.value = []
-    } else {
-      updates.value = transformed
-    }
-  } catch (err) {
-    error.value = '获取更新日志失败'
-    updates.value = []
-  } finally {
-    loading.value = false
-  }
-}
+// 更新日志
+const { updates, loading, error, fetchChangelog } = useProductChangelog('zl')
 
 // 轮播图状态
 const currentImageIndex = ref(0)
@@ -616,6 +546,6 @@ const openImageModal = (image) => {
 // 组件挂载时初始化
 onMounted(() => {
   fetchAllVersions()
-  initializeUpdates()
+  fetchChangelog()
 })
 </script>

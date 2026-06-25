@@ -311,7 +311,6 @@
 
 <script setup lang="ts">
 import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
-import { compareVersions, sortVersionKeys } from "~/utils/version";
 
 // 使用文档布局
 definePageMeta({
@@ -356,61 +355,13 @@ const openImageModal = (image) => {
   showImageModal.value = true
 }
 
-// 更新日志状态
-const loading = ref(false)
-const error = ref(null)
-const updates = ref([])
-
-// 从 alist API 获取更新日志
-const fetchChangelog = async () => {
-  const response = await fetch('https://alist.yealqp.cn/download/DashFrp/meta/changelog.json')
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`)
-  }
-  return await response.json()
-}
-
-// 使用导入的 sortVersionKeys
-
-// 转换 API 数据为 ChangelogList 组件所需的结构
-const transformApiData = (apiData) => {
-  if (!apiData.data) {
-    throw new Error('API 数据格式错误')
-  }
-  const transformedData = []
-  const versions = sortVersionKeys(apiData.data)
-  versions.forEach((version, index) => {
-    const vData = apiData.data[version]
-    transformedData.push({
-      version: `v${version}`,
-      changes: Array.isArray(vData) ? vData : (vData.changes || []),
-      date: Array.isArray(vData) ? '' : (vData.date || ''),
-      note: Array.isArray(vData) ? '' : (vData.note || ''),
-      isLatest: index === 0
-    })
-  })
-  return transformedData
-}
-
-// 初始化更新日志
-const initializeUpdates = async () => {
-  loading.value = true
-  error.value = null
-  try {
-    updates.value = transformApiData(await fetchChangelog())
-  } catch (err) {
-    console.error('获取 FrpDash 更新日志失败:', err)
-    error.value = '获取更新日志失败'
-    updates.value = []
-  } finally {
-    loading.value = false
-  }
-}
+// 更新日志
+const { updates, loading, error, fetchChangelog } = useProductChangelog('fd')
 
 // 组件挂载时初始化版本号与更新日志
 onMounted(() => {
   fetchAllVersions()
-  initializeUpdates()
+  fetchChangelog()
 })
 
 // 页面元数据
