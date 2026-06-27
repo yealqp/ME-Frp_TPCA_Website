@@ -109,7 +109,7 @@ export default defineNuxtConfig({
       publicDir: 'dist'
     },
     prerender: {
-      routes: ['/', '/about', '/brand', '/products', '/docs', '/docs/xl', '/docs/lx', '/docs/pml', '/docs/fd'],
+      routes: ['/', '/about', '/brand', '/products', '/docs', '/docs/xl', '/docs/lx', '/docs/pml', '/docs/fd', '/docs/zl', '/docs/fm', '/docs/alliance/whitebook', '/docs/alliance/members'],
       crawlLinks: true
     },
     // 压缩优化

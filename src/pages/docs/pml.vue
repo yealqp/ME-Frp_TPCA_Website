@@ -413,6 +413,8 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
+
 // 使用文档布局
 definePageMeta({
   layout: "docs",
@@ -446,7 +448,7 @@ const currentVersion = computed(() => getVersion("pml"));
 // 页面元数据
 useHead({
   title: "PML 2 文档",
-  link: [{ rel: "canonical", href: "https://mefrp-tpca.yealqp.cn/docs/pml" }],
+  link: [{ rel: "canonical", href: `${SITE_URL}/docs/pml` }],
   script: [
     {
       type: "application/ld+json",
@@ -469,13 +471,13 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: "PML 2 文档 | ME-Frp 第三方客户端联盟",
-  ogTitle: "PML 2 文档 - ME-Frp 第三方客户端联盟",
+  title: `PML 2 文档 | ${SITE_NAME}`,
+  ogTitle: `PML 2 文档 - ${SITE_NAME}`,
   description:
     "PML 2 详细使用文档，基于 .NET 10.0 开发的跨平台 ME-Frp 第三方客户端，支持 Windows、Linux、macOS 和 Android，包含多平台安装、配置和使用指南。",
   ogDescription: "PML 2 详细使用文档，包含多平台安装、配置和使用指南",
   ogImage: "https://image.mefrp-tpca.yealqp.cn/images/views/rycb/homex.png",
-  ogUrl: "https://mefrp-tpca.yealqp.cn/docs/pml",
+  ogUrl: `${SITE_URL}/docs/pml`,
   ogType: "article",
   twitterCard: "summary_large_image",
 });
@@ -588,89 +590,19 @@ const previewImages = [
   },
 ];
 
-// 更新日志状态
-const loading = ref(false);
-const error = ref(null);
-const updates = ref([]);
-
-// 从 API 获取更新日志
-const fetchChangelog = async () => {
-  try {
-    const response = await fetch("https://api.rycb.tech/api/changelog");
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error("获取更新日志失败:", err);
-    throw err;
-  }
-};
-
-// 版本号比较
-const compareVersions = (version1, version2) => {
-  const v1Parts = version1
-    .replace(/[^\d.]/g, "")
-    .split(".")
-    .map((num) => parseInt(num) || 0);
-  const v2Parts = version2
-    .replace(/[^\d.]/g, "")
-    .split(".")
-    .map((num) => parseInt(num) || 0);
-
-  const maxLength = Math.max(v1Parts.length, v2Parts.length);
-  while (v1Parts.length < maxLength) v1Parts.push(0);
-  while (v2Parts.length < maxLength) v2Parts.push(0);
-
-  for (let i = 0; i < maxLength; i++) {
-    if (v1Parts[i] > v2Parts[i]) return 1;
-    if (v1Parts[i] < v2Parts[i]) return -1;
-  }
-  return 0;
-};
-
-// 转换 API 数据
-const transformApiData = (apiData) => {
-  if (!apiData.success || !apiData.data) {
-    throw new Error("API 数据格式错误");
-  }
-
-  const transformedData = [];
-  const versions = Object.keys(apiData.data).sort((a, b) =>
-    compareVersions(b, a),
-  );
-
-  versions.forEach((version, index) => {
-    const versionData = apiData.data[version];
-    transformedData.push({
-      version: `v${version}`,
-      notes: versionData.changes || [],
-      date: versionData.date || "",
-      description: versionData.description || "",
-      codename: versionData.codename || "",
-      isLatest: index === 0,
-    });
-  });
-
-  return transformedData;
-};
-
-// 初始化更新日志
-const initializeUpdates = async () => {
-  loading.value = true;
-  error.value = null;
-
-  try {
-    const apiData = await fetchChangelog();
-    updates.value = transformApiData(apiData);
-  } catch (err) {
-    error.value = "获取更新日志失败";
-    updates.value = [];
-  } finally {
-    loading.value = false;
-  }
-};
+// 更新日志（PML 有额外 description/codename 字段）
+const { updates, loading, error, fetchChangelog } = useProductChangelog('pml', (apiData, sortKeys) => {
+  if (!apiData?.data) throw new Error("API 数据格式错误");
+  const versions = sortKeys(apiData.data);
+  return versions.map((version, index) => ({
+    version: `v${version}`,
+    notes: apiData.data[version].changes || [],
+    date: apiData.data[version].date || "",
+    description: apiData.data[version].description || "",
+    codename: apiData.data[version].codename || "",
+    isLatest: index === 0,
+  }));
+})
 
 // 轮播图状态
 const currentImageIndex = ref(0);
@@ -696,6 +628,6 @@ const openImageModal = (image) => {
 // 组件挂载时初始化
 onMounted(() => {
   fetchAllVersions();
-  initializeUpdates();
+  fetchChangelog();
 });
 </script>

@@ -1,7 +1,8 @@
 import clarity from "@microsoft/clarity";
+import { CLARITY_PROJECT_ID } from "~/data/constants";
 
 export default defineNuxtPlugin(() => {
-  const clarityProjectId = "u33c3orphh";
+  const clarityProjectId = CLARITY_PROJECT_ID;
 
   if (!clarityProjectId) return;
 
