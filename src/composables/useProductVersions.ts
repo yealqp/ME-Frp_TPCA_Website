@@ -15,8 +15,12 @@ export interface VersionData {
   pml: string;
   zl: string;
   fm: string;
+<<<<<<< main
   fd: string; // FrpDash（面向安卓端的 ME-Frp 第三方客户端）版本号
   mgc: string; // MeFrp-GR-Client（PySide6 + Qt WebEngine 桌面客户端）版本号
+=======
+  fd: string;
+>>>>>>> main
 }
 
 interface ChangelogData {
@@ -38,15 +42,15 @@ const versionCache: VersionCache = {
 
 let fetchPromise: Promise<void> | null = null;
 
-/** 默认版本号回退值（与 useProductVersions 初始值保持一致） */
+/** 默认版本号回退值 */
 const DEFAULT_VERSIONS: VersionData = {
   xl: "v1.5.5",
-  lx: "v2.3.0",
+  lx: "v2.6",
   pml: "v2.1.0",
   zl: "v1.8",
   fm: "v1.0.0",
   fd: "v1.4.5",
-  mgc: "v1.0.0",
+  mgc: "v1.0.0
 };
 
 /**
@@ -72,7 +76,15 @@ const fetchLatestVersion = async (productId: string, fallback: string): Promise<
 };
 
 export const useProductVersions = () => {
-  const versions = shallowRef<VersionData>({ ...DEFAULT_VERSIONS });
+  const versions = shallowRef<VersionData>({
+    xl: "v1.5.5", // 默认值
+    lx: "v2.3.0", // 默认值
+    pml: "v2.1.0", // 默认值
+    zl: "v1.8", // 默认值
+    fm: "v1.0.0", // 默认值
+    fd: "v1.4.5", // FrpDash 默认值（实际以远程 API 为准）
+    mgc: "v1.0.0", // MeFrp-GR-Client 默认值（实际以 GitHub Releases 为准）
+  });
 
   const loading = ref(false);
   const error = ref<string | null>(null);
@@ -111,6 +123,28 @@ export const useProductVersions = () => {
 
     fetchPromise = (async () => {
       try {
+<<<<<<< main
+        const [xlVersion, lxVersion, pmlVersion, zlVersion, fmVersion, fdVersion, mgcVersion] = await Promise.all(
+          [
+            fetchXLVersion(),
+            fetchLXVersion(),
+            fetchPMLVersion(),
+            fetchZLVersion(),
+            fetchFMVersion(),
+            fetchFDVersion(),
+            fetchMGCVersion(),
+          ],
+        );
+        const newVersions = {
+          xl: xlVersion,
+          lx: lxVersion,
+          pml: pmlVersion,
+          zl: zlVersion,
+          fm: fmVersion,
+          fd: fdVersion,
+          mgc: mgcVersion,
+        };
+=======
         const ids = Object.keys(DEFAULT_VERSIONS) as (keyof VersionData)[];
         const results = await Promise.all(
           ids.map((id) => fetchLatestVersion(id, DEFAULT_VERSIONS[id])),
@@ -120,6 +154,7 @@ export const useProductVersions = () => {
         ids.forEach((id, i) => {
           newVersions[id] = results[i];
         });
+>>>>>>> main
 
         versions.value = newVersions;
         saveToCache(newVersions);
@@ -136,7 +171,11 @@ export const useProductVersions = () => {
   };
 
   // 获取单个产品的版本号
+<<<<<<< main
+  const getVersion = (productId: "xl" | "lx" | "pml" | "zl" | "fm" | "fd" | "mgc"): string => {
+=======
   const getVersion = (productId: keyof VersionData): string => {
+>>>>>>> main
     return versions.value[productId];
   };
 
