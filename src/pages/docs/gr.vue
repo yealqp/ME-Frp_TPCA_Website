@@ -3,7 +3,7 @@
     <!-- 页面标题 -->
     <div class="mb-8">
       <div class="flex items-center space-x-4 mb-4">
-        <img src="https://image.mefrp-tpca.yealqp.cn/images/views/icon/gr_icon.webp" alt="MeFrp-GR-Client"
+        <img src="http://iwmc.bbroot.com:8989/icon/logo.png" alt="MeFrp-GR-Client"
           class="w-12 h-12 rounded-lg"
           onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='https://image.mefrp-tpca.yealqp.cn/images/views/icon/gr_icon.png'}else{this.style.display='none'}" />
         <div>
@@ -29,7 +29,7 @@
 
       <div class="p-6 space-y-4 text-gray-300">
         <p>
-          <strong class="text-primary-400">MeFrp-GR-Client</strong> 是由
+          <strong class="text-primary-400">MeFrp-GR-Client</strong> 是由guoran
           <strong class="text-primary-400">LingYi</strong> 开发的 ME-Frp 第三方客户端，
           使用 Python + Flask 后端配合 PyQt5 WebView 图形界面，支持 Windows、Linux 和 fnOS 多平台，
           自动管理 frpc 生命周期，提供 Token 认证与隧道管理功能，让您轻松使用 ME-Frp 内网穿透服务。
@@ -289,7 +289,7 @@
 
       <div class="p-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <a href="http://58.58.154.38:5666/s/7bc84761ddb04131ba" target="_blank"
+          <a href="http://iwmc.bbroot.com:5666/s/7bc84761ddb04131ba" target="_blank"
             class="glass-card p-4 rounded-lg hover-lift flex items-center space-x-3 cursor-pointer">
             <UIcon name="i-lucide-download" class="size-6 text-primary-400" />
             <div>
@@ -339,9 +339,13 @@ const { elementRef: linksRef, isVisible: linksVisible } = useScrollAnimation()
 
 // 预览图数据
 const previewImages = [
-  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/gr/home.png', alt: '主页' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/gr/tunnel.png', alt: '隧道管理' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/gr/login.png', alt: '登录界面' },
+  { src: 'http://iwmc.bbroot.com:8989/icon/home.png', alt: '主页' },
+  { src: 'http://iwmc.bbroot.com:8989/icon/suidaoguanli.png', alt: '隧道管理' },
+  { src: 'http://iwmc.bbroot.com:8989/icon/denglu.png', alt: '登录界面' },
+  { src: 'http://iwmc.bbroot.com:8989/icon/suidaoguanli.png', alt: '隧道管理' },
+  { src: 'http://iwmc.bbroot.com:8989/icon/quanyichoujiang.png', alt: '权益抽奖' },
+  { src: 'http://iwmc.bbroot.com:8989/icon/jiedianjiankong.png', alt: '节点监控' },
+  { src: 'http://iwmc.bbroot.com:8989/icon/xitonggonggao.png', alt: '系统公告' },
 ]
 
 const currentImageIndex = ref(0)
