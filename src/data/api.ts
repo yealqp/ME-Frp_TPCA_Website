@@ -11,6 +11,7 @@ export const CHANGELOG_PATHS: Record<string, string> = {
   zl: `${ALIST_BASE}/download/ZNext%20Launcher/meta/changelog.json`,
   fm: `${ALIST_BASE}/download/Fan-ME-FRP-Launcher/meta/changelog.json`,
   fd: `${ALIST_BASE}/download/DashFrp/meta/changelog.json`,
+  gr: `${ALIST_BASE}/download/MeFrp-GR-Client/meta/changelog.json`,
 };
 
 /** 获取指定产品的 changelog URL */

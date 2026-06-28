@@ -124,6 +124,25 @@ const productBases: ProductBase[] = [
     ],
   },
   {
+    id: "gr",
+    name: "MeFrp-GR-Client",
+    author: "LingYi",
+    description:
+      "由LingYi使用Python+Flask+PyQt5开发，支持Windows、Linux和fnOS多平台，内置WebView图形界面，自动管理frpc生命周期，提供Token认证与隧道管理功能。",
+    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/gr_icon.webp",
+    screenshot:
+      "https://image.mefrp-tpca.yealqp.cn/images/views/gr/home.png",
+    link: "/docs/gr",
+    tags: ["Python", "跨平台", "Flask", "PyQt5"],
+    features: [
+      "基于 Python + Flask 开发，跨平台支持",
+      "支持 Windows、Linux (.deb)、fnOS (NAS) 多平台",
+      "内置 WebView 图形界面，操作直观便捷",
+      "自动下载与管理 frpc 生命周期",
+      "Token 认证登录，隧道一键启停",
+    ],
+  },
+  {
     id: "fd",
     name: "FrpDash",
     author: "zhai",
