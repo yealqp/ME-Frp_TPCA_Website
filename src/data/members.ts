@@ -12,6 +12,7 @@ export const members: Member[] = [
   { name: "ZeroSnow", avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=3976141098&spec=4", role: "成员", link: "https://github.com/chencomcdyun" },
   { name: "xiaofan", avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=2183576276&spec=4", role: "成员", link: "https://github.com/xiaofanforfabric/" },
   { name: "zhai", avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=2088264797&spec=4", role: "成员", link: "https://github.com/zcj-ui" },
+  { name: "guoran", avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=1069501376&spec=4", role: "成员", link: "https://github.com/Guoran-11" },
 ];
 
 /** 团队成员总数（从数据自动推导） */
