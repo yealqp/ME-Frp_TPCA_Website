@@ -126,12 +126,12 @@ const productBases: ProductBase[] = [
   {
     id: "gr",
     name: "MeFrp-GR-Client",
-    author: "LingYi",
+    author: "Guoran11",
     description:
-      "由LingYi使用Python+Flask+PyQt5开发，支持Windows、Linux和fnOS多平台，内置WebView图形界面，自动管理frpc生命周期，提供Token认证与隧道管理功能。",
-    icon: "https://image.mefrp-tpca.yealqp.cn/images/views/icon/gr_icon.webp",
+      "由Guoran11使用Python+Flask+PyQt5开发，支持Windows、Linux和fnOS多平台，内置WebView图形界面，自动管理frpc生命周期，提供Token认证与隧道管理功能。",
+    icon: "https://alist.yealqp.cn/mefrp-desktop/MeFrp-GR-Client/icon/logo.png",
     screenshot:
-      "https://image.mefrp-tpca.yealqp.cn/images/views/gr/home.png",
+      "https://alist.yealqp.cn/mefrp-desktop/MeFrp-GR-Client/icon/home.png",
     link: "/docs/gr",
     tags: ["Python", "跨平台", "Flask", "PyQt5"],
     features: [
