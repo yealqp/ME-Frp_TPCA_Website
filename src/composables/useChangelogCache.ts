@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, shallowRef } from "vue";
 
 /**
  * Changelog 缓存管理
@@ -7,89 +7,89 @@ import { ref } from 'vue'
 
 interface ChangelogCache {
   [key: string]: {
-    data: any
-    timestamp: number
-  }
+    data: any;
+    timestamp: number;
+  };
 }
 
-const cache: ChangelogCache = {}
-const CACHE_TTL = 5 * 60 * 1000 // 5分钟缓存
+const cache: ChangelogCache = {};
+const CACHE_TTL = 5 * 60 * 1000; // 5分钟缓存
 
 export const useChangelogCache = (apiUrl: string) => {
-  const data = ref<any>(null)
-  const loading = ref(false)
-  const error = ref<string | null>(null)
+  const data = shallowRef<any>(null);
+  const loading = ref(false);
+  const error = ref<string | null>(null);
 
   // 检查缓存是否有效
   const isCacheValid = (key: string): boolean => {
-    const cached = cache[key]
-    if (!cached) return false
-    return (Date.now() - cached.timestamp) < CACHE_TTL
-  }
+    const cached = cache[key];
+    if (!cached) return false;
+    return Date.now() - cached.timestamp < CACHE_TTL;
+  };
 
   // 从缓存获取
   const getFromCache = (key: string): any | null => {
     if (isCacheValid(key)) {
-      return cache[key].data
+      return cache[key].data;
     }
-    return null
-  }
+    return null;
+  };
 
   // 保存到缓存
   const saveToCache = (key: string, value: any): void => {
     cache[key] = {
       data: value,
-      timestamp: Date.now()
-    }
-  }
+      timestamp: Date.now(),
+    };
+  };
 
   // 获取 changelog 数据
   const fetchChangelog = async () => {
     // 先检查缓存
-    const cached = getFromCache(apiUrl)
+    const cached = getFromCache(apiUrl);
     if (cached) {
-      data.value = cached
-      return cached
+      data.value = cached;
+      return cached;
     }
 
-    if (loading.value) return
+    if (loading.value) return;
 
-    loading.value = true
-    error.value = null
+    loading.value = true;
+    error.value = null;
 
     try {
-      const response = await fetch(apiUrl)
+      const response = await fetch(apiUrl);
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
-      const result = await response.json()
-      data.value = result
-      saveToCache(apiUrl, result)
-      return result
+
+      const result = await response.json();
+      data.value = result;
+      saveToCache(apiUrl, result);
+      return result;
     } catch (err) {
-      console.error('获取 changelog 失败:', err)
-      error.value = '获取更新日志失败'
-      throw err
+      console.error("获取 changelog 失败:", err);
+      error.value = "获取更新日志失败";
+      throw err;
     } finally {
-      loading.value = false
+      loading.value = false;
     }
-  }
+  };
 
   // 清除缓存
   const clearCache = (key?: string): void => {
     if (key) {
-      delete cache[key]
+      delete cache[key];
     } else {
-      Object.keys(cache).forEach(k => delete cache[k])
+      Object.keys(cache).forEach((k) => delete cache[k]);
     }
-  }
+  };
 
   return {
     data,
     loading,
     error,
     fetchChangelog,
-    clearCache
-  }
-}
+    clearCache,
+  };
+};

@@ -8,7 +8,7 @@
             <h1 class="text-2xl md:text-3xl font-bold text-white">
               请稍候，正在重定向...
             </h1>
-            
+
             <div class="loading-dots mx-auto">
               <div></div>
               <div></div>
@@ -32,18 +32,11 @@
 
           <!-- 产品下载 -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div 
-              v-for="product in products" 
-              :key="product.id"
-              class="glass-card rounded-xl overflow-hidden hover-lift transition-colors"
-            >
+            <div v-for="product in products" :key="product.id"
+              class="glass-card rounded-xl overflow-hidden hover-lift transition-colors">
               <div class="p-4 border-b border-white/10">
                 <div class="flex items-center space-x-3">
-                  <img 
-                    :src="product.icon" 
-                    :alt="product.name"
-                    class="w-10 h-10 rounded-lg"
-                  >
+                  <img :src="product.icon" :alt="product.name" class="w-10 h-10 rounded-lg">
                   <div>
                     <h3 class="font-semibold text-white">{{ product.name }}</h3>
                     <p class="text-sm text-gray-400">{{ product.author }} · {{ product.version }}</p>
@@ -56,12 +49,7 @@
                   {{ product.description }}
                 </p>
 
-                <UButton 
-                  block 
-                  color="primary"
-                  :to="product.downloadUrl"
-                  target="_blank"
-                >
+                <UButton block color="primary" :to="product.downloadUrl" target="_blank">
                   <UIcon name="i-lucide-download" class="size-4 mr-2" />
                   下载
                 </UButton>
@@ -72,11 +60,7 @@
           <!-- 手动跳转 -->
           <div v-if="showRedirectBtn && protocolAvailable" class="space-y-4">
             <p class="text-gray-400">自动重定向失败，请手动点击按钮</p>
-            <UButton 
-              size="lg" 
-              color="primary"
-              @click="startRedirect"
-            >
+            <UButton size="lg" color="primary" @click="startRedirect">
               <UIcon name="i-lucide-external-link" class="size-5 mr-2" />
               跳转链接 ({{ countdown }}s)
             </UButton>
@@ -100,11 +84,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { SITE_NAME, SITE_URL, CDN_BASE, OG_IMAGE, PROTOCOL_FALLBACK_DELAY, PROTOCOL_COUNTDOWN_INIT, PROTOCOL_TICK_INTERVAL } from "~/data/constants";
+
 const route = useRoute()
 const protocolAvailable = ref(true)
 const showRedirectBtn = ref(false)
-const countdown = ref(5)
+const countdown = ref(PROTOCOL_COUNTDOWN_INIT)
 const id = ref('')
 
 // 使用版本管理 composable
@@ -118,8 +104,8 @@ const products = computed(() => [
     author: 'yealqp',
     version: versions.value.xl,
     description: '由yealqp使用Tauri框架开发，界面高仿官网样式，可能是目前收录的三个客户端中最美观的一个。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp',
-    downloadUrl: 'https://mefrp-tpca.yealqp.cn/docs/xl'
+    icon: `${CDN_BASE}/images/views/icon/xl_icon.webp`,
+    downloadUrl: `${SITE_URL}/docs/xl`
   },
   {
     id: 'lx',
@@ -127,8 +113,8 @@ const products = computed(() => [
     author: '灵弦MuaMua',
     version: versions.value.lx,
     description: '由灵弦MuaMua使用易语言&Exui开发，界面高仿官方图形化V4.0。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/lx_icon.webp',
-    downloadUrl: 'https://mefrp-tpca.yealqp.cn/docs/lx'
+    icon: `${CDN_BASE}/images/views/icon/lx_icon.webp`,
+    downloadUrl: `${SITE_URL}/docs/lx`
   },
   {
     id: 'pml',
@@ -136,8 +122,18 @@ const products = computed(() => [
     author: 'RYCB工作室',
     version: versions.value.pml,
     description: 'PML 2使用.NET提供了简单便捷的操作，支持常见主流平台。',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp',
-    downloadUrl: 'https://mefrp-tpca.yealqp.cn/docs/pml'
+    icon: `${CDN_BASE}/images/views/icon/pml_icon.webp`,
+    downloadUrl: `${SITE_URL}/docs/pml`
+  },
+  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端，下载引导至开发者官网
+  {
+    id: 'fd',
+    name: 'FrpDash',
+    author: 'zhai',
+    version: versions.value.fd,
+    description: '面向安卓端的 ME-Frp 第三方客户端，Java 原生开发，内置 frpc 四架构二进制，免 Root 开箱即用。',
+    icon: 'https://fd.0n.pub/img/logo-192.png',
+    downloadUrl: 'https://fd.0n.pub/'
   }
 ])
 
@@ -161,7 +157,7 @@ const startCountdown = () => {
       clearInterval(timer)
       showRedirectBtn.value = true
     }
-  }, 1000)
+  }, PROTOCOL_TICK_INTERVAL)
 }
 
 onMounted(() => {
@@ -174,7 +170,7 @@ onMounted(() => {
     if (protocolAvailable.value) {
       startRedirect()
     }
-  }, 5000)
+  }, PROTOCOL_FALLBACK_DELAY)
 })
 
 // 页面元数据
@@ -187,7 +183,7 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: '协议跳转 | ME-Frp 第三方客户端联盟',
+  title: `协议跳转 | ${SITE_NAME}`,
   description: 'ME-Frp 客户端协议跳转页面，自动启动已安装的 ME-Frp 第三方客户端',
   robots: 'noindex, nofollow'
 })

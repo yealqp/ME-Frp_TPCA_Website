@@ -8,25 +8,25 @@ export default defineNuxtConfig({
     }
   },
   
-  // Nuxt UI 4 模块
+  // Nuxt UI 4 模块（禁用 @nuxt/fonts，项目使用自托管字体）
   modules: [
     '@nuxt/ui'
   ],
+  ui: {
+    fonts: false
+  },
 
   // CSS 配置 - Nuxt UI 4 会自动处理 Tailwind
   css: [
     '@/assets/css/main.css'
   ],
 
-  // Nuxt UI 4 字体配置 - 禁用 Google Fonts
-  fonts: {
-    provider: 'none'
-  },
-
   // 实验性功能 - 性能优化
   experimental: {
     payloadExtraction: true,
-    viewTransition: true
+    viewTransition: true,
+    inlineSSRStyles: true,
+    asyncContext: true,
   },
 
   // Vite 构建优化
@@ -36,7 +36,8 @@ export default defineNuxtConfig({
       rollupOptions: {
         output: {
           manualChunks: {
-            'vendor': ['vue', 'vue-router']
+            'vendor': ['vue', 'vue-router'],
+            'icons': ['simple-icons', '@iconify-json/lucide'],
           }
         }
       }
@@ -83,7 +84,7 @@ export default defineNuxtConfig({
         // DNS 预解析
         { rel: 'dns-prefetch', href: 'https://image.mefrp-tpca.yealqp.cn' },
         { rel: 'dns-prefetch', href: 'https://check.yealqp.cn' },
-        { rel: 'dns-prefetch', href: 'https://api.rycb.mxj.pub' },
+        { rel: 'dns-prefetch', href: 'https://api.rycb.tech' },
         { rel: 'dns-prefetch', href: 'https://umami.yealqp.cn' },
         // 预连接关键域名
         { rel: 'preconnect', href: 'https://image.mefrp-tpca.yealqp.cn', crossorigin: 'anonymous' },
@@ -93,10 +94,9 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          defer: true,
           src: 'https://umami.yealqp.cn/script.js',
           'data-website-id': '2c44a45e-a4bb-40ea-ab3c-75936119e6a2',
-          async: true
+          defer: true
         }
       ]
     }
@@ -109,7 +109,7 @@ export default defineNuxtConfig({
       publicDir: 'dist'
     },
     prerender: {
-      routes: ['/', '/about', '/brand', '/products', '/docs', '/docs/xl', '/docs/lx', '/docs/pml'],
+      routes: ['/', '/about', '/brand', '/products', '/docs', '/docs/xl', '/docs/lx', '/docs/pml', '/docs/fd', '/docs/zl', '/docs/fm', '/docs/alliance/whitebook', '/docs/alliance/members'],
       crawlLinks: true
     },
     // 压缩优化

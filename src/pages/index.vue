@@ -6,18 +6,15 @@
       <div class="absolute inset-0">
         <div class="absolute inset-0 bg-gradient-to-br from-teal-900/20 via-gray-950 to-blue-900/20"></div>
         <!-- 动态光斑 - 添加浮动效果 -->
-        <div 
+        <div
           class="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse-slow animate-float"
-          :style="{ transform: `translateY(${parallaxOffset * 0.3}px)` }"
-        ></div>
-        <div 
+          :style="{ transform: `translateY(${parallaxOffset * 0.3}px)` }"></div>
+        <div
           class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-1000"
-          :style="{ transform: `translateY(${parallaxOffset * 0.2}px)` }"
-        ></div>
-        <div 
+          :style="{ transform: `translateY(${parallaxOffset * 0.2}px)` }"></div>
+        <div
           class="absolute top-1/2 right-1/3 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse-slow animation-delay-500"
-          :style="{ transform: `translateY(${parallaxOffset * 0.4}px)` }"
-        ></div>
+          :style="{ transform: `translateY(${parallaxOffset * 0.4}px)` }"></div>
       </div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -27,16 +24,17 @@
             <!-- 发光标题 -->
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-glow">
               <span class="block">
-                <span class="text-gradient bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  ME-Frp 第三方客户端联盟
+                <span
+                  class="text-gradient bg-gradient-to-r from-teal-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  {{ SITE_NAME }}
                 </span>
               </span>
             </h1>
-            
+
             <div class="flex items-center justify-center space-x-6 text-gray-400 text-sm">
               <div class="flex items-center space-x-2">
                 <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span>4+ 客户端产品</span>
+                <span>{{ PRODUCT_COUNT }}+ 客户端产品</span>
               </div>
               <div class="flex items-center space-x-2">
                 <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
@@ -54,23 +52,14 @@
 
           <!-- 按钮组 -->
           <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-            <UButton 
-              size="xl" 
-              color="primary"
-              to="/products"
-              class="px-8 py-4 text-lg font-semibold btn-glow hover-lift cursor-pointer"
-            >
+            <UButton size="xl" color="primary" to="/products"
+              class="px-8 py-4 text-lg font-semibold btn-glow hover-lift cursor-pointer">
               <UIcon name="i-lucide-box" class="size-5 mr-2" />
               探索产品
             </UButton>
-            
-            <UButton 
-              size="xl" 
-              color="neutral"
-              variant="outline"
-              to="/about"
-              class="px-8 py-4 text-lg btn-glow hover-lift cursor-pointer"
-            >
+
+            <UButton size="xl" color="neutral" variant="outline" to="/about"
+              class="px-8 py-4 text-lg btn-glow hover-lift cursor-pointer">
               <UIcon name="i-lucide-users" class="size-5 mr-2" />
               了解更多
             </UButton>
@@ -89,7 +78,10 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { SITE_URL, SITE_NAME, SITE_SHORT_NAME, CDN_BASE, OG_IMAGE, GITHUB_REPO, ANIMATION } from "~/data/constants";
+import { PRODUCT_COUNT } from "~/data/products";
+
 // 视差效果
 const parallaxOffset = ref(0)
 
@@ -99,17 +91,24 @@ const isScrolling = ref(false)
 // 检测是否为移动设备
 const isMobile = ref(false)
 
+// 组件挂载状态（用于防止卸载后继续执行动画）
+let isMounted = true
+
 // 平滑滚动到指定位置
 const smoothScrollTo = (targetPosition) => {
   if (isScrolling.value) return
-  
+
   isScrolling.value = true
   const startPosition = window.pageYOffset
   const distance = targetPosition - startPosition
-  const duration = 800
+  const duration = ANIMATION.SCROLL_DURATION
   let start = null
+  let rafId = null
 
   const smoothScroll = (timestamp) => {
+    // 组件已卸载 → 停止动画
+    if (!isMounted) return
+
     if (!start) start = timestamp
     const progress = timestamp - start
     const percentage = Math.min(progress / duration, 1)
@@ -120,23 +119,23 @@ const smoothScrollTo = (targetPosition) => {
     window.scrollTo(0, startPosition + distance * easeOutQuart)
 
     if (progress < duration) {
-      requestAnimationFrame(smoothScroll)
+      rafId = requestAnimationFrame(smoothScroll)
     } else {
       isScrolling.value = false
     }
   }
 
-  requestAnimationFrame(smoothScroll)
+  rafId = requestAnimationFrame(smoothScroll)
 }
 
 // 处理滚轮事件
 const handleWheel = (event) => {
   // 移动设备上禁用滚动效果
   if (isMobile.value) return
-  
+
   const heroHeight = window.innerHeight
   const scrollY = window.scrollY
-  
+
   // 正在滚动动画中，阻止所有滚动
   if (isScrolling.value) {
     event.preventDefault()
@@ -146,7 +145,7 @@ const handleWheel = (event) => {
   // 在 hero 区域内（scrollY < heroHeight）
   if (scrollY < heroHeight) {
     event.preventDefault()
-    
+
     const delta = event.deltaY
 
     if (delta > 0) {
@@ -158,9 +157,9 @@ const handleWheel = (event) => {
     }
     return
   }
-  
+
   // 刚离开 hero 区域不远时（heroHeight <= scrollY < heroHeight + 100），向上滚动吸附回 hero
-  if (scrollY < heroHeight + 100 && event.deltaY < 0) {
+  if (scrollY < heroHeight + ANIMATION.SNAP_OFFSET && event.deltaY < 0) {
     event.preventDefault()
     smoothScrollTo(0)
   }
@@ -172,19 +171,19 @@ let touchStartY = 0
 const handleTouchStart = (event) => {
   // 移动设备上禁用滚动效果
   if (isMobile.value) return
-  
+
   touchStartY = event.touches[0].clientY
 }
 
 const handleTouchMove = (event) => {
   // 移动设备上禁用滚动效果
   if (isMobile.value) return
-  
+
   const heroHeight = window.innerHeight
   const scrollY = window.scrollY
-  
+
   // 在 hero 区域内或刚离开 hero 区域时阻止默认触摸滚动
-  if ((scrollY < heroHeight || scrollY < heroHeight + 100) && !isScrolling.value) {
+  if ((scrollY < heroHeight || scrollY < heroHeight + ANIMATION.SNAP_OFFSET) && !isScrolling.value) {
     event.preventDefault()
   }
 }
@@ -192,15 +191,15 @@ const handleTouchMove = (event) => {
 const handleTouchEnd = (event) => {
   // 移动设备上禁用滚动效果
   if (isMobile.value) return
-  
+
   const heroHeight = window.innerHeight
   const scrollY = window.scrollY
-  
+
   if (isScrolling.value) return
 
   const touchEndY = event.changedTouches[0].clientY
   const deltaY = touchStartY - touchEndY
-  const threshold = 50
+  const threshold = ANIMATION.SWIPE_THRESHOLD
 
   // 在 hero 区域内
   if (scrollY < heroHeight) {
@@ -213,9 +212,9 @@ const handleTouchEnd = (event) => {
     }
     return
   }
-  
+
   // 刚离开 hero 区域不远时，向上滑动吸附回 hero
-  if (scrollY < heroHeight + 100 && deltaY < -threshold) {
+  if (scrollY < heroHeight + ANIMATION.SNAP_OFFSET && deltaY < -threshold) {
     smoothScrollTo(0)
   }
 }
@@ -227,10 +226,10 @@ const updateParallax = () => {
 
 onMounted(() => {
   if (import.meta.server) return
-  
+
   // 检测是否为移动设备
   isMobile.value = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768
-  
+
   window.addEventListener('scroll', updateParallax, { passive: true })
   window.addEventListener('wheel', handleWheel, { passive: false })
   window.addEventListener('touchstart', handleTouchStart, { passive: true })
@@ -240,6 +239,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   if (import.meta.server) return
+  isMounted = false
   window.removeEventListener('scroll', updateParallax)
   window.removeEventListener('wheel', handleWheel)
   window.removeEventListener('touchstart', handleTouchStart)
@@ -251,7 +251,7 @@ onUnmounted(() => {
 useHead({
   title: '首页',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/' }
+    { rel: 'canonical', href: `${SITE_URL}/` }
   ],
   script: [
     {
@@ -259,13 +259,13 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        name: 'ME-Frp 第三方客户端联盟',
-        alternateName: 'ME-Frp TPCA',
-        url: 'https://mefrp-tpca.yealqp.cn',
+        name: SITE_NAME,
+        alternateName: SITE_SHORT_NAME,
+        url: SITE_URL,
         logo: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/favicon.ico',
         description: 'ME-Frp 第三方客户端联盟官方网站，专注于 ME-Frp 第三方客户端开发，提供多款优质内网穿透客户端',
         sameAs: [
-          'https://github.com/yealqp/ME-Frp_TPCA_Website'
+          GITHUB_REPO
         ]
       })
     }
@@ -274,16 +274,16 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: '首页 | ME-Frp 第三方客户端联盟',
-  ogTitle: 'ME-Frp 第三方客户端联盟 - 专业内网穿透客户端',
+  title: `首页 | ${SITE_NAME}`,
+  ogTitle: `${SITE_NAME} - 专业内网穿透客户端`,
   description: 'ME-Frp 第三方客户端联盟官方网站，专注于 ME-Frp 第三方客户端开发，提供 ME-Frp-XL-Client、LX-ME-Frp-Launcher、Plain ME Frp Launcher 等多款优质内网穿透客户端。',
   ogDescription: 'ME-Frp 第三方客户端联盟官方网站，专注于 ME-Frp 第三方客户端开发，提供多款优质内网穿透客户端，支持 Windows、Linux、macOS 等多平台。',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/',
+  ogImage: OG_IMAGE,
+  ogUrl: `${SITE_URL}/`,
   ogType: 'website',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'ME-Frp 第三方客户端联盟',
+  twitterTitle: SITE_NAME,
   twitterDescription: '专注于 ME-Frp 第三方客户端开发，提供多款优质内网穿透客户端',
-  twitterImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png'
+  twitterImage: OG_IMAGE
 })
 </script>
