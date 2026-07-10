@@ -5,7 +5,6 @@
       <!-- 动态渐变背景 -->
       <div class="absolute inset-0">
         <div class="absolute inset-0 bg-gradient-to-br from-teal-900/20 via-gray-950 to-blue-900/20"></div>
-        <!-- 动态光斑 - 添加浮动效果 -->
         <div
           class="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse-slow animate-float"
           :style="{ transform: `translateY(${parallaxOffset * 0.3}px)` }"></div>
@@ -18,10 +17,18 @@
       </div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <div class="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
+        <div class="max-w-4xl mx-auto space-y-8">
+          <!-- 徽章标签 -->
+          <div ref="heroBadgeRef" class="scroll-animate" :class="{ 'visible': heroBadgeVisible }">
+            <div
+              class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-sm">
+              <div class="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></div>
+              <span>ME-Frp 第三方客户端联盟</span>
+            </div>
+          </div>
+
           <!-- 主标题 -->
-          <div class="text-center space-y-6">
-            <!-- 发光标题 -->
+          <div ref="heroTitleRef" class="scroll-animate text-center space-y-6" :class="{ 'visible': heroTitleVisible }">
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-glow">
               <span class="block">
                 <span
@@ -31,31 +38,43 @@
               </span>
             </h1>
 
-            <div class="flex items-center justify-center space-x-6 text-gray-400 text-sm">
+            <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-gray-400 text-sm">
               <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <UIcon name="i-lucide-box" class="size-4 text-teal-400" />
                 <span>{{ PRODUCT_COUNT }}+ 客户端产品</span>
               </div>
               <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                <span>跨平台支持</span>
+                <UIcon name="i-lucide-users" class="size-4 text-teal-400" />
+                <span>{{ MEMBER_COUNT }}+ 开发者</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <UIcon name="i-lucide-monitor" class="size-4 text-teal-400" />
+                <span>全平台覆盖</span>
               </div>
             </div>
           </div>
 
           <!-- 副标题 -->
-          <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed text-center">
-            专注于 <span class="text-teal-400 font-semibold">ME-Frp</span> 第三方客户端开发，
+          <p ref="heroSubRef" class="scroll-animate text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed text-center"
+            :class="{ 'visible': heroSubVisible }">
+            由社区驱动，为 <span class="text-teal-400 font-semibold">ME-Frp</span> 用户打造
             <br class="hidden md:block">
-            为用户提供更美观、更便捷、更强大的内网穿透体验
+            更美观、更便捷、更强大的<strong class="text-white">全平台内网穿透客户端矩阵</strong>
           </p>
 
           <!-- 按钮组 -->
-          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+          <div ref="heroBtnRef" class="scroll-animate flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+            :class="{ 'visible': heroBtnVisible }">
             <UButton size="xl" color="primary" to="/products"
               class="px-8 py-4 text-lg font-semibold btn-glow hover-lift cursor-pointer">
               <UIcon name="i-lucide-box" class="size-5 mr-2" />
               探索产品
+            </UButton>
+
+            <UButton size="xl" color="neutral" variant="outline" to="/docs"
+              class="px-8 py-4 text-lg btn-glow hover-lift cursor-pointer">
+              <UIcon name="i-lucide-book-open" class="size-5 mr-2" />
+              查看文档
             </UButton>
 
             <UButton size="xl" color="neutral" variant="outline" to="/about"
@@ -68,8 +87,9 @@
       </div>
 
       <!-- 向下滚动提示 -->
-      <div class="absolute bottom-8 left-0 right-0 flex justify-center animate-bounce">
-        <UIcon name="i-lucide-chevrons-down" class="size-8 text-gray-400" />
+      <div class="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-2 animate-bounce">
+        <span class="text-gray-500 text-xs">向下滚动探索更多</span>
+        <UIcon name="i-lucide-chevrons-down" class="size-6 text-gray-400" />
       </div>
     </section>
 
@@ -81,6 +101,13 @@
 <script setup lang="ts">
 import { SITE_URL, SITE_NAME, SITE_SHORT_NAME, CDN_BASE, OG_IMAGE, GITHUB_REPO, ANIMATION } from "~/data/constants";
 import { PRODUCT_COUNT } from "~/data/products";
+import { MEMBER_COUNT } from "~/data/members";
+
+// 滚动动画
+const { elementRef: heroBadgeRef, isVisible: heroBadgeVisible } = useScrollAnimation()
+const { elementRef: heroTitleRef, isVisible: heroTitleVisible } = useScrollAnimation()
+const { elementRef: heroSubRef, isVisible: heroSubVisible } = useScrollAnimation()
+const { elementRef: heroBtnRef, isVisible: heroBtnVisible } = useScrollAnimation()
 
 // 视差效果
 const parallaxOffset = ref(0)
