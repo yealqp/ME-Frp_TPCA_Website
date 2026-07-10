@@ -217,6 +217,25 @@
                 </div>
               </div>
             </div>
+
+            <div>
+              <h3 class="text-lg font-semibold text-white mb-3">字体规范</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-4 rounded-lg overflow-hidden hover-lift">
+                  <h4 class="font-semibold text-teal-400 mb-3">中文标题</h4>
+                  <div class="text-3xl font-bold text-white mb-2" style="font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;">中文字体展示</div>
+                  <p class="text-sm text-gray-400">PingFang SC / Microsoft YaHei · Bold</p>
+                  <div class="text-lg text-gray-300 mt-2" style="font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;">段落文字使用 Regular 字重</div>
+                </div>
+                <div class="glass-card p-4 rounded-lg overflow-hidden hover-lift">
+                  <h4 class="font-semibold text-teal-400 mb-3">英文 / 代码</h4>
+                  <div class="text-3xl font-bold text-white mb-2" style="font-family: 'Inter', 'SF Pro Display', sans-serif;">English Display</div>
+                  <p class="text-sm text-gray-400">Inter / SF Pro Display · Bold</p>
+                  <div class="mt-2"><code class="text-sm text-teal-400 bg-gray-900 px-2 py-1 rounded" style="font-family: 'JetBrains Mono', 'Fira Code', monospace;">console.log('TPCA')</code></div>
+                  <p class="text-sm text-gray-400 mt-1">JetBrains Mono / Fira Code · 代码字体</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

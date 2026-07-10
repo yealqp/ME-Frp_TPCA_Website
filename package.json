@@ -14,14 +14,14 @@
     "@microsoft/clarity": "^1.0.2",
     "@nuxt/ui": "^4.9.0",
     "nuxt": "^4.4.8",
-    "simple-icons": "^16.24.0",
-    "tailwindcss": "^4.3.1",
-    "vue": "^3.5.38",
+    "simple-icons": "^16.25.0",
+    "tailwindcss": "^4.3.2",
+    "vue": "^3.5.39",
     "vue-router": "^5.1.0"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.114",
+    "@iconify-json/lucide": "^1.2.116",
     "@nuxt/devtools": "4.0.0-alpha.7",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   }
 }

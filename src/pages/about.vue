@@ -45,11 +45,38 @@
               从 <strong class="text-white">2025/8/13</strong> 的上午直至今日，在Development路上不断学习、不断前行的身影，时时映在我们身上。
             </p>
             <p>
-              我们是一位位不畏难、不退缩、勇创新、敢作为的伙伴携手共成的团体。现归属于<strong class="text-white">幻缘网络</strong>旗下。
+              我们是一位位不畏难、不退缩、勇创新、敢作为的伙伴携手共成的团体。现归属于<strong class="text-white">云上极致</strong>旗下。
             </p>
             <p>
               专注于<strong class="text-teal-400">ME-Frp第三方客户端开发</strong>。
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 数据一览 -->
+    <section class="py-8 lg:py-12 relative" style="background: #0F172A;">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref="statsRef" class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
+          :class="{ 'visible': statsVisible }">
+          <div class="p-6 border-b border-white/10">
+            <div class="flex items-center space-x-3">
+              <UIcon name="i-lucide-bar-chart-3" class="size-6 text-teal-400" />
+              <h2 class="text-2xl font-bold text-white">数据一览</h2>
+            </div>
+          </div>
+          <div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div v-for="stat in stats" :key="stat.label"
+              class="glass-card text-center space-y-2 p-6 rounded-lg hover-lift overflow-hidden">
+              <div class="flex justify-center">
+                <div class="p-3 rounded-full" style="background: rgba(20, 184, 166, 0.15);">
+                  <UIcon :name="stat.icon" class="size-6 text-teal-400" />
+                </div>
+              </div>
+              <div class="text-3xl font-bold text-teal-400" :style="{ textShadow: '0 0 15px rgba(20, 184, 166, 0.3)' }">{{ stat.value }}</div>
+              <p class="text-gray-400 text-sm">{{ stat.label }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -188,10 +215,12 @@ useSeoMeta({
 
 import { timeline } from "~/data/timeline";
 import { values } from "~/data/values";
+import { stats } from "~/data/stats";
 import { GITHUB_REPO, SITE_URL, SITE_NAME, OG_IMAGE, SITE_SHORT_NAME } from "~/data/constants";
 
 // 滚动动画
 const { elementRef: whoWeAreRef, isVisible: whoWeAreVisible } = useScrollAnimation()
+const { elementRef: statsRef, isVisible: statsVisible } = useScrollAnimation()
 const { elementRef: timelineRef, isVisible: timelineVisible } = useScrollAnimation()
 const { elementRef: valuesRef, isVisible: valuesVisible } = useScrollAnimation()
 const { elementRef: contactRef, isVisible: contactVisible } = useScrollAnimation()
