@@ -94,6 +94,50 @@
       </div>
     </section>
 
+    <!-- 为什么选择我们 -->
+    <section class="py-16 lg:py-24 relative" style="background: linear-gradient(180deg, #0F172A 0%, #111827 100%);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref="whyUsRef" class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
+          :class="{ 'visible': whyUsVisible }">
+          <div class="p-6 border-b border-white/10">
+            <div class="flex items-center space-x-3">
+              <UIcon name="i-lucide-star" class="size-6 text-teal-400" />
+              <h2 class="text-2xl font-bold text-white">为什么选择我们？</h2>
+            </div>
+          </div>
+          <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card text-center space-y-4 p-6 rounded-lg hover-lift overflow-hidden">
+              <div class="flex justify-center">
+                <div class="p-4 rounded-full" style="background: rgba(20, 184, 166, 0.2);">
+                  <UIcon name="i-lucide-palette" class="size-8 text-teal-400" />
+                </div>
+              </div>
+              <h3 class="text-lg font-semibold text-white">多样选择</h3>
+              <p class="text-gray-400 text-sm">覆盖 Windows、Linux、macOS、Android 全平台，{{ PRODUCT_COUNT }}+ 款客户端任你挑选</p>
+            </div>
+            <div class="glass-card text-center space-y-4 p-6 rounded-lg hover-lift overflow-hidden">
+              <div class="flex justify-center">
+                <div class="p-4 rounded-full" style="background: rgba(20, 184, 166, 0.2);">
+                  <UIcon name="i-lucide-shield" class="size-8 text-teal-400" />
+                </div>
+              </div>
+              <h3 class="text-lg font-semibold text-white">安全可靠</h3>
+              <p class="text-gray-400 text-sm">大多项目开源或半开源，代码可审查，社区共同维护，确保安全透明</p>
+            </div>
+            <div class="glass-card text-center space-y-4 p-6 rounded-lg hover-lift overflow-hidden">
+              <div class="flex justify-center">
+                <div class="p-4 rounded-full" style="background: rgba(20, 184, 166, 0.2);">
+                  <UIcon name="i-lucide-zap" class="size-8 text-teal-400" />
+                </div>
+              </div>
+              <h3 class="text-lg font-semibold text-white">持续更新</h3>
+              <p class="text-gray-400 text-sm">活跃的开发者社区，定期迭代发布新版本，功能不断完善</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="py-16 lg:py-24 relative overflow-hidden"
       style="background: linear-gradient(135deg, #0F172A 0%, #0A0E27 50%, #0F172A 100%);">
@@ -217,6 +261,7 @@ useSeoMeta({
 
 // 滚动动画
 const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation()
+const { elementRef: whyUsRef, isVisible: whyUsVisible } = useScrollAnimation()
 
 // 产品列表滚动动画
 const productRefs = ref([])

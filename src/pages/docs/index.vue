@@ -113,6 +113,45 @@
         </div>
       </div>
 
+      <!-- 联盟文档 -->
+      <div ref="allianceRef" class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+        :class="{ 'visible': allianceVisible }">
+        <div class="p-6 border-b border-white/10">
+          <div class="flex items-center space-x-3">
+            <UIcon name="i-lucide-landmark" class="size-6 text-primary-400" />
+            <h2 class="text-2xl font-semibold text-white">联盟文档</h2>
+          </div>
+        </div>
+
+        <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <NuxtLink to="/docs/alliance/whitebook"
+            class="glass-card block p-4 rounded-lg hover-lift overflow-hidden cursor-pointer">
+            <div class="flex items-center space-x-3 mb-3">
+              <UIcon name="i-lucide-book-open" class="size-6 text-teal-400" />
+              <h3 class="font-semibold text-white">联盟白皮书</h3>
+            </div>
+            <p class="text-gray-300 text-sm mb-2">了解联盟的起源、发展历程、核心产品生态与未来愿景</p>
+            <div class="flex items-center text-primary-400 text-sm">
+              <span>阅读更多</span>
+              <UIcon name="i-lucide-arrow-right" class="size-4 ml-1" />
+            </div>
+          </NuxtLink>
+
+          <NuxtLink to="/docs/alliance/members"
+            class="glass-card block p-4 rounded-lg hover-lift overflow-hidden cursor-pointer">
+            <div class="flex items-center space-x-3 mb-3">
+              <UIcon name="i-lucide-scale" class="size-6 text-teal-400" />
+              <h3 class="font-semibold text-white">成员行为规范</h3>
+            </div>
+            <p class="text-gray-300 text-sm mb-2">联盟成员的行为准则、AI 使用原则与技术能力要求</p>
+            <div class="flex items-center text-primary-400 text-sm">
+              <span>阅读更多</span>
+              <UIcon name="i-lucide-arrow-right" class="size-4 ml-1" />
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+
       <!-- 客户端文档链接 -->
       <div ref="clientsRef" class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
         :class="{ 'visible': clientsVisible }">
@@ -186,6 +225,7 @@ definePageMeta({
 const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation()
 const { elementRef: introRef, isVisible: introVisible } = useScrollAnimation()
 const { elementRef: quickStartRef, isVisible: quickStartVisible } = useScrollAnimation()
+const { elementRef: allianceRef, isVisible: allianceVisible } = useScrollAnimation()
 const { elementRef: clientsRef, isVisible: clientsVisible } = useScrollAnimation()
 const { elementRef: contactRef, isVisible: contactVisible } = useScrollAnimation()
 
