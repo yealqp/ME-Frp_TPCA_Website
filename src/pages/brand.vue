@@ -3,7 +3,6 @@
     <!-- Hero Section -->
     <section class="py-16 lg:py-24 relative overflow-hidden"
       style="background: linear-gradient(135deg, #0F172A 0%, #111827 50%, #0A0E27 100%);">
-      <!-- 动态光斑背景 -->
       <div class="absolute inset-0">
         <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
         <div
@@ -13,12 +12,17 @@
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div class="animate-fade-in-up">
+          <div
+            class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-sm mb-6">
+            <UIcon name="i-lucide-palette" class="size-4" />
+            <span>视觉规范</span>
+          </div>
           <h1 class="text-4xl md:text-5xl font-bold text-white mb-6"
             style="text-shadow: 0 0 30px rgba(20, 184, 166, 0.3);">
             品牌资源
           </h1>
           <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-            ME-Frp 第三方客户端联盟的品牌标识和使用指南
+            ME-Frp 第三方客户端联盟的品牌标识、视觉规范与使用指南
           </p>
         </div>
       </div>
@@ -27,11 +31,32 @@
     <!-- Logo 展示 -->
     <section class="py-16 lg:py-24 relative" style="background: linear-gradient(180deg, #111827 0%, #0F172A 100%);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 品牌简介 -->
+        <div ref="overviewRef" class="glass-card mb-12 scroll-animate hover-lift rounded-xl overflow-hidden"
+          :class="{ 'visible': overviewVisible }">
+          <div class="p-6 border-b border-white/10">
+            <div class="flex items-center space-x-3">
+              <UIcon name="i-lucide-sparkles" class="size-6 text-teal-400" />
+              <h2 class="text-2xl font-bold text-white">品牌简介</h2>
+            </div>
+          </div>
+          <div class="p-6 text-gray-300 leading-relaxed">
+            <p>
+              <strong class="text-teal-400">{{ SITE_SHORT_NAME }}</strong> 的品牌标识由联盟成员
+              <strong class="text-white">yealqp</strong> 设计，以青绿色（<code class="text-teal-400 bg-teal-500/10 px-1 py-0.5 rounded text-sm">#14b8a6</code>）为主色调，
+              象征生长、信任与科技感。Logo 以中心节点和辐射连接线为视觉核心，传递<strong class="text-white">连接、联盟、创新</strong>三大品牌理念。
+            </p>
+          </div>
+        </div>
+
         <!-- 主要 Logo -->
         <div ref="mainLogoRef" class="glass-card mb-12 scroll-animate hover-lift rounded-xl overflow-hidden"
           :class="{ 'visible': mainLogoVisible }">
           <div class="p-6 border-b border-white/10">
-            <h2 class="text-2xl font-bold text-white">主要 Logo</h2>
+            <div class="flex items-center space-x-3">
+              <UIcon name="i-lucide-command" class="size-6 text-teal-400" />
+              <h2 class="text-2xl font-bold text-white">主要 Logo</h2>
+            </div>
           </div>
 
           <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -71,7 +96,10 @@
         <div ref="textLogoRef" class="glass-card mb-12 scroll-animate hover-lift rounded-xl overflow-hidden"
           :class="{ 'visible': textLogoVisible }">
           <div class="p-6 border-b border-white/10">
-            <h2 class="text-2xl font-bold text-white">文字版 Logo</h2>
+            <div class="flex items-center space-x-3">
+              <UIcon name="i-lucide-type" class="size-6 text-teal-400" />
+              <h2 class="text-2xl font-bold text-white">文字版 Logo</h2>
+            </div>
           </div>
 
           <div class="p-6 text-center space-y-6">
@@ -106,7 +134,10 @@
         <div ref="faviconRef" class="glass-card mb-12 scroll-animate hover-lift rounded-xl overflow-hidden"
           :class="{ 'visible': faviconVisible }">
           <div class="p-6 border-b border-white/10">
-            <h2 class="text-2xl font-bold text-white">Favicon</h2>
+            <div class="flex items-center space-x-3">
+              <UIcon name="i-lucide-globe" class="size-6 text-teal-400" />
+              <h2 class="text-2xl font-bold text-white">Favicon</h2>
+            </div>
           </div>
 
           <div class="p-6 text-center space-y-6">
@@ -137,7 +168,10 @@
         <div ref="guideRef" class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
           :class="{ 'visible': guideVisible }">
           <div class="p-6 border-b border-white/10">
-            <h2 class="text-2xl font-bold text-white">使用指南</h2>
+            <div class="flex items-center space-x-3">
+              <UIcon name="i-lucide-book-marked" class="size-6 text-teal-400" />
+              <h2 class="text-2xl font-bold text-white">使用指南</h2>
+            </div>
           </div>
 
           <div class="p-6 space-y-6 text-gray-300">
@@ -164,7 +198,10 @@
               <h3 class="text-lg font-semibold text-white mb-3">使用规范</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="glass-card p-4 rounded-lg overflow-hidden hover-lift">
-                  <h4 class="font-semibold text-teal-400 mb-2">✅ 正确使用</h4>
+                  <h4 class="font-semibold text-teal-400 mb-2 flex items-center gap-2">
+                    <UIcon name="i-lucide-check-circle-2" class="size-5" />
+                    正确使用
+                  </h4>
                   <ul class="space-y-1 text-sm">
                     <li>• 保持 Logo 的完整性和比例</li>
                     <li>• 在深色背景上使用浅色版本</li>
@@ -173,7 +210,10 @@
                   </ul>
                 </div>
                 <div class="glass-card p-4 rounded-lg overflow-hidden hover-lift">
-                  <h4 class="font-semibold text-red-400 mb-2">❌ 避免使用</h4>
+                  <h4 class="font-semibold text-red-400 mb-2 flex items-center gap-2">
+                    <UIcon name="i-lucide-x-circle" class="size-5" />
+                    避免使用
+                  </h4>
                   <ul class="space-y-1 text-sm">
                     <li>• 不要拉伸或变形 Logo</li>
                     <li>• 不要改变 Logo 的颜色</li>
@@ -244,7 +284,7 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_URL, SITE_NAME, OG_IMAGE, GITHUB_REPO } from "~/data/constants";
+import { SITE_URL, SITE_NAME, SITE_SHORT_NAME, OG_IMAGE, GITHUB_REPO } from "~/data/constants";
 
 // 页面元数据
 useHead({
@@ -267,6 +307,7 @@ useSeoMeta({
 })
 
 // 滚动动画
+const { elementRef: overviewRef, isVisible: overviewVisible } = useScrollAnimation()
 const { elementRef: mainLogoRef, isVisible: mainLogoVisible } = useScrollAnimation()
 const { elementRef: textLogoRef, isVisible: textLogoVisible } = useScrollAnimation()
 const { elementRef: faviconRef, isVisible: faviconVisible } = useScrollAnimation()
