@@ -1,4 +1,5 @@
 import { ref, shallowRef } from "vue";
+import { withCacheBust } from "~/utils/cache";
 
 /**
  * Changelog 缓存管理
@@ -58,7 +59,8 @@ export const useChangelogCache = (apiUrl: string) => {
     error.value = null;
 
     try {
-      const response = await fetch(apiUrl);
+      // 附加一次性参数并禁用 HTTP 缓存，确保发版后能立即取到最新数据（内存缓存仍按 apiUrl 稳定命中）
+      const response = await fetch(withCacheBust(apiUrl), { cache: "no-store" });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
