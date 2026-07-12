@@ -1,7 +1,7 @@
 <!--
   FrpDash 文档页
-  说明：本页为新增内容，介绍面向安卓端的 ME-Frp 第三方客户端 FrpDash。
-  版本号与更新日志均来自开发者提供的接口（api.0n.pub），下载统一引导至官网 https://fd.0n.pub/。
+  说明：本页介绍面向安卓端的 ME-Frp 第三方客户端 FrpDash。
+  版本号与更新日志来自联盟网盘（alist.yealqp.cn 的 DashFrp/meta/changelog.json），下载统一引导至官网 https://fd.0n.pub/。
 -->
 <template>
   <div>
@@ -155,7 +155,7 @@
       </div>
 
       <div class="p-6 space-y-6">
-        <!-- 下载统一引导至 FrpDash 官网，由官网提供多节点测速下载 -->
+        <!-- 下载统一引导至 FrpDash 官网，安装包由 TPCA 联盟云盘分发 -->
         <div class="text-center">
           <UButton size="lg" color="primary" to="https://fd.0n.pub/" target="_blank"
             class="btn-glow cursor-pointer">
@@ -169,7 +169,7 @@
             <UIcon name="i-lucide-info" class="size-5 text-blue-400 mt-0.5 flex-shrink-0" />
             <div>
               <h4 class="font-semibold text-blue-400">下载说明</h4>
-              <p class="text-gray-300 text-sm mt-1">官网提供多个就近下载节点，可选择延迟较低的节点获取安装包。安装包为 APK 格式，需在安卓设备上安装。</p>
+              <p class="text-gray-300 text-sm mt-1">安装包由 TPCA 联盟云盘统一分发，支持断点续传。安装包为 APK 格式，需在安卓设备上安装。</p>
             </div>
           </div>
         </div>
@@ -189,7 +189,7 @@
           <ol class="space-y-2 text-gray-300">
             <li class="flex items-start space-x-3">
               <span class="flex-shrink-0 w-6 h-6 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-sm font-bold">1</span>
-              <span>前往官网 <a href="https://fd.0n.pub/" target="_blank" class="text-primary-400">fd.0n.pub</a>，选择就近节点下载 APK</span>
+              <span>前往官网 <a href="https://fd.0n.pub/" target="_blank" class="text-primary-400">fd.0n.pub</a>，点击下载按钮获取 APK</span>
             </li>
             <li class="flex items-start space-x-3">
               <span class="flex-shrink-0 w-6 h-6 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-sm font-bold">2</span>
