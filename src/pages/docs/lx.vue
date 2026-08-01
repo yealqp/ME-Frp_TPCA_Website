@@ -168,7 +168,7 @@
           <UButton 
             size="lg" 
             color="primary"
-            to="https://wwaze.lanzouv.com/imDAy3zub8tc"
+            to="https://wwaze.lanzouv.com/iDHqP3zxef4f"
             target="_blank"
             class="btn-glow cursor-pointer"
           >
@@ -283,7 +283,7 @@ useHead({
         description: '使用易语言 & Exui 开发的 ME-Frp 第三方客户端，界面高仿官方图形化 V4.0',
         author: { '@type': 'Person', name: '灵弦MuaMua' },
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
-        downloadUrl: 'https://wwaze.lanzouv.com/imDAy3zub8tc'
+        downloadUrl: 'https://wwaze.lanzouv.com/iDHqP3zxef4f'
       })
     }
   ]
