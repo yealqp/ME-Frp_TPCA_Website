@@ -323,6 +323,7 @@ const updateHistory = [
     changes: [
       '优化部分区域UI',
       '完善日志输出',
+      '完善<code class="bg-gray-700 px-1 py-0.5 rounded text-xs">隧道创建</code>功能,贴合官网操作',
       '新增<code class="bg-gray-700 px-1 py-0.5 rounded text-xs">查看操作日志</code>功能',
       '新增<code class="bg-gray-700 px-1 py-0.5 rounded text-xs">域名白名单添加</code>功能',
       '更换了图形化图标',
