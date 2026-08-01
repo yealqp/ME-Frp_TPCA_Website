@@ -8,3 +8,4 @@ dist
 .shared
 tpcaw
 FM_CHANGELOG_FORMAT.md
+server/
