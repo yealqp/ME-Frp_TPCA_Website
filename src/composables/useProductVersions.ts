@@ -1,5 +1,6 @@
 import { ref, shallowRef } from "vue";
 import { sortVersionKeys } from "~/utils/version";
+import { withCacheBust } from "~/utils/cache";
 import { getChangelogUrl } from "~/data/api";
 import { CACHE_TTL } from "~/data/constants";
 
@@ -44,7 +45,7 @@ const DEFAULT_VERSIONS: VersionData = {
   pml: "v2.1.0",
   zl: "v1.8",
   fm: "v1.0.0",
-  fd: "v1.4.5",
+  fd: "v1.4.23",
 };
 
 /**
@@ -55,7 +56,8 @@ const fetchLatestVersion = async (productId: string, fallback: string): Promise<
     const url = getChangelogUrl(productId);
     if (!url) throw new Error(`Unknown product: ${productId}`);
 
-    const response = await fetch(url);
+    // 附加一次性参数并禁用 HTTP 缓存，确保发版后版本号立即更新
+    const response = await fetch(withCacheBust(url), { cache: "no-store" });
     if (!response.ok) throw new Error(`Failed to fetch ${productId} changelog`);
 
     const data: { data: ChangelogData } = await response.json();
