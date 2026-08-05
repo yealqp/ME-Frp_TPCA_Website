@@ -3,10 +3,13 @@
     <!-- 页面标题 -->
     <div class="mb-8">
       <div class="flex items-center space-x-4 mb-4">
-        <img src="https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp" alt="PML 2"
-          class="w-12 h-12 rounded-lg" />
+        <img
+          src="https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp"
+          alt="PML 2"
+          class="w-12 h-12 rounded-lg"
+        />
         <div>
-          <h1 class="text-3xl font-bold text-white">PML 2</h1>
+          <h1 class="text-3xl font-bold text-white"><span class="text-primary-200">Portal</span> ME Frp Launcher 2 (PML 2)</h1>
           <p class="text-gray-400">基于 .NET 的跨平台客户端</p>
         </div>
       </div>
@@ -20,8 +23,11 @@
     </div>
 
     <!-- 项目介绍 -->
-    <div ref="introRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
-      :class="{ visible: introVisible }">
+    <div
+      ref="introRef"
+      class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+      :class="{ visible: introVisible }"
+    >
       <div class="p-6 border-b border-white/10">
         <h2 class="text-xl font-semibold text-white">项目介绍</h2>
       </div>
@@ -33,45 +39,87 @@
           开发的 ME-Frp 第三方客户端。 该客户端是对 ME Frp (幻缘映射)
           的图形化实现，提供了简单便捷的操作，可以快速启动隧道，支持 Windows,
           Linux 和 MacOS 三端。
-          <em class="text-primary-300">也是目前三个产品中唯一一个支持跨平台的软件。</em>
+          <em class="text-primary-300"
+            >也是目前三个产品中唯一一个支持跨平台的软件。</em
+          >
         </p>
 
-        <div class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+            <h3
+              class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+            >
               <UIcon name="i-lucide-sparkles" class="size-5 text-primary-400" />
               主要特性
             </h3>
             <ul class="space-y-2">
-              <li class="flex items-start space-x-2">
+              <!-- <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>作者：<strong class="text-primary-400">RYCB Studio</strong></span>
-              </li>
-              <li class="flex items-start space-x-2">
+                <span>作者：<a href="https://rycb.tech" target="_blank"><strong class="text-primary-400">RYCB Studio</strong></a></span>
+              </li> -->
+              <!-- <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                 <span>命名灵感：<strong class="text-blue-400">PCL Ⅱ</strong></span>
+              </li> -->
+              <li class="flex items-start space-x-2">
+                <UIcon
+                  name="i-lucide-check-circle"
+                  class="size-4 text-primary-400 mt-0.5 flex-shrink-0"
+                />
+                <span
+                  >作者：<strong class="text-primary-400"
+                    >RYCB Studio</strong
+                  ></span
+                >
               </li>
               <li class="flex items-start space-x-2">
+                <UIcon
+                  name="i-lucide-check-circle"
+                  class="size-4 text-primary-400 mt-0.5 flex-shrink-0"
+                />
+                <span
+                  >命名灵感：<strong class="text-blue-400">PCL Ⅱ</strong></span
+                >
+              </li>
+              <!-- <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <span>操作简单便捷，功能丰富</span>
+              </li> -->
+              <li class="flex items-start space-x-2">
+                <UIcon
+                  name="i-lucide-check-circle"
+                  class="size-4 text-primary-400 mt-0.5 flex-shrink-0"
+                />
                 <span>基于 .NET 10.0 框架，跨平台支持</span>
               </li>
               <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <UIcon
+                  name="i-lucide-check-circle"
+                  class="size-4 text-primary-400 mt-0.5 flex-shrink-0"
+                />
                 <span>支持 Windows、Linux、MacOS 三端</span>
               </li>
               <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <UIcon
+                  name="i-lucide-check-circle"
+                  class="size-4 text-primary-400 mt-0.5 flex-shrink-0"
+                />
                 <span>操作简单便捷，功能丰富</span>
               </li>
               <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <UIcon
+                  name="i-lucide-check-circle"
+                  class="size-4 text-primary-400 mt-0.5 flex-shrink-0"
+                />
                 <span>持续更新，社区活跃</span>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+            <h3
+              class="text-lg font-semibold text-white mb-3 flex items-center gap-2"
+            >
               <UIcon name="i-lucide-monitor" class="size-5 text-primary-400" />
               系统要求
             </h3>
@@ -81,11 +129,17 @@
                 <span>Windows 10/11/Server 2019+</span>
               </li>
               <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-monitor" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <UIcon
+                  name="i-lucide-monitor"
+                  class="size-4 text-primary-400 mt-0.5 flex-shrink-0"
+                />
                 <span>常见 Linux x64 发行版</span>
               </li>
               <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-monitor" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <UIcon
+                  name="i-lucide-monitor"
+                  class="size-4 text-primary-400 mt-0.5 flex-shrink-0"
+                />
                 <span>macOS（Intel/Apple Silicon）</span>
               </li>
             </ul>
@@ -93,13 +147,22 @@
 
           <div class="p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
             <div class="flex items-start space-x-3">
-              <UIcon name="i-lucide-info" class="size-5 text-blue-400 mt-0.5 flex-shrink-0" />
+              <UIcon
+                name="i-lucide-info"
+                class="size-5 text-blue-400 mt-0.5 flex-shrink-0"
+              />
               <div>
                 <h4 class="font-semibold text-blue-400">
                   查看官网以获得最新消息
                 </h4>
-                <UButton size="sm" color="info" variant="soft" to="https://rycb.mxj.pub/mefl/" target="_blank"
-                  class="cursor-pointer">
+                <UButton
+                  size="sm"
+                  color="info"
+                  variant="soft"
+                  to="https://rycb.mxj.pub/mefl/"
+                  target="_blank"
+                  class="cursor-pointer"
+                >
                   <UIcon name="i-lucide-external-link" class="size-4 mr-1" />
                   访问官网
                 </UButton>
@@ -111,8 +174,11 @@
     </div>
 
     <!-- 预览图 -->
-    <div ref="previewRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
-      :class="{ visible: previewVisible }">
+    <div
+      ref="previewRef"
+      class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+      :class="{ visible: previewVisible }"
+    >
       <div class="p-6 border-b border-white/10">
         <h2 class="text-xl font-semibold text-white">预览图</h2>
       </div>
@@ -149,14 +215,18 @@
         <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2">
           <button v-for="(image, index) in previewImages" :key="index" @click="currentImageIndex = index"
             class="w-2 h-2 rounded-full transition-colors"
-            :class="index === currentImageIndex ? 'bg-white' : 'bg-white/50'" />
+            :class="index === currentImageIndex ? 'bg-white' : 'bg-white/50'"
+          />
         </div>
       </div>
     </div>
 
     <!-- 使用方法 -->
-    <div ref="usageRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
-      :class="{ visible: usageVisible }">
+    <div
+      ref="usageRef"
+      class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+      :class="{ visible: usageVisible }"
+    >
       <div class="p-6 border-b border-white/10">
         <h2 class="text-xl font-semibold text-white">使用方法</h2>
       </div>
@@ -165,39 +235,55 @@
         <div class="space-y-4">
           <div class="p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
             <div class="flex items-start space-x-3">
-              <UIcon name="i-lucide-info" class="size-5 text-blue-400 mt-0.5 flex-shrink-0" />
+              <UIcon
+                name="i-lucide-info"
+                class="size-5 text-blue-400 mt-0.5 flex-shrink-0"
+              />
               <div>
                 <h4 class="font-semibold text-blue-400">
                   教程：如何在 Linux 上顺利运行本软件？
                 </h4>
-                <ol class="space-y-2 text-gray-300 text-sm">
-                  <li class="flex items-start space-x-2">
-                    <span
-                      class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">1</span>
-                    <span>下载 macOS 应用包 (.dmg)</span>
+                <ol class="space-y-2 text-sm text-gray-300 mt-2">
+                  <li>1. 打开终端</li>
+                  <li>
+                    2. 输入
+                    <code
+                      class="bg-gray-700 px-2 py-1 rounded text-xs break-all"
+                      >bash &lt;(curl -sSL
+                      https://content.rycb.mxj.pub/files/mefl/install.sh)</code
+                    >
                   </li>
-                  <li class="flex items-start space-x-2">
-                    <span
-                      class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">2</span>
-                    <span>拖拽到应用程序文件夹</span>
-                  </li>
-                  <li class="flex items-start space-x-2">
-                    <span
-                      class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">3</span>
-                    <span>在启动台中打开终端</span>
-                  </li>
-                  <li class="flex items-start space-x-2">
-                    <span
-                      class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">4</span>
-                    <span>执行命令移除门禁标签：<code
-                        class="bg-gray-700 px-1 py-0.5 rounded text-xs break-all">xattr -d com.apple.quarantine /Applications/PML2.app</code></span>
-                  </li>
-                  <li class="flex items-start space-x-2">
-                    <span
-                      class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">5</span>
-                    <span>启动应用程序</span>
+                  <li>3. 等待安装完成</li>
+                  <li>
+                    4. 之后可直接输入 (2.1.0.0 以下)
+                    <code class="bg-gray-700 px-2 py-1 rounded text-xs"
+                      >mefrplauncherx</code
+                    >
+                    或 (2.1.0.0 及以上)
+                    <code class="bg-gray-700 px-2 py-1 rounded text-xs"
+                      >pml-2</code
+                    >
+                    启动
                   </li>
                 </ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+            <div class="flex items-start space-x-3">
+              <UIcon
+                name="i-lucide-help-circle"
+                class="size-5 text-cyan-400 mt-0.5 flex-shrink-0"
+              />
+              <div>
+                <h4 class="font-semibold text-cyan-400">
+                  为什么建议在 Linux 中使用终端运行？
+                </h4>
+                <p class="text-gray-300 text-sm mt-1">
+                  Linux
+                  软件安装目录通常不在用户主目录下，无法双击运行。使用终端可追踪程序运行情况，便于错误排查。
+                </p>
               </div>
             </div>
           </div>
@@ -213,20 +299,38 @@
       </div>
       <div class="p-6 space-y-6">
         <div class="text-center">
-          <UButton size="lg" color="primary" to="https://alist.yealqp.cn/ME-Frp%20PML2/mefrp" target="_blank"
-            class="btn-glow cursor-pointer">
+          <UButton
+            size="lg"
+            color="primary"
+            to="https://alist.yealqp.cn/ME-Frp%20PML2/mefrp"
+            target="_blank"
+            class="btn-glow cursor-pointer"
+          >
             <UIcon name="i-lucide-download" class="size-5 mr-2" />
             OpenList 下载
+          </UButton>
+          <UButton size="lg" color="primary" to="https://rycb.tech/pml-2" target="_blank"
+            class="btn-glow cursor-pointer">
+            <UIcon name="i-lucide-download" class="size-5 mr-2" />
+            官网下载
+          </UButton>
+          <UButton size="lg" color="primary" to="https://rycb.tech/pml-2/preview" target="_blank"
+            class="btn-glow cursor-pointer">
+            <UIcon name="i-lucide-download" class="size-5 mr-2" />
+            预览版下载
           </UButton>
         </div>
 
         <div class="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
           <div class="flex items-start space-x-3">
-            <UIcon name="i-lucide-alert-circle" class="size-5 text-red-400 mt-0.5 flex-shrink-0" />
+            <UIcon
+              name="i-lucide-alert-circle"
+              class="size-5 text-red-400 mt-0.5 flex-shrink-0"
+            />
             <div>
               <h4 class="font-semibold text-red-400">重要提醒</h4>
               <p class="text-gray-300 text-sm mt-1">
-                安装或使用本软件表明您同意本软件的用户协议和隐私政策。Windows下安装时请不要将软件安装至C:\Program
+                安装或使用本软件表明您同意本软件的用户协议和隐私政策。Windows 下安装时请不要将软件安装至C:\Program
                 Files等需要管理员权限的目录。请使用 ME Frp 官网账号登录。若在
                 Linux 下使用 root 账户运行，软件可能将无法正常运行。
               </p>
@@ -243,6 +347,15 @@
                 遇到问题，请先查看下方的快速修复。需要更多功能或报告 Bug,
                 请发送邮件至 rycbstudio@163.com
               </p>
+              <h4 class="font-semibold text-yellow-400 mt-4">注意事项</h4>
+              <p class="text-gray-300 text-sm mt-1">
+                macOS 安装请查看我们的文档: <UButton size="sm" color="warn" variant="soft"
+                  to="https://docs.rycb.tech/pml-2/install#macos-%E5%AE%89%E8%A3%85" target="_blank"
+                  class="cursor-pointer">
+                  <UIcon name="i-lucide-external-link" class="size-4 mr-1" />
+                  查看文档
+                </UButton>
+              </p>
             </div>
           </div>
         </div>
@@ -257,7 +370,9 @@
             <ol class="space-y-2 text-gray-300 text-sm">
               <li class="flex items-start space-x-2">
                 <span
-                  class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                  class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold"
+                  >1</span
+                >
                 <span>下载 Windows 安装包 (.msi 或 .exe)</span>
               </li>
               <li class="flex items-start space-x-2">
@@ -276,7 +391,10 @@
           <!-- Linux 安装 -->
           <div class="bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-smooth">
             <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
-              <UIcon name="i-lucide-terminal" class="size-5 mr-2 text-yellow-400" />
+              <UIcon
+                name="i-lucide-terminal"
+                class="size-5 mr-2 text-yellow-400"
+              />
               Linux 安装
             </h3>
             <ol class="space-y-2 text-gray-300 text-sm">
@@ -285,14 +403,23 @@
                   class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">1</span>
                 <span>下载 Linux 包 (.deb/.rpm/.tar.gz)</span>
               </li>
-              <li class="flex items-start space-x-2">
+              <!-- <li class="flex items-start space-x-2">
                 <span
                   class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                <span>安装 .NET Runtime (如未安装)</span>
+              </li> -->
+              <li class="flex items-start space-x-2">
+                <span
+                  class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold"
+                  >2</span
+                >
                 <span>安装 .NET Runtime (如未安装)</span>
               </li>
               <li class="flex items-start space-x-2">
                 <span
-                  class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                  class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold"
+                  >3</span
+                >
                 <span>解压并运行程序</span>
               </li>
             </ol>
@@ -301,7 +428,7 @@
           <!-- macOS 安装 -->
           <div class="bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-smooth">
             <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
-              <UIcon name="i-lucide-laptop" class="size-5 mr-2 text-gray-300" />
+              <UIcon name="i-simple-icons-apple" class="size-5 mr-2 text-gray-300" />
               macOS 安装
             </h3>
             <ol class="space-y-2 text-gray-300 text-sm">
@@ -317,7 +444,9 @@
               </li>
               <li class="flex items-start space-x-2">
                 <span
-                  class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                  class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold"
+                  >3</span
+                >
                 <span>首次运行需要允许未知开发者</span>
               </li>
             </ol>
@@ -326,7 +455,10 @@
           <!-- Android 安装 -->
           <div class="bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-smooth">
             <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
-              <UIcon name="i-lucide-smartphone" class="size-5 mr-2 text-green-400" />
+              <UIcon
+                name="i-lucide-smartphone"
+                class="size-5 mr-2 text-green-400"
+              />
               Android 安装
             </h3>
             <ol class="space-y-2 text-gray-300 text-sm">
@@ -436,7 +568,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // 使用文档布局
 definePageMeta({
   layout: "docs",
@@ -462,10 +594,10 @@ void fixRef;
 void updateRef;
 
 // 使用版本管理 composable
-const { getVersion, fetchAllVersions } = useProductVersions()
+const { getVersion, fetchAllVersions } = useProductVersions();
 
 // 获取当前产品版本
-const currentVersion = computed(() => getVersion('pml'))
+const currentVersion = computed(() => getVersion("pml"));
 
 // 页面元数据
 useHead({
@@ -474,18 +606,19 @@ useHead({
   script: [
     {
       type: "application/ld+json",
-      innerHTML: () => JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        name: "PML 2",
-        applicationCategory: "NetworkApplication",
-        operatingSystem: "Windows, Linux, macOS, Android",
-        softwareVersion: currentVersion.value,
-        description:
-          "基于 .NET 10.0 开发的跨平台 ME-Frp 第三方客户端，支持 Windows、Linux、macOS 和 Android",
-        author: { "@type": "Organization", name: "RYCB Studio" },
-        offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" },
-      }),
+      innerHTML: () =>
+        JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "PML 2",
+          applicationCategory: "NetworkApplication",
+          operatingSystem: "Windows, Linux, macOS, Android",
+          softwareVersion: currentVersion.value,
+          description:
+            "基于 .NET 10.0 开发的跨平台 ME-Frp 第三方客户端，支持 Windows、Linux、macOS 和 Android",
+          author: { "@type": "Organization", name: "RYCB Studio" },
+          offers: { "@type": "Offer", price: "0", priceCurrency: "CNY" },
+        }),
     },
   ],
 });
@@ -496,8 +629,7 @@ useSeoMeta({
   ogTitle: "PML 2 文档 - ME-Frp 第三方客户端联盟",
   description:
     "PML 2 详细使用文档，基于 .NET 10.0 开发的跨平台 ME-Frp 第三方客户端，支持 Windows、Linux、macOS 和 Android，包含多平台安装、配置和使用指南。",
-  ogDescription:
-    "PML 2 详细使用文档，包含多平台安装、配置和使用指南",
+  ogDescription: "PML 2 详细使用文档，包含多平台安装、配置和使用指南",
   ogImage: "https://image.mefrp-tpca.yealqp.cn/images/views/rycb/homex.png",
   ogUrl: "https://mefrp-tpca.yealqp.cn/docs/pml",
   ogType: "article",
@@ -620,7 +752,7 @@ const updates = ref([]);
 // 从 API 获取更新日志
 const fetchChangelog = async () => {
   try {
-    const response = await fetch("https://api.rycb.mxj.pub/api/changelog");
+    const response = await fetch("https://api.rycb.tech/api/changelog");
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -662,7 +794,7 @@ const transformApiData = (apiData) => {
 
   const transformedData = [];
   const versions = Object.keys(apiData.data).sort((a, b) =>
-    compareVersions(b, a)
+    compareVersions(b, a),
   );
 
   versions.forEach((version, index) => {

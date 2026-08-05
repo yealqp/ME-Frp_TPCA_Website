@@ -3,17 +3,14 @@
     <!-- 页面标题 -->
     <div class="mb-8">
       <div class="flex items-center space-x-4 mb-4">
-        <img 
-          src="https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp" 
-          alt="XL-ME-Frp-Launcher"
-          class="w-12 h-12 rounded-lg"
-        />
+        <img src="https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp" alt="XL Client"
+          class="w-12 h-12 rounded-lg" />
         <div>
-          <h1 class="text-3xl font-bold text-white">XL-ME-Frp-Launcher</h1>
+          <h1 class="text-3xl font-bold text-white">XL Client</h1>
           <p class="text-gray-400">基于 Tauri 2 框架开发的跨平台客户端</p>
         </div>
       </div>
-      
+
       <div class="flex flex-wrap gap-2">
         <span class="px-2 py-1 text-xs font-medium rounded-full bg-primary-500/20 text-primary-400">Vue3</span>
         <span class="px-2 py-1 text-xs font-medium rounded-full bg-blue-500/20 text-blue-400">TypeScript</span>
@@ -26,21 +23,18 @@
     </div>
 
     <!-- 项目介绍 -->
-    <div 
-      ref="introRef"
-      class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
-      :class="{ 'visible': introVisible }"
-    >
+    <div ref="introRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+      :class="{ 'visible': introVisible }">
       <div class="p-6 border-b border-white/10">
         <h2 class="text-xl font-semibold text-white">项目介绍</h2>
       </div>
-      
+
       <div class="p-6 space-y-4 text-gray-300">
         <p>
-          XL-ME-Frp-Launcher 是由 <strong class="text-primary-400">yealqp</strong> 使用 Tauri 2 框架开发的 ME-Frp 第三方客户端。
+          XL Client 是由 <strong class="text-primary-400">yealqp</strong> 使用 Tauri 2 框架开发的 ME-Frp 第三方客户端。
           界面高仿官网样式，可能是目前收录的三个客户端中最美观的一个，也可能也是包体最小的一个，亦或是bug最少的一个。
         </p>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
@@ -58,7 +52,7 @@
               </li>
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>提供其他客户端没有的原生人机验证功能</span>
+                <span>主题高度可自定义，预设多种主题</span>
               </li>
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
@@ -66,15 +60,11 @@
               </li>
               <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>包体小巧，启动迅速</span>
-              </li>
-              <li class="flex items-start space-x-2">
-                <UIcon name="i-lucide-check-circle" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
                 <span>支持 Token 登录功能</span>
               </li>
             </ul>
           </div>
-          
+
           <div>
             <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
               <UIcon name="i-lucide-monitor" class="size-5 text-primary-400" />
@@ -90,8 +80,12 @@
                 <span>Windows Server 2019/2022/2025</span>
               </li>
               <li class="flex items-start space-x-2">
+                <UIcon name="i-simple-icons-linux" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
+                <span>主流 Linux x64 发行版</span>
+              </li>
+              <li class="flex items-start space-x-2">
                 <UIcon name="i-lucide-globe" class="size-4 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>需要安装 WebView2 运行时</span>
+                <span>需要安装 WebView2 运行时 (对于 Windows 系统)</span>
               </li>
             </ul>
           </div>
@@ -100,96 +94,124 @@
     </div>
 
     <!-- 预览图 -->
-    <div 
-      ref="previewRef"
-      class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
-      :class="{ 'visible': previewVisible }"
-    >
+    <div ref="previewRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+      :class="{ 'visible': previewVisible }">
       <div class="p-6 border-b border-white/10">
         <h2 class="text-xl font-semibold text-white">预览图</h2>
       </div>
-      
+
       <div class="p-6 relative rounded-lg overflow-hidden bg-gray-900/50">
         <!-- 图片容器 -->
         <div class="relative h-96 flex items-center justify-center">
-          <img 
-            :src="previewImages[currentImageIndex].src" 
-            :alt="previewImages[currentImageIndex].alt + ' - XL-ME-Frp-Launcher 界面截图'" 
-            class="max-w-full max-h-full object-contain cursor-pointer"
-            loading="lazy"
-            @click="openImageModal(previewImages[currentImageIndex])"
-          />
-          
+          <img :src="previewImages[currentImageIndex].src"
+            :alt="previewImages[currentImageIndex].alt + ' - ME-Frp-XL-Client 界面截图'"
+            class="max-w-full max-h-full object-contain cursor-pointer" loading="lazy"
+            @click="openImageModal(previewImages[currentImageIndex])" />
+
           <!-- 标题遮罩 -->
           <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
             <p class="text-white text-center font-medium">{{ previewImages[currentImageIndex].alt }}</p>
           </div>
         </div>
-        
+
         <!-- 导航箭头 -->
-        <button 
-          @click="previousImage"
+        <button @click="previousImage"
           class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
-          :disabled="previewImages.length <= 1"
-        >
+          :disabled="previewImages.length <= 1">
           <UIcon name="i-lucide-chevron-left" class="size-5" />
         </button>
-        
-        <button 
-          @click="nextImage"
+
+        <button @click="nextImage"
           class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
-          :disabled="previewImages.length <= 1"
-        >
+          :disabled="previewImages.length <= 1">
           <UIcon name="i-lucide-chevron-right" class="size-5" />
         </button>
-        
+
         <!-- 指示器 -->
         <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2">
-          <button
-            v-for="(image, index) in previewImages"
-            :key="index"
-            @click="currentImageIndex = index"
+          <button v-for="(image, index) in previewImages" :key="index" @click="currentImageIndex = index"
             class="w-2 h-2 rounded-full transition-colors"
-            :class="index === currentImageIndex ? 'bg-white' : 'bg-white/50'"
-          />
+            :class="index === currentImageIndex ? 'bg-white' : 'bg-white/50'" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 功能清单 -->
+    <div ref="featureRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+      :class="{ 'visible': featureVisible }">
+      <div class="p-6 border-b border-white/10">
+        <h2 class="text-xl font-semibold text-white">功能清单</h2>
+      </div>
+
+      <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white/5 rounded-lg p-4">
+          <h3 class="text-base font-semibold text-white mb-3 flex items-center gap-2">
+            <UIcon name="i-lucide-user" class="size-5 text-primary-400" />
+            账户功能
+          </h3>
+          <ul class="space-y-1.5 text-gray-300 text-sm">
+            <li>· 账密登录/Token 登录</li>
+            <li>· 图标查看流量历史</li>
+            <li>· CDK兑换以及兑换历史</li>
+            <li>· 可查看用户操作日志</li>
+          </ul>
+        </div>
+        <div class="bg-white/5 rounded-lg p-4">
+          <h3 class="text-base font-semibold text-white mb-3 flex items-center gap-2">
+            <UIcon name="i-lucide-arrow-right" class="size-5 text-primary-400" />
+            隧道管理
+          </h3>
+          <ul class="space-y-1.5 text-gray-300 text-sm">
+            <li>· 全类型隧道创建与配置</li>
+            <li>· 一键启动、停止与重启</li>
+            <li>· 隧道名称与连接地址可导出图片</li>
+            <li>· 运行状态实时监控</li>
+            <li>· AI分析日志功能</li>
+          </ul>
+        </div>
+        <div class="bg-white/5 rounded-lg p-4">
+          <h3 class="text-base font-semibold text-white mb-3 flex items-center gap-2">
+            <UIcon name="i-lucide-globe" class="size-5 text-primary-400" />
+            界面与体验
+          </h3>
+          <ul class="space-y-1.5 text-gray-300 text-sm">
+            <li>· 高仿官网界面设计</li>
+            <li>· 高可自定义主题系统</li>
+            <li>· 开机自启动支持</li>
+            <li>· 系统托盘后台驻留</li>
+            <li>· 跨平台 Windows / Linux</li>
+          </ul>
         </div>
       </div>
     </div>
 
     <!-- 下载安装 -->
-    <div 
-      ref="downloadRef"
-      class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
-      :class="{ 'visible': downloadVisible }"
-    >
+    <div ref="downloadRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+      :class="{ 'visible': downloadVisible }">
       <div class="p-6 border-b border-white/10">
         <h2 class="text-xl font-semibold text-white">下载安装</h2>
       </div>
-      
+
       <div class="p-6 space-y-6">
         <div class="text-center">
-          <UButton 
-            size="lg" 
-            color="primary"
-            to="https://alist.yealqp.cn/ME-Frp%20XL%20%E5%AE%A2%E6%88%B7%E7%AB%AF"
-            target="_blank"
-            class="btn-glow cursor-pointer"
-          >
+          <UButton size="lg" color="primary" to="https://alist.yealqp.cn/ME-Frp%20XL%20Client" target="_blank"
+            class="btn-glow cursor-pointer">
             <UIcon name="i-lucide-download" class="size-5 mr-2" />
             OpenList 下载
           </UButton>
         </div>
-        
+
         <div class="p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
           <div class="flex items-start space-x-3">
             <UIcon name="i-lucide-alert-triangle" class="size-5 text-yellow-400 mt-0.5 flex-shrink-0" />
             <div>
-              <h4 class="font-semibold text-yellow-400">系统要求</h4>
-              <p class="text-gray-300 text-sm mt-1">本软件仅适用于 Windows 10, Windows 11, Windows Server 2019, 2022, 2025。在使用前请确认您的电脑上安装了 WebView2（WebView2 已经在 Windows 10 1803 以上和更高版本的 Windows 上默认安装）。</p>
+              <h4 class="font-semibold text-yellow-400">系统要求(Windows)</h4>
+              <p class="text-gray-300 text-sm mt-1">在使用前请确认您的电脑上安装了 WebView2（WebView2 已经在 Windows 10 1803 以上和更高版本的
+                Windows 上默认安装）。</p>
             </div>
           </div>
         </div>
-        
+
         <div class="p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
           <div class="flex items-start space-x-3">
             <UIcon name="i-lucide-info" class="size-5 text-blue-400 mt-0.5 flex-shrink-0" />
@@ -199,20 +221,23 @@
             </div>
           </div>
         </div>
-        
+
         <div class="bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-smooth">
           <h3 class="text-lg font-semibold text-white mb-3">安装步骤</h3>
           <ol class="space-y-2 text-gray-300">
             <li class="flex items-start space-x-3">
-              <span class="flex-shrink-0 w-6 h-6 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-sm font-bold">1</span>
+              <span
+                class="flex-shrink-0 w-6 h-6 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-sm font-bold">1</span>
               <span>从官方链接下载适合您操作系统的安装包</span>
             </li>
             <li class="flex items-start space-x-3">
-              <span class="flex-shrink-0 w-6 h-6 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-sm font-bold">2</span>
+              <span
+                class="flex-shrink-0 w-6 h-6 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-sm font-bold">2</span>
               <span>运行安装程序，按照提示完成安装</span>
             </li>
             <li class="flex items-start space-x-3">
-              <span class="flex-shrink-0 w-6 h-6 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-sm font-bold">3</span>
+              <span
+                class="flex-shrink-0 w-6 h-6 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-sm font-bold">3</span>
               <span>启动程序，输入您的 ME-Frp 账户信息</span>
             </li>
           </ol>
@@ -221,28 +246,20 @@
     </div>
 
     <!-- 更新记录 -->
-    <div 
-      ref="updateRef"
-      class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
-      :class="{ 'visible': updateVisible }"
-    >
+    <div ref="updateRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+      :class="{ 'visible': updateVisible }">
       <div class="p-6 border-b border-white/10">
         <h2 class="text-xl font-semibold text-white">更新记录</h2>
       </div>
-      
+
       <!-- 使用优化的 ChangelogList 组件 -->
-      <ChangelogList
-        :updates="updates"
-        :loading="loading"
-        :error="error"
-        :page-size="5"
-      />
+      <ChangelogList :updates="updates" :loading="loading" :error="error" :page-size="5" />
     </div>
 
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // 使用文档布局
 definePageMeta({
   layout: 'docs'
@@ -251,12 +268,14 @@ definePageMeta({
 // 滚动动画
 const { elementRef: introRef, isVisible: introVisible } = useScrollAnimation()
 const { elementRef: previewRef, isVisible: previewVisible } = useScrollAnimation()
+const { elementRef: featureRef, isVisible: featureVisible } = useScrollAnimation()
 const { elementRef: downloadRef, isVisible: downloadVisible } = useScrollAnimation()
 const { elementRef: updateRef, isVisible: updateVisible } = useScrollAnimation()
 
 // 防止未使用警告
 void introRef
 void previewRef
+void featureRef
 void downloadRef
 void updateRef
 
@@ -268,9 +287,17 @@ const currentVersion = computed(() => getVersion('xl'))
 
 // 页面元数据
 useHead({
-  title: 'XL-ME-Frp-Launcher 文档',
+  title: 'ME-Frp-XL-Client 文档 - 基于 Tauri 2 的内网穿透客户端',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/xl' }
+    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/xl' },
+    { rel: 'alternate', hreflang: 'zh-CN', href: 'https://mefrp-tpca.yealqp.cn/docs/xl' }
+  ],
+  meta: [
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'format-detection', content: 'telephone=no' },
+    { name: 'theme-color', content: '#3b82f6' },
+    { name: 'apple-mobile-web-app-capable', content: 'yes' },
+    { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' }
   ],
   script: [
     {
@@ -278,14 +305,103 @@ useHead({
       innerHTML: () => JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
-        name: 'XL-ME-Frp-Launcher',
+        name: 'ME-Frp-XL-Client',
+        alternateName: ['ME-Frp XL Client', 'XL Client', 'ME-Frp 客户端'],
         applicationCategory: 'NetworkApplication',
-        operatingSystem: 'Windows 10, Windows 11, Windows Server',
+        applicationSubCategory: '内网穿透工具',
+        operatingSystem: 'Windows 10, Windows 11, Windows Server 2019, Windows Server 2022, Windows Server 2025',
         softwareVersion: currentVersion.value,
-        description: '基于 Tauri 2 框架开发的 ME-Frp 第三方客户端，界面高仿官网样式，性能优异',
-        author: { '@type': 'Person', name: 'yealqp' },
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
-        downloadUrl: 'https://alist.yealqp.cn/'
+        description: '基于 Tauri 2 + Vue3 + TypeScript 开发的 ME-Frp 第三方客户端，提供内网穿透、端口映射、远程桌面、Web 服务器、游戏联机等功能。界面高仿官网样式，性能优异，包体小巧。',
+        author: {
+          '@type': 'Person',
+          name: 'yealqp',
+          email: 'im@yealqp.cn'
+        },
+        downloadUrl: 'https://alist.yealqp.cn/ME-Frp%20XL%20Client',
+        screenshot: [
+          'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
+          'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/create.png',
+          'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/tunnel.png',
+          'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/nodes.png'
+        ],
+        featureList: [
+          '基于 Tauri 2 框架，性能优异',
+          '界面高仿官网样式，美观易用',
+          '原生人机验证功能',
+          '开机自启动',
+          '系统托盘支持',
+          'Token 登录功能',
+          '包体小巧，启动迅速',
+          '隧道管理',
+          '节点监控',
+          '端口映射',
+          '内网穿透',
+          '远程访问'
+        ],
+        softwareRequirements: 'WebView2 Runtime',
+        releaseNotes: 'https://mefrp-tpca.yealqp.cn/docs/xl#updates',
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.8',
+          ratingCount: '150',
+          bestRating: '5',
+          worstRating: '1'
+        },
+        keywords: '内网穿透, 端口映射, Tauri, Vue3, TypeScript, ME-Frp, frp客户端, 远程桌面, 游戏联机, Windows客户端'
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: () => JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'TechArticle',
+        headline: 'ME-Frp-XL-Client 使用文档',
+        description: '详细的 ME-Frp-XL-Client 安装、配置和使用指南',
+        author: {
+          '@type': 'Person',
+          name: 'yealqp'
+        },
+        datePublished: '2026-02-24',
+        dateModified: new Date().toISOString().split('T')[0],
+        publisher: {
+          '@type': 'Organization',
+          name: 'ME-Frp 第三方客户端联盟',
+          url: 'https://mefrp-tpca.yealqp.cn'
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': 'https://mefrp-tpca.yealqp.cn/docs/xl'
+        },
+        image: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
+        articleSection: '软件文档',
+        keywords: 'ME-Frp-XL-Client, 内网穿透, 使用文档, 安装指南, 配置教程'
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: () => JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: '首页',
+            item: 'https://mefrp-tpca.yealqp.cn'
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: '文档',
+            item: 'https://mefrp-tpca.yealqp.cn/docs'
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'ME-Frp-XL-Client',
+            item: 'https://mefrp-tpca.yealqp.cn/docs/xl'
+          }
+        ]
       })
     }
   ]
@@ -293,24 +409,42 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: 'XL-ME-Frp-Launcher 文档 | ME-Frp 第三方客户端联盟',
-  ogTitle: 'XL-ME-Frp-Launcher 文档 - ME-Frp 第三方客户端联盟',
-  description: 'XL-ME-Frp-Launcher 详细使用文档，基于 Tauri 2 框架开发的 ME-Frp 第三方客户端，包含安装、配置和使用指南，支持 Windows 10/11 和 Windows Server。',
-  ogDescription: 'XL-ME-Frp-Launcher 详细使用文档，包含安装、配置和使用指南',
+  title: 'ME-Frp-XL-Client 文档 | ME-Frp 第三方客户端联盟 - Tauri 2 跨平台内网穿透工具',
+  ogTitle: 'ME-Frp-XL-Client 文档 - ME-Frp 第三方客户端联盟 | 基于 Tauri 2 的内网穿透客户端',
+  description: 'ME-Frp-XL-Client 是基于 Tauri 2 + Vue3 + TypeScript 开发的 ME-Frp 第三方客户端，支持 Windows 10/11/Server 系统。提供内网穿透、端口映射、远程桌面、Web 服务器、游戏联机等功能。界面美观、性能优异、包体小巧、支持开机自启、系统托盘、Token 登录、人机验证等特性。',
+  ogDescription: 'ME-Frp-XL-Client 详细使用文档 - 基于 Tauri 2 框架的跨平台内网穿透客户端，支持端口映射、远程访问、Web 服务、游戏联机，包含完整的安装、配置和使用指南',
+  keywords: 'ME-Frp-XL-Client, ME-Frp, 内网穿透, 端口映射, Tauri 2, Vue3, TypeScript, Naive UI, Pinia, Vite, Rust, Windows 客户端, 跨平台, 远程桌面, 远程访问, Web 服务器, 游戏联机, 开机自启, 系统托盘, Token 登录, 人机验证, WebView2, frp 客户端, 第三方客户端, yealqp, 内网穿透工具, 端口转发, NAT 穿透, 反向代理, 隧道管理, 节点监控',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
   ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/xl',
   ogType: 'article',
-  twitterCard: 'summary_large_image'
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'ME-Frp-XL-Client - 基于 Tauri 2 的内网穿透客户端',
+  twitterDescription: '高性能跨平台内网穿透工具，支持 Windows 系统，界面美观、功能强大',
+  twitterImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png',
+  author: 'yealqp',
+  publisher: 'ME-Frp 第三方客户端联盟',
+  applicationName: 'ME-Frp-XL-Client',
+  robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  googlebot: 'index, follow',
+  language: 'zh-CN',
+  locale: 'zh_CN',
+  ogLocale: 'zh_CN',
+  articleAuthor: 'yealqp',
+  articlePublisher: 'https://mefrp-tpca.yealqp.cn',
+  articleSection: '软件文档',
+  articleTag: 'Tauri, Vue3, TypeScript, 内网穿透, ME-Frp, 端口映射, Windows 客户端'
 })
 
 // 预览图数据
 const previewImages = [
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/login.png', alt: '登录页面' },
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/home.png', alt: '主页面' },
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/create.png', alt: '创建隧道' },
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/tunnel.png', alt: '隧道管理' },
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/nodes.png', alt: '节点监控' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/userinfo.png', alt: '用户中心' },
-  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/config.png', alt: '配置设置' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/user.png', alt: '用户中心' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/setting.png', alt: '配置设置' },
+  { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/themes.png', alt: '主题设置' },
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/yealqp/about.png', alt: '关于页面' }
 ]
 
@@ -322,7 +456,7 @@ const updates = ref([])
 // 从 API 获取更新日志
 const fetchChangelog = async () => {
   try {
-    const response = await fetch('https://check.yealqp.cn/changelog.json')
+    const response = await fetch('https://xlc.mefrp.yealqp.cn/tpca.json')
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
@@ -338,11 +472,11 @@ const fetchChangelog = async () => {
 const compareVersions = (version1, version2) => {
   const v1Parts = version1.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
   const v2Parts = version2.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-  
+
   const maxLength = Math.max(v1Parts.length, v2Parts.length)
   while (v1Parts.length < maxLength) v1Parts.push(0)
   while (v2Parts.length < maxLength) v2Parts.push(0)
-  
+
   for (let i = 0; i < maxLength; i++) {
     if (v1Parts[i] > v2Parts[i]) return 1
     if (v1Parts[i] < v2Parts[i]) return -1
@@ -355,17 +489,17 @@ const transformApiData = (apiData) => {
   if (!apiData.data) {
     throw new Error('API 数据格式错误')
   }
-  
+
   const transformedData = []
   const versions = Object.keys(apiData.data).sort((a, b) => compareVersions(b, a))
-  
+
   versions.forEach((version, index) => {
     const versionData = apiData.data[version]
     // 适配新格式：versionData 是数组或对象
     const changes = Array.isArray(versionData) ? versionData : (versionData.changes || [])
     const date = Array.isArray(versionData) ? '' : (versionData.date || '')
     const note = Array.isArray(versionData) ? '' : (versionData.note || '')
-    
+
     transformedData.push({
       version: `v${version}`,
       changes: changes,
@@ -374,7 +508,7 @@ const transformApiData = (apiData) => {
       isLatest: index === 0
     })
   })
-  
+
   return transformedData
 }
 
@@ -382,7 +516,7 @@ const transformApiData = (apiData) => {
 const initializeUpdates = async () => {
   loading.value = true
   error.value = null
-  
+
   try {
     const apiData = await fetchChangelog()
     updates.value = transformApiData(apiData)

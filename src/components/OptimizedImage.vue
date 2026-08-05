@@ -1,14 +1,6 @@
 <template>
-  <img
-    :src="src"
-    :alt="alt"
-    :class="className"
-    :loading="loading"
-    :decoding="decoding"
-    :width="width"
-    :height="height"
-    @error="handleError"
-  />
+  <img :src="src" :alt="alt" :class="className" :loading="loading" :decoding="decoding" :width="width" :height="height"
+    @error="handleError" />
 </template>
 
 <script setup lang="ts">
