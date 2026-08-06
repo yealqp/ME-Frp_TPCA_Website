@@ -89,8 +89,6 @@
 </template>
 
 <script setup lang="ts">
-import { navigateTo } from 'nuxt/app'
-import { onMounted, ref } from 'vue'
 
 // 白皮书列表（按年份倒序，新白皮书追加到数组最前面）
 const whitebooks = [
