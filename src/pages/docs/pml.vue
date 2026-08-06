@@ -6,7 +6,7 @@
         <img src="https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp" alt="PML 2"
           class="w-12 h-12 rounded-lg" />
         <div>
-          <h1 class="text-3xl font-bold text-white">PML 2</h1>
+          <h1 class="text-3xl font-bold text-white"><span class="text-primary-200">Portal</span> ME Frp Launcher 2 (PML 2)</h1>
           <p class="text-gray-400">基于 .NET 的跨平台客户端</p>
         </div>
       </div>
@@ -33,7 +33,7 @@
           开发的 ME-Frp 第三方客户端。 该客户端是对 ME Frp (幻缘映射)
           的图形化实现，提供了简单便捷的操作，可以快速启动隧道，支持 Windows,
           Linux 和 MacOS 三端。
-          <em class="text-primary-300">也是目前三个产品中唯一一个支持跨平台的软件。</em>
+          <em class="text-primary-300">也是目前三个产品中唯一一个完整支持跨平台的软件。</em>
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -261,15 +261,20 @@
                   class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">1</span>
                 <span>下载 Linux 包 (.deb/.rpm/.tar.gz)</span>
               </li>
-              <li class="flex items-start space-x-2">
+              <!-- <li class="flex items-start space-x-2">
                 <span
                   class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">2</span>
                 <span>安装 .NET Runtime (如未安装)</span>
+              </li> -->
+              <li class="flex items-start space-x-2">
+                <span
+                  class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                <span>解压并运行程序</span>
               </li>
               <li class="flex items-start space-x-2">
                 <span
-                  class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">3</span>
-                <span>解压并运行程序</span>
+                  class="flex-shrink-0 w-5 h-5 bg-secondary-500/20 text-secondary-400 rounded-full flex items-center justify-center text-xs font-bold">i</span>
+                <span>也可使用安装脚本, 详情查看<a href="https://docs.rycb.tech/pml-2/install#linux-%E5%AE%89%E8%A3%85" target="_blank" class="text-blue-400 hover:underline">安装文档</a></span>
               </li>
             </ol>
           </div>
@@ -294,7 +299,7 @@
               <li class="flex items-start space-x-2">
                 <span
                   class="flex-shrink-0 w-5 h-5 bg-primary-500/20 text-primary-400 rounded-full flex items-center justify-center text-xs font-bold">3</span>
-                <span>首次运行需要允许未知开发者</span>
+                <a href="https://docs.rycb.tech/pml-2/install#macos-%E5%AE%89%E8%A3%85" target="_blank" class="text-blue-400 hover:underline">根据安装文档安装 (<b> *重要！</b>)</a>
               </li>
             </ol>
           </div>
