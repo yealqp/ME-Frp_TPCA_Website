@@ -13,7 +13,7 @@
           最新版本
         </span>
 
-        <a v-if="update.codename" :href="`https://api.rycb.tech/codename/${update.codename}`" target="_blank"
+        <a v-if="update.codename" :href="`${EO_API}/codename/${update.codename}`" target="_blank"
           class="px-2.5 py-1 text-xs font-semibold rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 hover:bg-blue-500/30 transition-colors cursor-pointer inline-flex items-center">
           <UIcon name="i-lucide-tag" class="size-3 inline-block mr-1" />
           {{ update.codename }}
@@ -50,6 +50,8 @@
 </template>
 
 <script setup lang="ts">
+import { EO_API } from "~/data/constants";
+
 interface Update {
   version: string
   isLatest?: boolean

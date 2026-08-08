@@ -12,7 +12,7 @@
           </p>
           <p class="text-gray-400 text-sm">
             本站借鉴自
-            <NuxtLink to="https://github.com/MCSLTeam/MCSLTeam-Website-Next" target="_blank"
+            <NuxtLink :to="MCSLTEAM_URL" target="_blank"
               class="text-teal-400 hover:text-teal-300 transition-smooth cursor-pointer">
               MCSLTeam官网
             </NuxtLink>
@@ -22,13 +22,13 @@
 
         <!-- 右侧链接 -->
         <div class="flex flex-col items-start md:items-end space-y-3">
-          <NuxtLink to="https://beian.miit.gov.cn/" target="_blank"
+          <NuxtLink :to="ICP_QUERY_URL" target="_blank"
             class="text-gray-400 hover:text-teal-400 text-sm transition-smooth cursor-pointer">
-            冀ICP备2025123259号-2
+            {{ ICP_BEIAN }}
           </NuxtLink>
 
           <div class="flex items-center space-x-4">
-            <UButton variant="ghost" size="sm" color="neutral" to="https://github.com/yealqp/ME-Frp_TPCA_Website"
+            <UButton variant="ghost" size="sm" color="neutral" :to="GITHUB_REPO"
               target="_blank" class="text-gray-400 hover:text-teal-400 btn-glow cursor-pointer">
               <UIcon name="i-lucide-github" class="size-5" />
               Github
@@ -41,10 +41,12 @@
 </template>
 
 <script setup lang="ts">
+import { FOUNDING_DATE, ICP_BEIAN, GITHUB_REPO, MCSLTEAM_URL, ICP_QUERY_URL } from "~/data/constants";
+
 const runtimeText = ref('')
 
 const calculateRuntime = () => {
-  const startTime = new Date('2025/08/13 11:25:27')
+  const startTime = new Date(FOUNDING_DATE)
   const now = new Date()
   const diff = now - startTime
 

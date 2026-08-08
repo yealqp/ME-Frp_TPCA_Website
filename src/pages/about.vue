@@ -13,12 +13,17 @@
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div class="animate-fade-in-up">
+          <div
+            class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-sm mb-6">
+            <UIcon name="i-lucide-info" class="size-4" />
+            <span>关于联盟</span>
+          </div>
           <h1 class="text-4xl md:text-5xl font-bold text-white mb-6"
             style="text-shadow: 0 0 30px rgba(20, 184, 166, 0.3);">
             关于我们
           </h1>
           <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-            我们是一群热爱技术、勇于创新的开发者，致力于为 ME-Frp 用户提供更好的客户端体验
+            热爱技术、勇于创新的开发者，为 ME-Frp 用户提供更好的客户端体验
           </p>
         </div>
       </div>
@@ -36,20 +41,44 @@
             </div>
           </div>
 
-          <div class="p-6 space-y-6 text-gray-300 leading-relaxed">
+          <div class="p-6 space-y-4 text-gray-300 leading-relaxed">
             <p class="text-lg">
-              <strong class="text-teal-400">ME-Frp TPCA</strong>
-              是自发性的、开发者群体为主的社区组织。
+              <strong class="text-teal-400">{{ SITE_SHORT_NAME }}</strong>
+              是由开发者自发组成的社区组织，现归属于<strong class="text-white">云上极致</strong>旗下。
             </p>
             <p>
-              从 <strong class="text-white">2025/8/13</strong> 的上午直至今日，在Development路上不断学习、不断前行的身影，时时映在我们身上。
+              自 <strong class="text-white">2025年8月13日</strong> 正式成立以来，从三人初创到群英汇聚，我们用一行行代码诠释了"<strong class="text-teal-400">不畏难、勇创新、敢作为、同努力</strong>"的联盟精神。
             </p>
             <p>
-              我们是一位位不畏难、不退缩、勇创新、敢作为的伙伴携手共成的团体。现归属于<strong class="text-white">幻缘网络</strong>旗下。
+              专注于<strong class="text-teal-400">ME-Frp</strong> 第三方客户端开发，覆盖 Windows、Linux、macOS、Android 全平台，横跨 .NET、Rust、Java、WinUI3、Flutter 等多技术栈。
             </p>
-            <p>
-              专注于<strong class="text-teal-400">ME-Frp第三方客户端开发</strong>。
-            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 数据一览 -->
+    <section class="py-8 lg:py-12 relative" style="background: #0F172A;">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref="statsRef" class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
+          :class="{ 'visible': statsVisible }">
+          <div class="p-6 border-b border-white/10">
+            <div class="flex items-center space-x-3">
+              <UIcon name="i-lucide-bar-chart-3" class="size-6 text-teal-400" />
+              <h2 class="text-2xl font-bold text-white">数据一览</h2>
+            </div>
+          </div>
+          <div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div v-for="stat in stats" :key="stat.label"
+              class="glass-card text-center space-y-2 p-6 rounded-lg hover-lift overflow-hidden">
+              <div class="flex justify-center">
+                <div class="p-3 rounded-full" style="background: rgba(20, 184, 166, 0.15);">
+                  <UIcon :name="stat.icon" class="size-6 text-teal-400" />
+                </div>
+              </div>
+              <div class="text-3xl font-bold text-teal-400" :style="{ textShadow: '0 0 15px rgba(20, 184, 166, 0.3)' }">{{ stat.value }}</div>
+              <p class="text-gray-400 text-sm">{{ stat.label }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -133,14 +162,50 @@
             <p class="text-lg text-gray-300">
               如果您有任何问题或建议，欢迎通过以下方式联系我们
             </p>
-            <div class="flex justify-center">
-              <UButton size="lg" color="primary" to="https://github.com/yealqp/ME-Frp_TPCA_Website" target="_blank"
+            <div class="flex flex-wrap justify-center gap-4">
+              <UButton size="lg" color="primary" :to="GITHUB_REPO" target="_blank"
                 class="btn-glow cursor-pointer">
                 <UIcon name="i-lucide-github" class="size-5 mr-2" />
                 GitHub
               </UButton>
+              <UButton size="lg" variant="outline" color="neutral" to="/brand"
+                class="btn-glow cursor-pointer">
+                <UIcon name="i-lucide-palette" class="size-5 mr-2" />
+                品牌资源
+              </UButton>
             </div>
+            <p class="text-sm text-gray-500">
+              开发者加盟或合作咨询，请访问
+              <NuxtLink to="/docs/alliance/members" class="text-teal-400 hover:text-teal-300 transition-colors">联盟成员规范</NuxtLink>
+              了解详情
+            </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 开始探索 -->
+    <section class="py-8 lg:py-12 relative overflow-hidden"
+      style="background: linear-gradient(135deg, #0F172A 0%, #0A0E27 50%, #0F172A 100%);">
+      <div class="absolute inset-0">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <h2 class="text-3xl font-bold text-white mb-4" style="text-shadow: 0 0 30px rgba(20, 184, 166, 0.3);">
+          准备好开始了吗？
+        </h2>
+        <p class="text-gray-400 mb-8 max-w-xl mx-auto">
+          了解我们的产品，找到最适合你的 ME-Frp 客户端
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <UButton size="lg" color="primary" to="/products" class="btn-glow cursor-pointer">
+            <UIcon name="i-lucide-box" class="size-5 mr-2" />
+            探索产品
+          </UButton>
+          <UButton size="lg" variant="outline" color="neutral" to="/docs" class="btn-glow cursor-pointer">
+            <UIcon name="i-lucide-book-open" class="size-5 mr-2" />
+            查看文档
+          </UButton>
         </div>
       </div>
     </section>
@@ -152,7 +217,7 @@
 useHead({
   title: '关于我们',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/about' }
+    { rel: 'canonical', href: `${SITE_URL}/about` }
   ],
   script: [
     {
@@ -160,12 +225,12 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'AboutPage',
-        name: '关于我们 - ME-Frp 第三方客户端联盟',
-        description: '了解 ME-Frp 第三方客户端联盟的发展历程、核心价值和团队成员',
-        url: 'https://mefrp-tpca.yealqp.cn/about',
+        name: `关于我们 - ${SITE_NAME}`,
+        description: `了解 ${SITE_NAME}的发展历程、核心价值和团队成员`,
+        url: `${SITE_URL}/about`,
         mainEntity: {
           '@type': 'Organization',
-          name: 'ME-Frp 第三方客户端联盟',
+          name: SITE_NAME,
           foundingDate: '2025-08-13',
           description: '专注于 ME-Frp 第三方客户端开发的社区组织'
         }
@@ -176,69 +241,25 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: '关于我们 | ME-Frp 第三方客户端联盟',
-  ogTitle: '关于我们 - ME-Frp 第三方客户端联盟',
-  description: '了解 ME-Frp 第三方客户端联盟的发展历程、核心价值和团队成员，我们是一群热爱技术、勇于创新的开发者。',
-  ogDescription: '了解 ME-Frp 第三方客户端联盟的发展历程、核心价值和团队成员',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/about',
+  title: `关于我们 | ${SITE_NAME}`,
+  ogTitle: `关于我们 - ${SITE_NAME}`,
+  description: `了解 ${SITE_NAME}的发展历程、核心价值和团队成员，我们是一群热爱技术、勇于创新的开发者。`,
+  ogDescription: `了解 ${SITE_NAME}的发展历程、核心价值和团队成员`,
+  ogImage: OG_IMAGE,
+  ogUrl: `${SITE_URL}/about`,
   ogType: 'website',
   twitterCard: 'summary_large_image'
 })
 
+import { timeline } from "~/data/timeline";
+import { values } from "~/data/values";
+import { stats } from "~/data/stats";
+import { GITHUB_REPO, SITE_URL, SITE_NAME, OG_IMAGE, SITE_SHORT_NAME } from "~/data/constants";
+
 // 滚动动画
 const { elementRef: whoWeAreRef, isVisible: whoWeAreVisible } = useScrollAnimation()
+const { elementRef: statsRef, isVisible: statsVisible } = useScrollAnimation()
 const { elementRef: timelineRef, isVisible: timelineVisible } = useScrollAnimation()
 const { elementRef: valuesRef, isVisible: valuesVisible } = useScrollAnimation()
 const { elementRef: contactRef, isVisible: contactVisible } = useScrollAnimation()
-
-const timeline = ref([
-  {
-    date: '2025/07/11',
-    title: '写下第一行代码',
-    description: 'LX-ME-Frp-Launcher 的第一行代码被写下，命运的齿轮悄然转动',
-    icon: 'i-lucide-code'
-  },
-  {
-    date: '2025/08/01',
-    title: '逐渐扩大',
-    description: 'LX-ME-Frp-Launcher 的开发纷纷让其他开发者也开始开发ME-Frp第三方客户端',
-    icon: 'i-lucide-trending-up'
-  },
-  {
-    date: '2025/8/13',
-    title: 'ME-Frp TPCA成立',
-    description: 'ME-Frp第三方客户端的开发者们聚集在一起，ME-Frp TPCA正式成立',
-    icon: 'i-lucide-flag'
-  },
-  {
-    date: '未来',
-    title: '展望未来',
-    description: '我们会变得更好...',
-    icon: 'i-lucide-rocket'
-  }
-])
-
-const values = ref([
-  {
-    title: '不畏难',
-    description: '面对技术挑战，我们勇于探索，永不退缩',
-    icon: 'i-lucide-code'
-  },
-  {
-    title: '勇创新',
-    description: '持续创新，为用户提供更好的产品体验',
-    icon: 'i-lucide-rocket'
-  },
-  {
-    title: '敢作为',
-    description: '积极行动，用实际成果证明我们的价值',
-    icon: 'i-lucide-users'
-  },
-  {
-    title: '同努力',
-    description: '团结协作，共同成长，共创美好未来',
-    icon: 'i-lucide-hand'
-  }
-])
 </script>

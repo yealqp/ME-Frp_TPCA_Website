@@ -134,23 +134,26 @@
 </template>
 
 <script setup lang="ts">
-import { getProductSummaries } from "~/data/products";
+import { getProductSummaries, PRODUCT_COUNT } from "~/data/products";
+import { members, MEMBER_COUNT } from "~/data/members";
+import { sponsors } from "~/data/sponsors";
+import { stats } from "~/data/stats";
+import { SPONSOR_COUNT, STAT_COUNT, ANIMATION } from "~/data/constants";
 
 // 产品区域动画
 const { elementRef: productTitleRef, isVisible: productTitleVisible } = useScrollAnimation()
-const { containerRef: productGridRef, isVisible: productGridVisible, getItemDelay: getProductDelay } = useScrollAnimationGroup(6, { staggerDelay: 150 })
+const { containerRef: productGridRef, isVisible: productGridVisible, getItemDelay: getProductDelay } = useScrollAnimationGroup(PRODUCT_COUNT, { staggerDelay: ANIMATION.PRODUCT_STAGGER })
 
 // 团队区域动画
 const { elementRef: teamTitleRef, isVisible: teamTitleVisible } = useScrollAnimation()
-// 【修改】成员数量由 5 增至 6（新增 zhai）
-const { containerRef: membersGridRef, isVisible: membersGridVisible, getItemDelay: getMemberDelay } = useScrollAnimationGroup(6, { staggerDelay: 100 })
+const { containerRef: membersGridRef, isVisible: membersGridVisible, getItemDelay: getMemberDelay } = useScrollAnimationGroup(MEMBER_COUNT, { staggerDelay: ANIMATION.MEMBER_STAGGER })
 
 // 特别鸣谢区域动画
 const { elementRef: sponsorsTitleRef, isVisible: sponsorsTitleVisible } = useScrollAnimation()
-const { containerRef: sponsorsGridRef, isVisible: sponsorsGridVisible, getItemDelay: getSponsorDelay } = useScrollAnimationGroup(3, { staggerDelay: 150 })
+const { containerRef: sponsorsGridRef, isVisible: sponsorsGridVisible, getItemDelay: getSponsorDelay } = useScrollAnimationGroup(SPONSOR_COUNT, { staggerDelay: ANIMATION.SPONSOR_STAGGER })
 
 // 统计区域动画
-const { containerRef: statsGridRef, isVisible: statsGridVisible, getItemDelay: getStatsDelay } = useScrollAnimationGroup(4, { staggerDelay: 100 })
+const { containerRef: statsGridRef, isVisible: statsGridVisible, getItemDelay: getStatsDelay } = useScrollAnimationGroup(STAT_COUNT, { staggerDelay: ANIMATION.STAT_STAGGER })
 
 // 使用版本管理 composable
 const { versions, fetchAllVersions } = useProductVersions()
@@ -162,29 +165,6 @@ const products = computed(() => getProductSummaries(versions.value))
 onMounted(() => {
   fetchAllVersions()
 })
-
-const members = ref([
-  { name: 'Yealqp', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=1592239257&spec=4', role: 'DevOps / 创始人 / 成员', link: 'https://github.com/Yealqp' },
-  { name: '灵弦MuaMua', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=407176772&spec=4', role: '创始人 / 成员', link: 'https://github.com/lngxian' },
-  { name: 'QYF', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3561786358&spec=4', role: '创始人 / 成员', link: 'https://github.com/QYF-RYCBStudio' },
-  { name: 'ZeroSnow', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3976141098&spec=4', role: '成员', link: 'https://github.com/chencomcdyun' },
-  { name: 'xiaofan', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2183576276&spec=4', role: '成员', link: 'https://github.com/xiaofanforfabric/' },
-  // 【新增】zhai：FrpDash（面向安卓端的 ME-Frp 第三方客户端）开发者
-  { name: 'zhai', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2088264797&spec=4', role: '成员', link: 'https://github.com/zcj-ui' }
-])
-
-const sponsors = ref([
-  { name: '落雪无痕LxHTT', avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3395314362&spec=4', role: '特别鸣谢', link: 'https://github.com/LxHTT', special: false },
-  { name: 'MCSLTeam-Website-Next', avatar: 'https://avatars.githubusercontent.com/u/138136619?s=48&v=4', role: '特别鸣谢', link: 'https://github.com/MCSLTeam/MCSLTeam-Website-Next', special: false },
-  { name: '仙林云计算', avatar: 'https://image.mefrp-tpca.yealqp.cn/images/xianlin.ico', role: '服务提供商', link: 'https://www.idcxl.cn/', special: true }
-])
-
-const stats = ref([
-  { icon: 'i-lucide-box', value: '6+', label: '客户端产品' },
-  { icon: 'i-lucide-users', value: '6+', label: '团队成员' },
-  { icon: 'i-lucide-code', value: '100%', label: '社区驱动' },
-  { icon: 'i-lucide-heart', value: '∞', label: '用户支持' }
-])
 
 const handleImageError = (event) => {
   event.target.style.display = 'none'

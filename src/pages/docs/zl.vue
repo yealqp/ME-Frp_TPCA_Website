@@ -444,6 +444,8 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
+
 // 使用文档布局
 definePageMeta({
   layout: 'docs'
@@ -475,7 +477,7 @@ const currentVersion = computed(() => getVersion('zl'))
 useHead({
   title: 'ZNext Launcher 文档',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/zl' }
+    { rel: 'canonical', href: `${SITE_URL}/docs/zl` }
   ],
   script: [
     {
@@ -498,12 +500,12 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: 'ZNext Launcher 文档 | ME-Frp 第三方客户端联盟',
-  ogTitle: 'ZNext Launcher 文档 - ME-Frp 第三方客户端联盟',
+  title: `ZNext Launcher 文档 | ${SITE_NAME}`,
+  ogTitle: `ZNext Launcher 文档 - ${SITE_NAME}`,
   description: 'ZNext Launcher 详细使用文档，基于 WinUI3 框架开发的 ME-Frp 第三方客户端，包含安装、配置和使用指南，支持 Windows 10/11 和 Windows Server。',
   ogDescription: 'ZNext Launcher 详细使用文档，包含安装、配置和使用指南',
   ogImage: 'https://image.mefrp-tpca.yealqp.cn/image/views/yealqp/home.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/zl',
+  ogUrl: `${SITE_URL}/docs/zl`,
   ogType: 'article',
   twitterCard: 'summary_large_image'
 })
@@ -521,107 +523,8 @@ const previewImages = [
   { src: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext/about.png', alt: '关于页面' }
 ]
 
-// 更新日志状态
-const loading = ref(false)
-const error = ref(null)
-const updates = ref([])
-
-// 本地更新日志数据
-const localChangelog = {
-  data: {
-    '1.8': {
-      date: '2026-04-11',
-      changes: [
-
-        '修复一些已知问题'
-      ]
-    },
-    '1.7': {
-      date: '2026-03-25',
-      note: '补充功能说明',
-      changes: [
-        '优化节点管理界面',
-        '增加系统托盘支持'
-      ]
-    }
-  }
-}
-
-// 版本号比较
-const compareVersions = (version1, version2) => {
-  const v1Parts = version1.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-  const v2Parts = version2.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-
-  const maxLength = Math.max(v1Parts.length, v2Parts.length)
-  while (v1Parts.length < maxLength) v1Parts.push(0)
-  while (v2Parts.length < maxLength) v2Parts.push(0)
-
-  for (let i = 0; i < maxLength; i++) {
-    if (v1Parts[i] > v2Parts[i]) return 1
-    if (v1Parts[i] < v2Parts[i]) return -1
-  }
-  return 0
-}
-
-// 转换本地数据为组件更新列表
-const transformApiData = (apiData) => {
-  if (!apiData || !apiData.data) {
-    throw new Error('更新日志数据格式错误')
-  }
-
-  const transformedData = []
-  const versions = Object.keys(apiData.data).sort((a, b) => compareVersions(b, a))
-
-  versions.forEach((version, index) => {
-    const versionData = apiData.data[version]
-    const changes = Array.isArray(versionData) ? versionData : (versionData.changes || [])
-    const date = Array.isArray(versionData) ? '' : (versionData.date || '')
-    const note = Array.isArray(versionData) ? '' : (versionData.note || '')
-
-    transformedData.push({
-      version: `v${version}`,
-      changes: changes,
-      date: date,
-      note: note,
-      isLatest: index === 0
-    })
-  })
-
-  return transformedData
-}
-
-// 初始化更新日志
-const initializeUpdates = async () => {
-  loading.value = true
-  error.value = null
-  updates.value = []
-
-  const apiData = localChangelog
-
-  if (!apiData) {
-    error.value = '更新日志数据不存在'
-    updates.value = []
-    loading.value = false
-    return
-  }
-
-  if (!apiData.data || Object.keys(apiData.data).length === 0) {
-    error.value = '暂无更新日志'
-    updates.value = []
-    loading.value = false
-    return
-  }
-
-  const transformed = transformApiData(apiData)
-  if (!transformed || transformed.length === 0) {
-    error.value = '暂无更新日志'
-    updates.value = []
-  } else {
-    updates.value = transformed
-  }
-
-  loading.value = false
-}
+// 更新日志
+const { updates, loading, error, fetchChangelog } = useProductChangelog('zl')
 
 // 轮播图状态
 const currentImageIndex = ref(0)
@@ -643,6 +546,6 @@ const openImageModal = (image) => {
 // 组件挂载时初始化
 onMounted(() => {
   fetchAllVersions()
-  initializeUpdates()
+  fetchChangelog()
 })
 </script>

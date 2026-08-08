@@ -308,6 +308,8 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, OG_IMAGE } from "~/data/constants";
+
 // 使用文档布局
 definePageMeta({
   layout: 'docs'
@@ -366,95 +368,19 @@ const openImageModal = (image) => {
   showImageModal.value = true
 }
 
-// 更新日志状态
-const loading = ref(false)
-const error = ref(null)
-const updates = ref([])
-
-// 从 API 获取更新日志
-const fetchChangelog = async () => {
-  try {
-    const response = await fetch('https://frpc.xiaofanshop.cn/tpca.json')
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-    const data = await response.json()
-    return data
-  } catch (err) {
-    console.error('获取更新日志失败:', err)
-    throw err
-  }
-}
-
-// 版本号比较
-const compareVersions = (version1, version2) => {
-  const v1Parts = version1.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-  const v2Parts = version2.replace(/[^\d.]/g, '').split('.').map(num => parseInt(num) || 0)
-
-  const maxLength = Math.max(v1Parts.length, v2Parts.length)
-  while (v1Parts.length < maxLength) v1Parts.push(0)
-  while (v2Parts.length < maxLength) v2Parts.push(0)
-
-  for (let i = 0; i < maxLength; i++) {
-    if (v1Parts[i] > v2Parts[i]) return 1
-    if (v1Parts[i] < v2Parts[i]) return -1
-  }
-  return 0
-}
-
-// 转换 API 数据
-const transformApiData = (apiData) => {
-  if (!apiData.data) {
-    throw new Error('API 数据格式错误')
-  }
-
-  const transformedData = []
-  const versions = Object.keys(apiData.data).sort((a, b) => compareVersions(b, a))
-
-  versions.forEach((version, index) => {
-    const versionData = apiData.data[version]
-    const changes = Array.isArray(versionData) ? versionData : (versionData.changes || [])
-    const date = Array.isArray(versionData) ? '' : (versionData.date || '')
-    const note = Array.isArray(versionData) ? '' : (versionData.note || '')
-
-    transformedData.push({
-      version: `v${version}`,
-      changes: changes,
-      date: date,
-      note: note,
-      isLatest: index === 0
-    })
-  })
-
-  return transformedData
-}
-
-// 初始化更新日志
-const initializeUpdates = async () => {
-  loading.value = true
-  error.value = null
-
-  try {
-    const apiData = await fetchChangelog()
-    updates.value = transformApiData(apiData)
-  } catch (err) {
-    error.value = '暂没更新日志'
-    updates.value = []
-  } finally {
-    loading.value = false
-  }
-}
+// 更新日志
+const { updates, loading, error, fetchChangelog } = useProductChangelog('fm')
 
 // 组件挂载时初始化
 onMounted(() => {
-  initializeUpdates()
+  fetchChangelog()
 })
 
 // 页面元数据
 useHead({
   title: 'Fan-ME-FRP-Launcher 文档',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs/fm' }
+    { rel: 'canonical', href: `${SITE_URL}/docs/fm` }
   ],
   script: [
     {
@@ -479,12 +405,12 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: 'Fan-ME-FRP-Launcher 文档 | ME-Frp 第三方客户端联盟',
-  ogTitle: 'Fan-ME-FRP-Launcher 文档 - ME-Frp 第三方客户端联盟',
+  title: `Fan-ME-FRP-Launcher 文档 | ${SITE_NAME}`,
+  ogTitle: `Fan-ME-FRP-Launcher 文档 - ${SITE_NAME}`,
   description: 'Fan-ME-FRP-Launcher 是由 xiaofanforfabric 基于 Java 开发的 FRP 客户端启动器，支持 GUI 图形界面和命令行模式，轻松使用 ME-Frp 内网穿透服务。',
   ogDescription: 'Fan-ME-FRP-Launcher 基于 Java 的 FRP 客户端启动器，支持 GUI 图形界面和命令行模式',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/docs/fm',
+  ogImage: OG_IMAGE,
+  ogUrl: `${SITE_URL}/docs/fm`,
   ogType: 'article',
   twitterCard: 'summary_large_image'
 })

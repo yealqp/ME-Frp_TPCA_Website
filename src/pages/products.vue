@@ -94,6 +94,50 @@
       </div>
     </section>
 
+    <!-- 为什么选择我们 -->
+    <section class="py-16 lg:py-24 relative" style="background: linear-gradient(180deg, #0F172A 0%, #111827 100%);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref="whyUsRef" class="glass-card scroll-animate hover-lift rounded-xl overflow-hidden"
+          :class="{ 'visible': whyUsVisible }">
+          <div class="p-6 border-b border-white/10">
+            <div class="flex items-center space-x-3">
+              <UIcon name="i-lucide-star" class="size-6 text-teal-400" />
+              <h2 class="text-2xl font-bold text-white">为什么选择我们？</h2>
+            </div>
+          </div>
+          <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card text-center space-y-4 p-6 rounded-lg hover-lift overflow-hidden">
+              <div class="flex justify-center">
+                <div class="p-4 rounded-full" style="background: rgba(20, 184, 166, 0.2);">
+                  <UIcon name="i-lucide-palette" class="size-8 text-teal-400" />
+                </div>
+              </div>
+              <h3 class="text-lg font-semibold text-white">多样选择</h3>
+              <p class="text-gray-400 text-sm">覆盖 Windows、Linux、macOS、Android 全平台，{{ PRODUCT_COUNT }}+ 款客户端任你挑选</p>
+            </div>
+            <div class="glass-card text-center space-y-4 p-6 rounded-lg hover-lift overflow-hidden">
+              <div class="flex justify-center">
+                <div class="p-4 rounded-full" style="background: rgba(20, 184, 166, 0.2);">
+                  <UIcon name="i-lucide-shield" class="size-8 text-teal-400" />
+                </div>
+              </div>
+              <h3 class="text-lg font-semibold text-white">安全可靠</h3>
+              <p class="text-gray-400 text-sm">大多项目开源或半开源，代码可审查，社区共同维护，确保安全透明</p>
+            </div>
+            <div class="glass-card text-center space-y-4 p-6 rounded-lg hover-lift overflow-hidden">
+              <div class="flex justify-center">
+                <div class="p-4 rounded-full" style="background: rgba(20, 184, 166, 0.2);">
+                  <UIcon name="i-lucide-zap" class="size-8 text-teal-400" />
+                </div>
+              </div>
+              <h3 class="text-lg font-semibold text-white">持续更新</h3>
+              <p class="text-gray-400 text-sm">活跃的开发者社区，定期迭代发布新版本，功能不断完善</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="py-16 lg:py-24 relative overflow-hidden"
       style="background: linear-gradient(135deg, #0F172A 0%, #0A0E27 50%, #0F172A 100%);">
@@ -124,13 +168,14 @@
 </template>
 
 <script setup lang="ts">
-import { getProducts } from "~/data/products";
+import { getProducts, PRODUCT_COUNT } from "~/data/products";
+import { SITE_URL, SITE_NAME, OG_IMAGE, GITHUB_REPO } from "~/data/constants";
 
 // 页面元数据
 useHead({
   title: '产品',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/products' }
+    { rel: 'canonical', href: `${SITE_URL}/products` }
   ],
   script: [
     {
@@ -138,9 +183,9 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'ItemList',
-        name: 'ME-Frp 第三方客户端产品列表',
-        description: 'ME-Frp 第三方客户端联盟的所有产品',
-        numberOfItems: 6,
+        name: `ME-Frp 第三方客户端产品列表`,
+        description: `${SITE_NAME}的所有产品`,
+        numberOfItems: PRODUCT_COUNT,
         itemListElement: [
           {
             '@type': 'SoftwareApplication',
@@ -204,27 +249,27 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: '产品 | ME-Frp 第三方客户端联盟',
-  ogTitle: '产品 - ME-Frp 第三方客户端联盟',
-  description: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2、ZNext Launcher 和 Fan-ME-FRP-Launcher，为不同需求的用户提供多样化的内网穿透解决方案。',
-  ogDescription: '了解 ME-Frp 第三方客户端联盟的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2、ZNext Launcher 和 Fan-ME-FRP-Launcher',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/products',
+  title: `产品 | ${SITE_NAME}`,
+  ogTitle: `产品 - ${SITE_NAME}`,
+  description: `了解 ${SITE_NAME}的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2、ZNext Launcher 和 Fan-ME-FRP-Launcher，为不同需求的用户提供多样化的内网穿透解决方案。`,
+  ogDescription: `了解 ${SITE_NAME}的所有产品，包括 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2、ZNext Launcher 和 Fan-ME-FRP-Launcher`,
+  ogImage: OG_IMAGE,
+  ogUrl: `${SITE_URL}/products`,
   ogType: 'website',
   twitterCard: 'summary_large_image'
 })
 
 // 滚动动画
 const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation()
+const { elementRef: whyUsRef, isVisible: whyUsVisible } = useScrollAnimation()
 
 // 产品列表滚动动画
 const productRefs = ref([])
-// 【修改】产品数量由 5 增至 6（新增 FrpDash），可见性数组同步扩展
-const productVisibility = ref([false, false, false, false, false, false])
+const productVisibility = ref(Array<boolean>(PRODUCT_COUNT).fill(false))
 
 onMounted(() => {
   if (typeof IntersectionObserver === 'undefined') {
-    productVisibility.value = [true, true, true, true, true, true]
+    productVisibility.value = Array<boolean>(PRODUCT_COUNT).fill(true)
     return
   }
 

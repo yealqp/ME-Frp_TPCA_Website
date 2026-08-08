@@ -113,6 +113,45 @@
         </div>
       </div>
 
+      <!-- 联盟文档 -->
+      <div ref="allianceRef" class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+        :class="{ 'visible': allianceVisible }">
+        <div class="p-6 border-b border-white/10">
+          <div class="flex items-center space-x-3">
+            <UIcon name="i-lucide-landmark" class="size-6 text-primary-400" />
+            <h2 class="text-2xl font-semibold text-white">联盟文档</h2>
+          </div>
+        </div>
+
+        <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <NuxtLink to="/docs/alliance/whitebook"
+            class="glass-card block p-4 rounded-lg hover-lift overflow-hidden cursor-pointer">
+            <div class="flex items-center space-x-3 mb-3">
+              <UIcon name="i-lucide-book-open" class="size-6 text-teal-400" />
+              <h3 class="font-semibold text-white">联盟白皮书</h3>
+            </div>
+            <p class="text-gray-300 text-sm mb-2">了解联盟的起源、发展历程、核心产品生态与未来愿景</p>
+            <div class="flex items-center text-primary-400 text-sm">
+              <span>阅读更多</span>
+              <UIcon name="i-lucide-arrow-right" class="size-4 ml-1" />
+            </div>
+          </NuxtLink>
+
+          <NuxtLink to="/docs/alliance/members"
+            class="glass-card block p-4 rounded-lg hover-lift overflow-hidden cursor-pointer">
+            <div class="flex items-center space-x-3 mb-3">
+              <UIcon name="i-lucide-scale" class="size-6 text-teal-400" />
+              <h3 class="font-semibold text-white">成员行为规范</h3>
+            </div>
+            <p class="text-gray-300 text-sm mb-2">联盟成员的行为准则、AI 使用原则与技术能力要求</p>
+            <div class="flex items-center text-primary-400 text-sm">
+              <span>阅读更多</span>
+              <UIcon name="i-lucide-arrow-right" class="size-4 ml-1" />
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+
       <!-- 客户端文档链接 -->
       <div ref="clientsRef" class="glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
         :class="{ 'visible': clientsVisible }">
@@ -156,7 +195,7 @@
           </p>
 
           <div class="flex justify-center space-x-4">
-            <UButton variant="outline" color="primary" to="https://github.com/yealqp/ME-Frp_TPCA_Website"
+            <UButton variant="outline" color="primary" :to="GITHUB_REPO"
               target="_blank" class="btn-glow cursor-pointer">
               <UIcon name="i-lucide-github" class="size-4 mr-2" />
               GitHub
@@ -174,6 +213,9 @@
 </template>
 
 <script setup lang="ts">
+import { SITE_URL, SITE_NAME, SITE_SHORT_NAME, SITE_DESCRIPTION, OG_IMAGE, GITHUB_REPO } from "~/data/constants";
+import { getDocClients } from "~/data/products";
+
 // 使用文档布局
 definePageMeta({
   layout: 'docs'
@@ -183,6 +225,7 @@ definePageMeta({
 const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation()
 const { elementRef: introRef, isVisible: introVisible } = useScrollAnimation()
 const { elementRef: quickStartRef, isVisible: quickStartVisible } = useScrollAnimation()
+const { elementRef: allianceRef, isVisible: allianceVisible } = useScrollAnimation()
 const { elementRef: clientsRef, isVisible: clientsVisible } = useScrollAnimation()
 const { elementRef: contactRef, isVisible: contactVisible } = useScrollAnimation()
 
@@ -190,7 +233,7 @@ const { elementRef: contactRef, isVisible: contactVisible } = useScrollAnimation
 useHead({
   title: '文档中心',
   link: [
-    { rel: 'canonical', href: 'https://mefrp-tpca.yealqp.cn/docs' }
+    { rel: 'canonical', href: `${SITE_URL}/docs` }
   ],
   script: [
     {
@@ -198,9 +241,9 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebPage',
-        name: '文档中心 - ME-Frp 第三方客户端联盟',
-        description: 'ME-Frp 第三方客户端联盟文档中心，包含所有产品的详细使用指南',
-        url: 'https://mefrp-tpca.yealqp.cn/docs'
+        name: `文档中心 - ${SITE_NAME}`,
+        description: `${SITE_NAME}文档中心，包含所有产品的详细使用指南`,
+        url: `${SITE_URL}/docs`
       })
     }
   ]
@@ -208,62 +251,23 @@ useHead({
 
 // SEO 优化
 useSeoMeta({
-  title: '文档中心 | ME-Frp 第三方客户端联盟',
-  ogTitle: '文档中心 - ME-Frp 第三方客户端联盟',
-  description: 'ME-Frp 第三方客户端联盟文档中心，包含 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2、ZNext Launcher、Fan-ME-FRP Launcher 等所有产品的详细使用指南和安装教程。',
-  ogDescription: 'ME-Frp 第三方客户端联盟文档中心，包含所有产品的详细使用指南',
-  ogImage: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/og-image.png',
-  ogUrl: 'https://mefrp-tpca.yealqp.cn/docs',
+  title: `文档中心 | ${SITE_NAME}`,
+  ogTitle: `文档中心 - ${SITE_NAME}`,
+  description: `${SITE_NAME}文档中心，包含 ME-Frp-XL-Client、LX-ME-Frp-Launcher、PML 2、ZNext Launcher、Fan-ME-FRP Launcher 等所有产品的详细使用指南和安装教程。`,
+  ogDescription: `${SITE_NAME}文档中心，包含所有产品的详细使用指南`,
+  ogImage: OG_IMAGE,
+  ogUrl: `${SITE_URL}/docs`,
   ogType: 'website',
   twitterCard: 'summary_large_image'
 })
 
-const clients = [
-  {
-    id: 'xl',
-    name: 'ME-Frp-XL-Client',
-    path: '/docs/xl',
-    description: '基于 Tauri 框架开发的跨平台客户端，界面美观，性能优异',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/xl_icon.webp'
-  },
-  {
-    id: 'lx',
-    name: 'LX-ME-Frp-Launcher',
-    path: '/docs/lx',
-    description: '使用易语言开发的 Windows 客户端，界面高仿官方V4客户端风格',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/lx_icon.webp'
-  },
-  {
-    id: 'pml',
-    name: 'PML 2',
-    path: '/docs/pml',
-    description: '基于 .NET 的跨平台客户端，支持多个操作系统',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/pml_icon.webp'
-  },
-  {
-    id: 'zl',
-    name: 'ZNext Launcher',
-    path: '/docs/zl',
-    description: '基于 WinUI3 框架开发的 Windows 原生客户端，采用 Fluent Design 设计语言',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/zerosnow/znext-icon.png'
-  },
-  {
-    id: 'fm',
-    name: 'Fan-ME-FRP Launcher',
-    path: '/docs/fm',
-    description: '基于 Java 开发的 FRP 客户端启动器，支持 GUI 图形界面和命令行模式',
-    icon: 'https://image.mefrp-tpca.yealqp.cn/images/views/icon/fm_icon.webp',
-    fallbackIcon: 'https://oss.cf.xiaofanshop.cn/tpcaw/images/views/icon/fm_icon.webp'
-  },
-  // 【新增】FrpDash：面向安卓端的 ME-Frp 第三方客户端
-  {
-    id: 'fd',
-    name: 'FrpDash',
-    path: '/docs/fd',
-    description: '面向安卓端的 ME-Frp 第三方客户端，Java 原生开发，内置 frpc 四架构二进制，免 Root 开箱即用',
-    icon: 'https://fd.0n.pub/img/logo-192.png'
-  }
-]
+// 客户端列表（从共享数据获取，保持与产品定义同步）
+const { versions, fetchAllVersions } = useProductVersions()
+const clients = computed(() => getDocClients(versions.value))
+
+onMounted(() => {
+  fetchAllVersions()
+})
 
 const quickStartSteps = [
   {
