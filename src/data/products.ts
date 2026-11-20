@@ -159,6 +159,23 @@ const productBases: ProductBase[] = [
       "每日签到与权益抽取，均支持人机验证",
     ],
   },
+  {
+    id: "yml",
+    name: "Yun-ME-FRP Launcher",
+    author: "xiaoyun",
+    description:
+      "由xiaoyun使用WinUI 3与.NET 10原生开发的Windows桌面客户端，单文件免安装，覆盖隧道全生命周期管理、节点监控与本地frpc进程托管。",
+    icon: "/images/icon/yml_icon.png",
+    link: "/docs/yml",
+    tags: ["WinUI3", ".NET 10", "Windows", "免安装"],
+    features: [
+      "WinUI 3 + .NET 10 原生开发，单文件自包含，免安装运行时",
+      "隧道全生命周期：创建、编辑、启用/禁用、强制下线与删除",
+      "支持 TOML / JSON / YML / INI 四种配置格式，可一键保存到本地",
+      "节点负载与今日流量监控，本机 CPU / 内存 / 磁盘 / 网络实时概览",
+      "本地客户端一键下载托管，独立运行日志页面，支持开机自启与关闭到托盘",
+    ],
+  },
 ];
 
 /** 客户端产品总数（从静态定义自动推导） */
