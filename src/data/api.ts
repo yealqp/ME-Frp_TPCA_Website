@@ -11,8 +11,9 @@ export const CHANGELOG_PATHS: Record<string, string> = {
   zl: `${ALIST_BASE}/download/ZNext%20Launcher/meta/changelog.json`,
   fm: `${ALIST_BASE}/download/Fan-ME-FRP-Launcher/meta/changelog.json`,
   fd: `${ALIST_BASE}/download/DashFrp/meta/changelog.json`,
-  // yml 暂不使用 Alist，changelog 由客户端仓库托管（GitHub raw），JSON 结构与 Alist 版本一致
-  yml: "https://raw.githubusercontent.com/66666kuailetianshi/Yun-ME-FRP-Launcher/main/meta/changelog.json",
+  // yml 不走 Alist：changelog 与客户端源码同仓（新账号 xiaoyun686xy/Yun-ME-FRP-Launcher）
+  // 用 jsDelivr 镜像而非 raw.githubusercontent.com —— 后者在国内网络下经常直接超时，前端 fetch 会一直失败
+  yml: "https://gcore.jsdelivr.net/gh/xiaoyun686xy/Yun-ME-FRP-Launcher@main/meta/changelog.json",
 };
 
 /** 获取指定产品的 changelog URL */

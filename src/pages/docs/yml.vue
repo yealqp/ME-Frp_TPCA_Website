@@ -3,7 +3,8 @@
     <!-- 页面标题 -->
     <div class="mb-8">
       <div class="flex items-center space-x-4 mb-4">
-        <img src="/images/icon/yml_icon.png" alt="Yun-ME-FRP Launcher" class="w-12 h-12 rounded-lg" />
+        <img src="/images/icon/yml-logo.webp" alt="Yun-ME-FRP Launcher"
+          class="w-14 h-14 rounded-xl bg-white object-contain ring-1 ring-white/15" />
         <div>
           <h1 class="text-3xl font-bold text-white">Yun-ME-FRP Launcher</h1>
           <p class="text-gray-400">基于 WinUI 3 的 Windows 原生桌面客户端</p>
@@ -104,11 +105,14 @@
 
       <div class="p-6 space-y-6">
         <div class="text-center">
-          <UButton size="lg" color="primary" disabled class="cursor-not-allowed">
+          <UButton size="lg" color="primary" to="https://alist.yealqp.cn/mefrp-desktop/Yun-ME-FRP%20Launcher"
+            target="_blank" class="btn-glow cursor-pointer">
             <UIcon name="i-lucide-download" class="size-5 mr-2" />
-            下载地址即将上线
+            下载 Yun-ME-FRP Launcher
           </UButton>
-          <p class="text-gray-400 text-sm mt-3">发布页正在准备中，正式开放后此处会提供最新版本的直接下载。</p>
+          <p class="text-gray-400 text-sm mt-3">
+            文件名 <code class="text-primary-400">Yun-ME-FRP Launcher.exe</code>，免安装单文件，约 211 MB。
+          </p>
         </div>
 
         <div class="p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
