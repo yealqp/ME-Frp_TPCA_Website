@@ -83,18 +83,11 @@
 
           <!-- 产品截图 -->
           <div class="relative" :class="{ 'lg:col-start-1 lg:row-start-1': index % 2 === 1 }">
-            <div v-if="product.screenshot" class="relative rounded-2xl overflow-hidden shadow-2xl glass-card p-2">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl glass-card p-2">
               <img :src="product.screenshot" :alt="`${product.name} 界面截图 - ME-Frp 内网穿透客户端`"
                 class="w-full h-auto rounded-xl" loading="lazy"
                 :onerror="product.fallbackScreenshot ? `if(!this.dataset.fallback){this.dataset.fallback='1';this.src='${product.fallbackScreenshot}'}` : undefined">
               <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl"></div>
-            </div>
-            <!-- 尚无截图的客户端：展示占位卡片，避免出现空白或破图 -->
-            <div v-else class="relative rounded-2xl overflow-hidden shadow-2xl glass-card p-2">
-              <div class="w-full aspect-video rounded-xl bg-white/5 flex flex-col items-center justify-center gap-3">
-                <img :src="product.icon" :alt="product.name" class="w-16 h-16 rounded-xl opacity-80" />
-                <span class="text-sm text-gray-400">界面截图待补充</span>
-              </div>
             </div>
           </div>
         </div>
