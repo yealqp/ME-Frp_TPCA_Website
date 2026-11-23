@@ -74,8 +74,9 @@
 
             <!-- 操作按钮 -->
             <div class="flex flex-col sm:flex-row gap-4">
-              <UButton size="lg" color="primary" :to="product.link" target="_blank" class="btn-glow cursor-pointer">
-                <UIcon name="i-lucide-external-link" class="size-5 mr-2" />
+              <UButton size="lg" color="primary" :to="product.link"
+                :target="product.link.startsWith('http') ? '_blank' : undefined" class="btn-glow cursor-pointer">
+                <UIcon :name="product.link.startsWith('http') ? 'i-lucide-external-link' : 'i-lucide-book-open'" class="size-5 mr-2" />
                 查看文档
               </UButton>
             </div>

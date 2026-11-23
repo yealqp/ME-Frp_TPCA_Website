@@ -96,6 +96,64 @@
       </div>
     </div>
 
+    <!-- 界面预览 -->
+    <div ref="previewRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
+      :class="{ 'visible': previewVisible }">
+      <div class="p-6 border-b border-white/10">
+        <h2 class="text-xl font-semibold text-white">界面预览</h2>
+      </div>
+
+      <div class="p-6">
+        <div class="relative rounded-lg overflow-hidden bg-gray-900/50">
+          <div class="relative w-full aspect-video flex items-center justify-center">
+            <img :key="currentImageIndex" :src="previewImages[currentImageIndex].src"
+              :alt="previewImages[currentImageIndex].alt + ' - Yun-ME-FRP Launcher 界面截图'"
+              class="max-w-full max-h-full object-contain cursor-pointer" loading="lazy"
+              @click="openImageModal(currentImageIndex)" />
+
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+              <p class="text-white text-center font-medium">{{ previewImages[currentImageIndex].alt }}</p>
+            </div>
+          </div>
+
+          <button @click="previousImage"
+            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+            :disabled="previewImages.length <= 1">
+            <UIcon name="i-lucide-chevron-left" class="size-5" />
+          </button>
+
+          <button @click="nextImage"
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+            :disabled="previewImages.length <= 1">
+            <UIcon name="i-lucide-chevron-right" class="size-5" />
+          </button>
+        </div>
+
+        <!-- 指示器 -->
+        <div class="mt-4 flex justify-center items-center space-x-2">
+          <button v-for="(image, index) in previewImages" :key="'dot-' + index" @click="currentImageIndex = index"
+            class="h-2 rounded-full transition-all"
+            :class="index === currentImageIndex ? 'bg-primary-400 w-6' : 'bg-white/20 w-2 hover:bg-white/40'"
+            :aria-label="image.alt" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 图片放大模态框 -->
+    <Teleport to="body">
+      <div v-if="showImageModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+        @click="showImageModal = false">
+        <div class="relative max-w-[90vw] max-h-[90vh]">
+          <img :src="modalImage.src" :alt="modalImage.alt" class="max-w-full max-h-[90vh] object-contain rounded-lg" />
+          <button @click="showImageModal = false"
+            class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors">
+            <UIcon name="i-lucide-x" class="size-5" />
+          </button>
+          <p class="text-white text-center mt-4 font-medium">{{ modalImage.alt }}</p>
+        </div>
+      </div>
+    </Teleport>
+
     <!-- 下载安装 -->
     <div ref="downloadRef" class="mb-8 glass-card rounded-xl overflow-hidden scroll-animate hover-lift"
       :class="{ 'visible': downloadVisible }">
@@ -290,10 +348,41 @@ definePageMeta({
 
 // 滚动动画
 const { elementRef: introRef, isVisible: introVisible } = useScrollAnimation()
+const { elementRef: previewRef, isVisible: previewVisible } = useScrollAnimation()
 const { elementRef: downloadRef, isVisible: downloadVisible } = useScrollAnimation()
 const { elementRef: guideRef, isVisible: guideVisible } = useScrollAnimation()
 const { elementRef: updateRef, isVisible: updateVisible } = useScrollAnimation()
 const { elementRef: linksRef, isVisible: linksVisible } = useScrollAnimation()
+
+// 界面预览图（本地静态资源）
+// 隧道管理、账户两页涉及真实 IP / 邮箱 / UID / token，已做多轮马赛克处理
+const previewImages = [
+  { src: '/images/views/yml/home.png', alt: '首页概览' },
+  { src: '/images/views/yml/tunnel.png', alt: '隧道管理' },
+  { src: '/images/views/yml/nodes.png', alt: '节点监控' },
+  { src: '/images/views/yml/create.png', alt: '新建隧道' },
+  { src: '/images/views/yml/logs.png', alt: '运行日志' },
+  { src: '/images/views/yml/account.png', alt: '账户信息' }
+]
+
+const currentImageIndex = ref(0)
+const showImageModal = ref(false)
+const modalImage = ref({ src: '', alt: '' })
+
+const openImageModal = (index: number) => {
+  const img = previewImages[index]
+  if (!img) return
+  modalImage.value = { src: img.src, alt: img.alt }
+  showImageModal.value = true
+}
+
+const nextImage = () => {
+  currentImageIndex.value = (currentImageIndex.value + 1) % previewImages.length
+}
+
+const previousImage = () => {
+  currentImageIndex.value = currentImageIndex.value === 0 ? previewImages.length - 1 : currentImageIndex.value - 1
+}
 
 // 更新日志
 const { updates, loading, error, fetchChangelog } = useProductChangelog('yml')
