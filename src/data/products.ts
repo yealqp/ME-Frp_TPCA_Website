@@ -165,7 +165,8 @@ const productBases: ProductBase[] = [
     author: "xiaoyun",
     description:
       "由xiaoyun使用WinUI 3与.NET 10原生开发的Windows桌面客户端，单文件免安装，覆盖隧道全生命周期管理、节点监控与本地frpc进程托管。",
-    icon: "/images/icon/yml_icon.png",
+    icon: "/images/icon/yml-logo.webp",
+    screenshot: "/images/views/yml/home.png",
     link: "/docs/yml",
     tags: ["WinUI3", ".NET 10", "Windows", "免安装"],
     features: [
