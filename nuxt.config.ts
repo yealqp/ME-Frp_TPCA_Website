@@ -109,7 +109,7 @@ export default defineNuxtConfig({
       publicDir: 'dist'
     },
     prerender: {
-      routes: ['/', '/about', '/brand', '/products', '/docs', '/docs/xl', '/docs/lx', '/docs/pml', '/docs/fd', '/docs/zl', '/docs/fm', '/docs/itml', '/docs/yml', '/docs/alliance/whitebook', '/docs/alliance/members'],
+      routes: ['/', '/about', '/brand', '/products', '/docs', '/docs/xl', '/docs/lx', '/docs/pml', '/docs/fd', '/docs/zl', '/docs/fm', '/docs/itml', '/docs/yml', '/docs/alliance/whitebook', '/docs/alliance/members', '/unireport'],
       crawlLinks: true
     },
     // 压缩优化
@@ -123,6 +123,7 @@ export default defineNuxtConfig({
     '/brand': { prerender: true },
     '/products': { prerender: true },
     '/docs/**': { prerender: true },
+    '/unireport': { prerender: true },
     '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } }
   },
 

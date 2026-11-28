@@ -9,4 +9,5 @@ export const navigation: NavItem[] = [
   { name: "产品", href: "/products", icon: "i-lucide-box" },
   { name: "关于", href: "/about", icon: "i-lucide-info" },
   { name: "文档", href: "/docs", icon: "i-lucide-file-text" },
+  { name: "反馈", href: "/unireport", icon: "i-lucide-message-square-warning" },
 ];
