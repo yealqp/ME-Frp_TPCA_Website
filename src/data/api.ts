@@ -3,8 +3,9 @@ import { ALIST_BASE } from "./constants";
 /**
  * 聚合反馈平台 UniReport API
  * 后端：RycbApi.NET POST /api/tpca/unireport（免 token，服务端限流 + 落盘 + 发邮件）
+ * 注：api.rycb.tech 为 Python/Vercel 实例，端点尚未部署到该实例，故此处指向 .NET 实例
  */
-export const UNIREPORT_API = "https://api.rycb.tech/api/tpca/unireport";
+export const UNIREPORT_API = "https://api.rycb.mxj.pub/api/tpca/unireport";
 
 export type FeedbackType = "bug" | "feature" | "other";
 

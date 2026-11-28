@@ -21,7 +21,7 @@
           </div>
           <h1 class="text-4xl md:text-5xl font-bold text-white mb-6"
             style="text-shadow: 0 0 30px rgba(20, 184, 166, 0.3);">
-            UniReport
+            TPCA UniReport
           </h1>
           <p class="text-xl text-gray-400 max-w-3xl mx-auto">
             遇到了 Bug？有好的建议？选择你正在使用的客户端，把问题告诉我们
